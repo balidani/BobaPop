@@ -1,13 +1,58 @@
-[gd_scene load_steps=5 format=3 uid="uid://dnr5rjm3bwrgt"]
+[gd_scene load_steps=9 format=3 uid="uid://dnr5rjm3bwrgt"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://w2eko4jy8j5l" path="res://src/bubble_path/bounce.tres" id="1_a8rah"]
 [ext_resource type="Script" path="res://src/bubble_path/bubble_path.gd" id="1_pll3f"]
+
+[sub_resource type="Shader" id="Shader_668kg"]
+code = "shader_type spatial;
+
+uniform sampler2D noise_tex;
+uniform float spikiness;
+uniform float speed;
+uniform vec3 color;
+
+float fresnel(vec3 normal, mat4 camera_matrix){
+	vec3 view_direction_world = (camera_matrix * vec4(0.0,0.0,1.0,0.0)).xyz;
+	vec3 normal_world = (camera_matrix * vec4(normal,0.0)).xyz;
+
+	float d = dot(view_direction_world, normal_world);
+	d = abs(d);
+	d = clamp(d, 0.0, 1.0);
+
+	return 1.0 - d;
+}
+
+void vertex() {
+	float height = texture(noise_tex, VERTEX.xz * spikiness + vec2(TIME)*speed).r;
+	VERTEX += NORMAL * height * 0.5;
+}
+
+void fragment() {
+	ALPHA = fresnel(NORMAL, VIEW_MATRIX);
+	ROUGHNESS = 1.5;
+	ALBEDO = color;
+}
+"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4xfrs"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1xwse"]
+noise = SubResource("FastNoiseLite_4xfrs")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xfokb"]
+render_priority = 0
+shader = SubResource("Shader_668kg")
+shader_parameter/spikiness = 0.05
+shader_parameter/speed = 0.08
+shader_parameter/color = Vector3(5, 0, 10)
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_1xwse")
 
 [sub_resource type="SphereMesh" id="SphereMesh_fygxx"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6isg4"]
 
 [node name="BubblePath" type="RigidBody3D"]
+axis_lock_linear_y = true
 mass = 0.5
 physics_material_override = ExtResource("1_a8rah")
 gravity_scale = 0.0
@@ -16,6 +61,8 @@ max_contacts_reported = 1
 script = ExtResource("1_pll3f")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00412369, 0, 0)
+material_override = SubResource("ShaderMaterial_xfokb")
 mesh = SubResource("SphereMesh_fygxx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
