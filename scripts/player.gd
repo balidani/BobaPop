@@ -26,7 +26,6 @@ var coins = 0
 @onready var animation = $Character/AnimationPlayer
 
 # Preload the cloud model
-var BubbleScene = preload("res://scenes/bubble.tscn")
 var BouncyBubbleScene = preload("res://src/bubble_path/bubble_path.tscn")
 
 # Functions
