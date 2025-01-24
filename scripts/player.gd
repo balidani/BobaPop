@@ -25,7 +25,7 @@ var coins = 0
 @onready var model = $Character
 @onready var animation = $Character/AnimationPlayer
 
-# Preload the cloud model
+# Preload the bubble model
 var BouncyBubbleScene = preload("res://src/bubble_path/bubble_path.tscn")
 
 # Functions
@@ -123,7 +123,7 @@ func handle_controls(delta):
 	# Jumping
 
 	if Input.is_action_just_pressed("jump"):
-		shoot_cloud()
+		shoot_bubble()
 		#if jump_single or jump_double:
 			#jump()
 
@@ -138,9 +138,8 @@ func handle_gravity(delta):
 		jump_single = true
 		gravity = 0
 
-func shoot_cloud():
-	# Instance the cloud
-	# var bubble_instance : Bubble = BubbleScene.instantiate() as Bubble
+func shoot_bubble():
+	# Instance the bubble
 	var bubble_instance : BouncyBubble = BouncyBubbleScene.instantiate() as BouncyBubble
 	
 	# Calculate the position in front of the player
