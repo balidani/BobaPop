@@ -35,9 +35,10 @@ current = true
 fov = 45.0
 
 [node name="World" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0029974, -0.0108507, 0.00333357)
 
 [node name="platform-medium" parent="World" instance=ExtResource("7_ixpj3")]
-transform = Transform3D(7.96907, 0, 0.702809, 0, 8, 0, -0.702809, 0, 7.96907, 0.798383, -4.66066, 1.18658)
+transform = Transform3D(7.96907, 0, 0.702809, 0, 8, 0, -0.702809, 0, 7.96907, 0.796425, -4.64331, 1.18288)
 
 [node name="cube8" parent="World" instance=ExtResource("13_drtpy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5495, 1.10741, -11.016)

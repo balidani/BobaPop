@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://ceh015bhiwo7i"]
+
+[ext_resource type="SphereMesh" uid="uid://b5atinp5pagdo" path="res://meshes/bubble.tres" id="1_0j574"]
+[ext_resource type="Script" path="res://scripts/bubble.gd" id="2_pdve3"]
+
+[node name="Bubble" type="Node3D"]
+script = ExtResource("2_pdve3")
+
+[node name="Bubble" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_0j574")

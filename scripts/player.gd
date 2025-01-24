@@ -25,6 +25,9 @@ var coins = 0
 @onready var model = $Character
 @onready var animation = $Character/AnimationPlayer
 
+# Preload the cloud model
+var BubbleScene = preload("res://scenes/bubble.tscn")
+
 # Functions
 
 func _physics_process(delta):
@@ -117,9 +120,9 @@ func handle_controls(delta):
 	# Jumping
 
 	if Input.is_action_just_pressed("jump"):
-
-		if jump_single or jump_double:
-			jump()
+		shoot_cloud()
+		#if jump_single or jump_double:
+			#jump()
 
 # Handle gravity
 
@@ -131,6 +134,26 @@ func handle_gravity(delta):
 
 		jump_single = true
 		gravity = 0
+
+func shoot_cloud():
+	# Instance the cloud
+	var bubble_instance : Bubble = BubbleScene.instantiate() as Bubble
+	
+	if not bubble_instance:
+		print("Error: BubbleScene did not instantiate as a Bubble.")
+	
+	# Calculate the position in front of the player
+	var forward_direction = -global_transform.basis.z.normalized()  # Get the forward direction vector
+	var spawn_position = global_transform.origin + forward_direction * -0.5  # Adjust distance if needed
+	spawn_position += Vector3(0, 0.5, 0)
+	# Set the position of the cloud instance
+	bubble_instance.global_transform.origin = spawn_position
+	
+	bubble_instance.rotation = Vector3(0, rotation_direction + PI, 0)
+
+	
+	# Add the cloud instance to the scene
+	get_parent().add_child(bubble_instance)
 
 # Jumping
 
