@@ -23,7 +23,7 @@ for url in "${zip_urls[@]}"; do
 
     # Download the zip file
     echo "Downloading $filename..."
-    wget -q -O "$download_dir/$filename" "$url"
+    ( cd "${download_dir:?}" && curl -L -O "$url" )
 
     # Check if the download was successful
     if [ $? -eq 0 ]; then
