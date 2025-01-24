@@ -1,5 +1,5 @@
 extends RigidBody3D
-
+class_name BouncyBubble
 
 var t = 0.0
 func _process(delta: float) -> void:

@@ -27,6 +27,7 @@ var coins = 0
 
 # Preload the cloud model
 var BubbleScene = preload("res://scenes/bubble.tscn")
+var BouncyBubbleScene = preload("res://src/bubble_path/bubble_path.tscn")
 
 # Functions
 
@@ -140,10 +141,8 @@ func handle_gravity(delta):
 
 func shoot_cloud():
 	# Instance the cloud
-	var bubble_instance : Bubble = BubbleScene.instantiate() as Bubble
-	
-	if not bubble_instance:
-		print("Error: BubbleScene did not instantiate as a Bubble.")
+	# var bubble_instance : Bubble = BubbleScene.instantiate() as Bubble
+	var bubble_instance : BouncyBubble = BouncyBubbleScene.instantiate() as BouncyBubble
 	
 	# Calculate the position in front of the player
 	var forward_direction = -global_transform.basis.z.normalized()  # Get the forward direction vector

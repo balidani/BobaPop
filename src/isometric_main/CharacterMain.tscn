@@ -289,5 +289,4 @@ target = NodePath("../Player")
 camera = NodePath("Camera3D")
 
 [node name="Camera3D" type="Camera3D" parent="View"]
-transform = Transform3D(1, 0, 0, 0, 0.822661, 0.568533, 0, -0.568533, 0.822661, 0, 10, 20)
 size = 15.0

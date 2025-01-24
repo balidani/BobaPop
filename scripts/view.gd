@@ -46,7 +46,7 @@ func handle_input(delta):
 	input.x = Input.get_axis("camera_up", "camera_down")
 	
 	camera_rotation += input.limit_length(1.0) * rotation_speed * delta
-	camera_rotation.x = clamp(camera_rotation.x, -80, -10)
+	camera_rotation.x = clamp(camera_rotation.x, -40, -30)
 	
 	# Zooming
 	
