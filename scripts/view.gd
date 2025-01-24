@@ -3,6 +3,8 @@ extends Node3D
 @export_group("Properties")
 @export var target: Node
 
+@export var camera: Camera3D
+
 @export_group("Zoom")
 @export var zoom_minimum = 16
 @export var zoom_maximum = 4
@@ -14,7 +16,6 @@ extends Node3D
 var camera_rotation:Vector3
 var zoom = 10
 
-@onready var camera = $Camera
 
 func _ready():
 	

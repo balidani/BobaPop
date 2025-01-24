@@ -32,6 +32,9 @@ var BubbleScene = preload("res://scenes/bubble.tscn")
 
 func _physics_process(delta):
 
+	if not model:
+		return
+
 	# Handle functions
 
 	handle_controls(delta)
