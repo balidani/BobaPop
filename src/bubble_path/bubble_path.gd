@@ -8,3 +8,8 @@ func _process(delta: float) -> void:
 	
 	apply_central_impulse(-global_transform.basis.z * 2.0)
 	set_process(false)
+
+
+func _on_body_entered(body: Node) -> void:
+	if body.has_method("bounce"):
+		body.bounce(self)
