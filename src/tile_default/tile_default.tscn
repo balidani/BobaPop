@@ -19,7 +19,6 @@ size = Vector3(2, 2, 2)
 material_override = SubResource("StandardMaterial3D_w2cf3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 shape = SubResource("BoxShape3D_mm7nh")
 
 [editable path="tile_default"]

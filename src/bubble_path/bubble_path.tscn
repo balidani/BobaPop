@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://dnr5rjm3bwrgt"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://w2eko4jy8j5l" path="res://src/bubble_path/bounce.tres" id="1_a8rah"]
+[ext_resource type="Script" path="res://src/bubble_path/bubble_path.gd" id="1_pll3f"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_fygxx"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6isg4"]
+
+[node name="BubblePath" type="RigidBody3D"]
+mass = 0.5
+physics_material_override = ExtResource("1_a8rah")
+gravity_scale = 0.0
+script = ExtResource("1_pll3f")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_fygxx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_6isg4")
