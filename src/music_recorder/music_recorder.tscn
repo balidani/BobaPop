@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b76u48l0i00ks"]
+
+[ext_resource type="Script" path="res://src/music_recorder/music_recorder.gd" id="1_mi5ql"]
+
+[node name="MusicRecorder" type="Node"]
+script = ExtResource("1_mi5ql")

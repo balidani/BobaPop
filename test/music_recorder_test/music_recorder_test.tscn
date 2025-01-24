@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://dcetua3atyl2g"]
+
+[ext_resource type="PackedScene" uid="uid://blckvmdw3jymb" path="res://src/isometric_main/IsometricMain.tscn" id="1_33xmm"]
+[ext_resource type="PackedScene" uid="uid://cmd8l7xjwjon3" path="res://src/tile_obstacle/tile_obstacle.tscn" id="2_1xlsu"]
+[ext_resource type="PackedScene" uid="uid://b76u48l0i00ks" path="res://src/music_recorder/music_recorder.tscn" id="2_ehvf3"]
+[ext_resource type="PackedScene" uid="uid://dnr5rjm3bwrgt" path="res://src/bubble_path/bubble_path.tscn" id="3_ycev0"]
+
+[node name="MusicRecorderTest" type="Node3D"]
+
+[node name="MusicRecorder" parent="." instance=ExtResource("2_ehvf3")]
+
+[node name="BubblePathTest" type="Node3D" parent="."]
+
+[node name="TileObstacle" parent="BubblePathTest" instance=ExtResource("2_1xlsu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+
+[node name="TileObstacle2" parent="BubblePathTest" instance=ExtResource("2_1xlsu")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -4.70711, 0, -0.707107)
+
+[node name="TileObstacle3" parent="BubblePathTest" instance=ExtResource("2_1xlsu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 8)
+
+[node name="TileObstacle4" parent="BubblePathTest" instance=ExtResource("2_1xlsu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+
+[node name="TileObstacle5" parent="BubblePathTest" instance=ExtResource("2_1xlsu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+
+[node name="BubblePath" parent="BubblePathTest" instance=ExtResource("3_ycev0")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="BubblePath2" parent="BubblePathTest" instance=ExtResource("3_ycev0")]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, -8.74228e-08, 0, 2)
+
+[node name="BubblePath3" parent="BubblePathTest" instance=ExtResource("3_ycev0")]
+transform = Transform3D(-1, 0, 7.35137e-08, 0, 1, 0, -7.35137e-08, 0, -1, -4.12132, 0, 3.29289)
+
+[node name="IsometricMain" parent="." instance=ExtResource("1_33xmm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
