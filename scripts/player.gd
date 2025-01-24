@@ -147,7 +147,7 @@ func shoot_cloud():
 	# Calculate the position in front of the player
 	var forward_direction = -global_transform.basis.z.normalized()  # Get the forward direction vector
 	var spawn_position = global_transform.origin + forward_direction * -0.5  # Adjust distance if needed
-	spawn_position += Vector3(0, 0.5, 0)
+	spawn_position += Vector3(0, 1, 0)
 	# Set the position of the cloud instance
 	bubble_instance.global_transform.origin = spawn_position
 	
