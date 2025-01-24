@@ -26,6 +26,8 @@ Audio="*res://scripts/audio.gd"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/stretch/mode="viewport"
+window/stretch/scale=4.0
 
 [editor]
 
@@ -106,5 +108,6 @@ zoom_out={
 
 [rendering]
 
-renderer/rendering_method="mobile"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
 anti_aliasing/quality/screen_space_aa=1

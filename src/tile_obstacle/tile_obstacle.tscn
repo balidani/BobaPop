@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmd8l7xjwjon3"]
+
+[ext_resource type="PackedScene" uid="uid://banltn2jgmglc" path="res://mesh/tile_default.glb" id="1_wnc5e"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qafnk"]
+albedo_color = Color(0.300069, 0.307739, 0.278935, 1)
+metallic = 0.3
+metallic_specular = 0.17
+roughness = 0.55
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mm7nh"]
+size = Vector3(2, 2, 2)
+
+[node name="TileObstacle" type="StaticBody3D"]
+
+[node name="tile_default" parent="." instance=ExtResource("1_wnc5e")]
+
+[node name="Cube" parent="tile_default" index="0"]
+material_override = SubResource("StandardMaterial3D_qafnk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+shape = SubResource("BoxShape3D_mm7nh")
+
+[editable path="tile_default"]
