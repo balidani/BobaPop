@@ -1,18 +1,25 @@
 extends Node3D
 class_name GeneratedLevelSegment
 
+const SPIKE = preload("res://src/spike/spike.tscn")
+const MASTER_POPPER = preload("res://src/tile_master_popper/tile_master_popper.tscn")
+const REPEATER = preload("res://src/repeater_obstacle/repeater_obstacle.tscn")
+const NOTE_TONIC = preload("res://src/note_tonic/note_tonic.tscn")
+const NOTE_DOMINANT = preload("res://src/note_dominant/note_dominant.tscn")
+const OBSTACLE = preload("res://src/tile_obstacle/tile_obstacle.tscn")
+const TILE_3W3L = preload("res://src/tile_3w3l/tile_3w3l.tscn")
+const BLACK_HOLE = preload("res://src/black_hole/black_hole.tscn")
+const AMEN = preload("res://src/tiles/tile_amen/tile_amen.tscn")
+
 
 var rng = RandomNumberGenerator.new()
-
 
 # Set by GeneratedLevel
 var level : GeneratedLevel
 
-
 # map[Vector3i]true whether a local tile is occupied.
 var occupancy = {}
 var edge_candidates = {}
-
 
 # Checks occupancy so we don't place objects in the same spot twice.
 func _maybe_add_block(block, local : Vector3i):
@@ -64,19 +71,15 @@ func _ready():
 		var random_pos = Vector3i(rng.randi_range(-1, 1) * 2, 2, rng.randi_range(-1, 1) * 2)
 		_maybe_add_block(OBSTACLE.instantiate(), random_pos)
 	
+		# Pepper in a few obstacles.
+	for _o in range(rng.randi_range(1, 3)):
+		var random_pos = Vector3i(rng.randi_range(-1, 1) * 2, 2, rng.randi_range(-1, 1) * 2)
+		_maybe_add_block(AMEN.instantiate(), random_pos)
+	
+	
 	# Mark edges
 	for dz in range(-2, 3):
 		for dx in range(-2, 3):
 			if abs(dz) != 2 and abs(dx) != 2:
 				continue
 			edge_candidates[Vector3i(dx * 2, 0, dz * 2)] = 1
-
-
-const SPIKE = preload("res://src/spike/spike.tscn")
-const MASTER_POPPER = preload("res://src/tile_master_popper/tile_master_popper.tscn")
-const REPEATER = preload("res://src/repeater_obstacle/repeater_obstacle.tscn")
-const NOTE_TONIC = preload("res://src/note_tonic/note_tonic.tscn")
-const NOTE_DOMINANT = preload("res://src/note_dominant/note_dominant.tscn")
-const OBSTACLE = preload("res://src/tile_obstacle/tile_obstacle.tscn")
-const TILE_3W3L = preload("res://src/tile_3w3l/tile_3w3l.tscn")
-const BLACK_HOLE = preload("res://src/black_hole/black_hole.tscn")

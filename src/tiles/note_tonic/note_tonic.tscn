@@ -1,7 +1,7 @@
-[gd_scene load_steps=9 format=4 uid="uid://bw6l3nhchpkjs"]
+[gd_scene load_steps=9 format=4 uid="uid://b8286bcjoy4jw"]
 
-[ext_resource type="Script" path="res://src/repeater_obstacle/repeater_obstacle.gd" id="1_dujgb"]
-[ext_resource type="PackedScene" uid="uid://b2jvlqfx5ftv4" path="res://models/weapon-turret.glb" id="2_804hq"]
+[ext_resource type="Script" path="res://src/tiles/note_tonic/note_tonic.gd" id="1_e4pkm"]
+[ext_resource type="PackedScene" path="res://models/cocktail_2.tscn" id="2_37rmn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mm7nh"]
 size = Vector3(2, 2, 2)
@@ -16,24 +16,10 @@ packet_sequence = SubResource("OggPacketSequence_1gmag")
 
 [sub_resource type="Animation" id="Animation_043sp"]
 length = 0.001
-tracks/0/type = "scale_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("weapon-turret2")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 3, 3, 3)
 
 [sub_resource type="Animation" id="Animation_1y3ov"]
 resource_name = "bounce"
 length = 0.5
-tracks/0/type = "scale_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("weapon-turret2")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0.0333333, 1, 3, 3, 3, 0.1, 1, 3.5, 3.5, 3.5, 0.5, 1, 3, 3, 3)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fr4hk"]
 _data = {
@@ -41,13 +27,11 @@ _data = {
 "bounce": SubResource("Animation_1y3ov")
 }
 
-[node name="RepeatedObstacle" type="StaticBody3D"]
-script = ExtResource("1_dujgb")
-
-[node name="weapon-turret2" parent="." instance=ExtResource("2_804hq")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -1, 0)
+[node name="NoteTonic" type="StaticBody3D"]
+script = ExtResource("1_e4pkm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("BoxShape3D_mm7nh")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
@@ -58,3 +42,6 @@ pitch_scale = 0.5
 libraries = {
 "": SubResource("AnimationLibrary_fr4hk")
 }
+
+[node name="cocktail3" parent="." instance=ExtResource("2_37rmn")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, -1, 0)

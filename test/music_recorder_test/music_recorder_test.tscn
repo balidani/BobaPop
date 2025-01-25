@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dcetua3atyl2g"]
 
 [ext_resource type="PackedScene" uid="uid://blckvmdw3jymb" path="res://src/isometric_main/IsometricMain.tscn" id="1_33xmm"]
-[ext_resource type="PackedScene" uid="uid://cmd8l7xjwjon3" path="res://src/tile_obstacle/tile_obstacle.tscn" id="2_1xlsu"]
+[ext_resource type="PackedScene" uid="uid://cmd8l7xjwjon3" path="res://src/tiles/tile_obstacle/tile_obstacle.tscn" id="2_1xlsu"]
 [ext_resource type="PackedScene" uid="uid://b76u48l0i00ks" path="res://src/music_recorder/music_recorder.tscn" id="2_ehvf3"]
 [ext_resource type="PackedScene" uid="uid://dnr5rjm3bwrgt" path="res://src/bubble_path/bubble_path.tscn" id="3_ycev0"]
 

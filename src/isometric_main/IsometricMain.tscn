@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://blckvmdw3jymb"]
 
-[ext_resource type="PackedScene" uid="uid://b6grmbjqf822v" path="res://src/tile_default/tile_default.tscn" id="1_xrr2v"]
-[ext_resource type="PackedScene" uid="uid://cmd8l7xjwjon3" path="res://src/tile_obstacle/tile_obstacle.tscn" id="2_srd77"]
+[ext_resource type="PackedScene" uid="uid://b6grmbjqf822v" path="res://src/tiles/tile_default/tile_default.tscn" id="1_xrr2v"]
+[ext_resource type="PackedScene" uid="uid://cmd8l7xjwjon3" path="res://src/tiles/tile_obstacle/tile_obstacle.tscn" id="2_srd77"]
 
 [node name="IsometricMain" type="Node3D"]
 

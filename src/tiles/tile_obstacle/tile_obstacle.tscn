@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://cmd8l7xjwjon3"]
 
-[ext_resource type="Script" path="res://src/tile_obstacle/tile_obstacle.gd" id="1_7k40a"]
+[ext_resource type="Script" path="res://src/tiles/tile_obstacle/tile_obstacle.gd" id="1_7k40a"]
 [ext_resource type="PackedScene" uid="uid://banltn2jgmglc" path="res://mesh/tile_default.glb" id="1_wnc5e"]
-[ext_resource type="Material" uid="uid://b0glkno6cjnve" path="res://src/tile_obstacle/tile_obstacle.tres" id="3_wr0l0"]
+[ext_resource type="Material" uid="uid://b0glkno6cjnve" path="res://src/tiles/tile_obstacle/tile_obstacle.tres" id="3_wr0l0"]
 [ext_resource type="PackedScene" uid="uid://11iaw8c08wvs" path="res://src/glow_effect/glow_effect.tscn" id="4_lvrb7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mm7nh"]

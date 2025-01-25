@@ -1,7 +1,7 @@
-[gd_scene load_steps=9 format=4 uid="uid://dg6a4atb8q6bq"]
+[gd_scene load_steps=9 format=4 uid="uid://bw6l3nhchpkjs"]
 
-[ext_resource type="Script" path="res://src/spike/spike.gd" id="1_ybu3u"]
-[ext_resource type="PackedScene" uid="uid://c44jvejkao5lq" path="res://models/weapon-ammo-arrow.glb" id="2_ekdlh"]
+[ext_resource type="Script" path="res://src/tiles/repeater_obstacle/repeater_obstacle.gd" id="1_dujgb"]
+[ext_resource type="PackedScene" uid="uid://b2jvlqfx5ftv4" path="res://models/weapon-turret.glb" id="2_804hq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mm7nh"]
 size = Vector3(2, 2, 2)
@@ -16,10 +16,24 @@ packet_sequence = SubResource("OggPacketSequence_1gmag")
 
 [sub_resource type="Animation" id="Animation_043sp"]
 length = 0.001
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("weapon-turret2")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 3, 3, 3)
 
 [sub_resource type="Animation" id="Animation_1y3ov"]
 resource_name = "bounce"
 length = 0.5
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("weapon-turret2")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0.0333333, 1, 3, 3, 3, 0.1, 1, 3.5, 3.5, 3.5, 0.5, 1, 3, 3, 3)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fr4hk"]
 _data = {
@@ -27,11 +41,13 @@ _data = {
 "bounce": SubResource("Animation_1y3ov")
 }
 
-[node name="Spike" type="StaticBody3D"]
-script = ExtResource("1_ybu3u")
+[node name="RepeatedObstacle" type="StaticBody3D"]
+script = ExtResource("1_dujgb")
+
+[node name="weapon-turret2" parent="." instance=ExtResource("2_804hq")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -1, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.999941, 0.0108732, 0, -0.0108732, 0.999941, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_mm7nh")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
@@ -42,21 +58,3 @@ pitch_scale = 0.5
 libraries = {
 "": SubResource("AnimationLibrary_fr4hk")
 }
-
-[node name="Node3D" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.284073, -0.89025, -0.310842)
-
-[node name="weapon-ammo-arrow2" parent="Node3D" instance=ExtResource("2_ekdlh")]
-transform = Transform3D(-0.175147, -0.649783, 1.88338, -0.0601677, 1.8915, 0.646991, -1.99141, -1.28862e-09, -0.185193, -0.268481, 0.161303, 0.623074)
-
-[node name="weapon-ammo-arrow3" parent="Node3D" instance=ExtResource("2_ekdlh")]
-transform = Transform3D(1.96082, -0.3778, 0.11152, 0.285874, 1.75434, 0.91682, -0.271009, -0.882921, 1.77398, -0.651995, 0.164461, 0.283337)
-
-[node name="weapon-ammo-arrow4" parent="Node3D" instance=ExtResource("2_ekdlh")]
-transform = Transform3D(-1.98062, -0.273969, 0.0456451, -0.253029, 1.91538, 0.517016, -0.114537, 0.506231, -1.93148, 0.0525157, 0.0445057, 0.283337)
-
-[node name="weapon-ammo-arrow5" parent="Node3D" instance=ExtResource("2_ekdlh")]
-transform = Transform3D(-0.357172, 0.734167, -1.82577, -0.172993, 1.8367, 0.772405, 1.96023, 0.295863, -0.264506, -0.314635, 0.107856, -0.130977)
-
-[node name="weapon-ammo-arrow6" parent="Node3D" instance=ExtResource("2_ekdlh")]
-transform = Transform3D(-0.270109, 1.97123, 0.203165, 0.290756, -0.163402, 1.97199, 1.96023, 0.295863, -0.264506, -0.314635, 0.498074, 0.296577)

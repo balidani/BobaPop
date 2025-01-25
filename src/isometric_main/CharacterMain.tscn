@@ -1,14 +1,14 @@
 [gd_scene load_steps=10 format=3 uid="uid://bwb6lhd0cj5ck"]
 
-[ext_resource type="PackedScene" uid="uid://cmd8l7xjwjon3" path="res://src/tile_obstacle/tile_obstacle.tscn" id="1_xxr6a"]
-[ext_resource type="PackedScene" uid="uid://b6grmbjqf822v" path="res://src/tile_default/tile_default.tscn" id="2_8d666"]
-[ext_resource type="PackedScene" uid="uid://bw6l3nhchpkjs" path="res://src/repeater_obstacle/repeater_obstacle.tscn" id="2_i7208"]
+[ext_resource type="PackedScene" uid="uid://cmd8l7xjwjon3" path="res://src/tiles/tile_obstacle/tile_obstacle.tscn" id="1_xxr6a"]
+[ext_resource type="PackedScene" uid="uid://b6grmbjqf822v" path="res://src/tiles/tile_default/tile_default.tscn" id="2_8d666"]
+[ext_resource type="PackedScene" uid="uid://bw6l3nhchpkjs" path="res://src/tiles/repeater_obstacle/repeater_obstacle.tscn" id="2_i7208"]
 [ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://objects/player.tscn" id="3_i2exs"]
 [ext_resource type="Script" path="res://scripts/view.gd" id="4_6qmwc"]
 [ext_resource type="PackedScene" uid="uid://b76u48l0i00ks" path="res://src/music_recorder/music_recorder.tscn" id="6_l1up3"]
-[ext_resource type="PackedScene" uid="uid://b8286bcjoy4jw" path="res://src/note_tonic/note_tonic.tscn" id="7_2u14q"]
-[ext_resource type="PackedScene" uid="uid://busos5v3ue110" path="res://src/note_dominant/note_dominant.tscn" id="8_ekoxu"]
-[ext_resource type="PackedScene" uid="uid://dg6a4atb8q6bq" path="res://src/spike/spike.tscn" id="9_0p80i"]
+[ext_resource type="PackedScene" uid="uid://b8286bcjoy4jw" path="res://src/tiles/note_tonic/note_tonic.tscn" id="7_2u14q"]
+[ext_resource type="PackedScene" uid="uid://busos5v3ue110" path="res://src/tiles/note_dominant/note_dominant.tscn" id="8_ekoxu"]
+[ext_resource type="PackedScene" uid="uid://dg6a4atb8q6bq" path="res://src/tiles/spike/spike.tscn" id="9_0p80i"]
 
 [node name="IsometricMain" type="Node3D"]
 

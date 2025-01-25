@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=4 uid="uid://b7qpafhtvykhw"]
 
-[ext_resource type="Script" path="res://src/black_hole/black_hole.gd" id="1_tn1s1"]
+[ext_resource type="Script" path="res://src/tiles/black_hole/black_hole.gd" id="1_tn1s1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mm7nh"]
 size = Vector3(2, 2, 2)
