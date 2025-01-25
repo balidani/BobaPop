@@ -4,6 +4,7 @@ class_name TileObstacle
 @onready var _ap : AnimationPlayer = $AnimationPlayer
 @onready var _asp : AudioStreamPlayer3D = $AudioStreamPlayer3D
 
+var a_major = [440, 554, 659]
 
 func bounce(_bubble: BouncyBubble, _last_velocity):
 	#_asp.play(0.0)
