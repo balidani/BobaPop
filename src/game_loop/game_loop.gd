@@ -16,7 +16,7 @@ static var instance : GameLoop
 @export var _player_spawner : PlayerSpawner
 
 
-const MUSIC_RECORDING_DURATION_S = 5.0
+const MUSIC_RECORDING_DURATION_S = 30.0
 
 
 func master_popper_popped():
@@ -59,14 +59,15 @@ func new_level():
 	_player_spawner.spawn_computer_player()
 	print("Showing the level")
 	_level_camera.target = _level_generator
+	_level_lighting.dark_mode = true
 	print("Starting the goal recording")
 	_music_recorder_goal.start(MUSIC_RECORDING_DURATION_S)
 	_level_generator.start_level()
 	await _music_recorder_goal.finished
-	print("Recording done")
 	print("Removing computer player")
 	_player_spawner.remove_computer_player()
 	print("Starting player level")
+	_level_lighting.dark_mode = false
 	while true: # infinite retries, how fun
 		retry_level()
 		await _music_recorder_player.finished

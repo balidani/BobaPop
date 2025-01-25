@@ -9,7 +9,7 @@ extends Node3D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_level_generator.generate_new_level()
-	_level_lighting.new_level()
+	_level_lighting.random_angle()
 
 
 const MAIN_GAME = preload("res://src/main_game/main_game.tscn")

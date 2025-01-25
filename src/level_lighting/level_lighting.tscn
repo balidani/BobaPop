@@ -1,9 +1,36 @@
-[gd_scene load_steps=2 format=3 uid="uid://db1kqfof73j4s"]
+[gd_scene load_steps=5 format=3 uid="uid://db1kqfof73j4s"]
 
 [ext_resource type="Script" path="res://src/level_lighting/level_lighting.gd" id="1_32g4p"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2wegl"]
+sky_top_color = Color(0.497574, 0.230829, 0.51786, 1)
+sky_horizon_color = Color(0.672828, 0.281235, 0.619553, 1)
+sky_curve = 0.0200957
+ground_bottom_color = Color(0.695565, 0.089821, 0.25797, 1)
+ground_horizon_color = Color(0.67451, 0.282353, 0.619608, 1)
+ground_curve = 0.0156917
+energy_multiplier = 3.06
+
+[sub_resource type="Sky" id="Sky_tqy81"]
+sky_material = SubResource("ProceduralSkyMaterial_2wegl")
+
+[sub_resource type="Environment" id="Environment_lq0wh"]
+background_mode = 2
+sky = SubResource("Sky_tqy81")
+ambient_light_sky_contribution = 0.2
+glow_enabled = true
+glow_normalized = true
+glow_intensity = 0.07
+glow_strength = 1.26
+glow_blend_mode = 0
+glow_hdr_threshold = 1.09
 
 [node name="LevelLighting" type="Node3D"]
 script = ExtResource("1_32g4p")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+light_energy = 0.0
 shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_lq0wh")
