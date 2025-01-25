@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqqgyqafm7xwp"]
+[gd_scene load_steps=5 format=3 uid="uid://bqqgyqafm7xwp"]
 
 [ext_resource type="PackedScene" uid="uid://bwb6lhd0cj5ck" path="res://src/isometric_main/CharacterMain.tscn" id="1_85ukx"]
 [ext_resource type="PackedScene" uid="uid://dg6a4atb8q6bq" path="res://src/spike/tile_obstacle.tscn" id="2_j5p7g"]
+[ext_resource type="PackedScene" uid="uid://dqt2r2705jw4u" path="res://src/bubble_wand/tile_obstacle.tscn" id="3_s4vg2"]
 
 [sub_resource type="GDScript" id="GDScript_oby3i"]
 script/source = "extends Node3D
@@ -18,3 +19,6 @@ script = SubResource("GDScript_oby3i")
 
 [node name="TileObstacle" parent="." instance=ExtResource("2_j5p7g")]
 transform = Transform3D(0.999881, 0.0154281, 0, -0.0154281, 0.999881, 0, 0, 0, 1, -5.77175, 2.18756, 6.03109)
+
+[node name="TileObstacle2" parent="." instance=ExtResource("3_s4vg2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.07294, 0.912113, -3.53424)

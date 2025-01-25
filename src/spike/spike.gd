@@ -10,5 +10,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func bounce(_bubble):
-	_bubble.queue_free()
+func bounce(_bubble, _last_velocity):
+	if _bubble.immune != true:
+		_bubble.queue_free()
+	else:
+		_bubble.immune = false

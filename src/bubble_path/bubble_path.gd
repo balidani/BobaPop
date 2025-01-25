@@ -5,6 +5,7 @@ class_name BouncyBubble
 
 var last_velocity: Vector3 = Vector3.ZERO
 var can_collide : bool = false
+var immune : bool = false
 var t = 0.0
 
 func _ready():

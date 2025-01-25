@@ -1,5 +1,5 @@
 extends StaticBody3D
-class_name TileObstacle
+class_name Spike
 
 @onready var _ap : AnimationPlayer = $AnimationPlayer
 @onready var _asp : AudioStreamPlayer3D = $AudioStreamPlayer3D
