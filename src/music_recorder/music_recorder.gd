@@ -1,12 +1,12 @@
 extends Node
 class_name MusicRecorder
 
-# Access from random objects by MusicRecorder.singleton.<method>
-static var singleton : MusicRecorder
+# Access from random objects by MusicRecorder.instance.<method>
+static var instance : MusicRecorder
 
 
 func _ready() -> void:
-	singleton = self
+	instance = self
 
 
 # Emitted when the recording is finished.
@@ -18,8 +18,9 @@ var recording = []
 
 
 # All things that make sounds that matter for the game score must call record()
-func record(sound):
-	recording.push_back([t - _recording_start_t, sound])
+func record(event: NoteEvent):
+	event.timestamp = t - _recording_start_t
+	recording.push_back(event)
 
 
 # When the recording was started. Used to normalize timestamps.

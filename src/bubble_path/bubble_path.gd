@@ -22,7 +22,6 @@ func _integrate_forces(state) -> void:
 		last_velocity = state.get_contact_local_velocity_at_position(i)
 	
 func _on_body_entered(body: Node) -> void:
-	_asp.play(0.0)
-	MusicRecorder.singleton.record("bubble")
+	#_asp.play(0.0)
 	if body.has_method("bounce"):
 		body.bounce(self, last_velocity)

@@ -1,8 +1,8 @@
 extends Node
 class_name GameLoop
 
-# Access from random objects by Gameloop.singleton.<method>
-static var singleton : GameLoop
+# Access from random objects by Gameloop.instance.<method>
+static var instance : GameLoop
 
 
 # "goal" contains the simulated recording. 
