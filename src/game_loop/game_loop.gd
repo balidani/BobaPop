@@ -66,6 +66,14 @@ func new_level():
 		await _music_recorder_player.finished
 		
 		print("Comparing recordings")
+		
+		var challenge: MusicRecorder = _music_recorder_goal.instance
+		var player_recording: MusicRecorder = _music_recorder_player.instance
+	
+		var success_percentage = challenge.compare_similarity_against(player_recording)
+		
+		print("Similarity", success_percentage)
+		
 		# TODO: Compare recordings
 		print("Hardcoded, need to retry.")
 		# Give a bit of time between resets
