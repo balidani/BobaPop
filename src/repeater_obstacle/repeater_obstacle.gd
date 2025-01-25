@@ -13,11 +13,12 @@ var count = 0
 func spawn_bubble(incoming : Vector3, rot : float):
 	var bubble_instance : BouncyBubble = BouncyBubbleScene.instantiate() as BouncyBubble
 	
-	var yrot = atan2(-incoming.x, -incoming.z)
-	yrot = int(rad_to_deg(yrot) / 8.0) * 8.0
+	var yrot = atan2(incoming.x, incoming.z)
+	yrot = round(rad_to_deg(yrot) / 45.0) * 45.0
 	yrot = deg_to_rad(yrot)
 	yrot += rot
-	
+	print (rad_to_deg(yrot))
+
 	var forward_direction = -incoming * 2
 	var spawn_position = global_transform.origin + forward_direction
 	# Floating above ground so no drag
@@ -39,5 +40,5 @@ func bounce(_bubble : RigidBody3D, _last_velocity : Vector3):
 
 	if count < 100:
 		count += 1
-		spawn_bubble(-incoming, PI - PI / 4)
-		spawn_bubble(-incoming, PI + PI / 4)
+		spawn_bubble(-incoming, PI / 4)
+		spawn_bubble(-incoming, -PI / 4)
