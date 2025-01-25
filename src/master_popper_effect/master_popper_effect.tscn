@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://cph6xqbait7ag"]
+
+[ext_resource type="Script" path="res://src/master_popper_effect/master_popper_effect.gd" id="1_ajtri"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v6lq6"]
+transparency = 1
+albedo_color = Color(1, 0.792157, 0.0823529, 0.172549)
+metallic = 1.0
+metallic_specular = 0.92
+roughness = 0.6
+
+[sub_resource type="SphereMesh" id="SphereMesh_lqu70"]
+
+[sub_resource type="Animation" id="Animation_wy2dk"]
+resource_name = "effect"
+length = 5.0
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 5, 1, 10, 10, 10)
+
+[sub_resource type="Animation" id="Animation_v8aaa"]
+length = 0.001
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_peo5q"]
+_data = {
+"RESET": SubResource("Animation_v8aaa"),
+"effect": SubResource("Animation_wy2dk")
+}
+
+[node name="MasterPopperEffect" type="Node3D"]
+process_mode = 3
+script = ExtResource("1_ajtri")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_v6lq6")
+mesh = SubResource("SphereMesh_lqu70")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_peo5q")
+}

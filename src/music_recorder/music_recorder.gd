@@ -43,11 +43,17 @@ func start(max_duration_s : float):
 	is_recording = true
 
 
+func stop():
+	print("Recording stopped")
+	is_recording = false
+
+
 func _finish_recording():
+	if not is_recording: return
 	print("Recording finished")
 	finished.emit()
 	is_recording = false
-	# Save the recording.
+	# Save the recording.sad d
 	var file = FileAccess.open("user://recording.dat", FileAccess.WRITE)
 	file.store_string(str(recording))
 

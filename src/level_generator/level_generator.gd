@@ -20,14 +20,19 @@ func reset_real_level():
 	_container.add_child(real_level)
 
 
+# Stop the level simulation.
+func stop_level():
+	# Do not process anything until start() is called.
+	_container.process_mode = Node.PROCESS_MODE_DISABLED
+
+
 # Start the level simulation.
-func start():
+func start_level():
 	_container.process_mode = Node.PROCESS_MODE_INHERIT
 
 
 func _ready():
-	# Do not process anything until start() is called.
-	_container.process_mode = Node.PROCESS_MODE_DISABLED
+	stop_level()
 
 
 # Remove all state and generate a new level.

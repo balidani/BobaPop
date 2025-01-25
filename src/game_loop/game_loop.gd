@@ -19,13 +19,24 @@ static var instance : GameLoop
 const MUSIC_RECORDING_DURATION_S = 5.0
 
 
+func master_popper_popped():
+	print("Master popper popped")
+	_music_recorder_goal.stop()
+	_music_recorder_player.stop()
+	_level_generator.stop_level()
+	_player_spawner.remove_real_player()
+	# Wait for master popper effect.
+	await get_tree().create_timer(5.0).timeout
+	# TODO: Swap this with comparison method once it works
+	retry_level()
+
+
 func retry_level():
 	print("Resetting the real level")
 	_level_generator.reset_real_level()
 	print("Spawning the real player")
 	_player_spawner.spawn_real_player()
-	print("Starting simulation")
-	_level_generator.start()
+	_level_generator.start_level()
 	# TODO: Do not start recording immediately, but start it on player action.
 	print("Starting the player recording")
 	_music_recorder_player.start(MUSIC_RECORDING_DURATION_S)
@@ -44,7 +55,7 @@ func new_level():
 	_level_camera.target = _level_generator
 	print("Starting the goal recording")
 	_music_recorder_goal.start(MUSIC_RECORDING_DURATION_S)
-	_level_generator.start()
+	_level_generator.start_level()
 	await _music_recorder_goal.finished
 	print("Recording done")
 	print("Removing computer player")
@@ -85,6 +96,7 @@ func _ready():
 		return
 	
 	print("Game loop initializing")
+	instance = self
 	
 	# Wait for everything to be ready.
 	# TODO: This should be called in _ready() of a parent node.

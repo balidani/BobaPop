@@ -5,6 +5,10 @@ class_name GeneratedLevel
 var rng = RandomNumberGenerator.new()
 
 
+# Whether there is already a master popper somewhere in this level.
+var master_popper_generated = false
+
+
 # map[Vector3i]true whether a local tile is occupied.
 var occupancy = {}
 
@@ -15,6 +19,7 @@ func _maybe_add_tile(segment, local):
 		return
 	
 	occupancy[local] = true
+	segment.level = self
 	segment.transform.origin = Vector3(local * Vector3i(6, 0, 6))
 	add_child(segment)
 

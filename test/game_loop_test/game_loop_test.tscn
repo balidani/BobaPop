@@ -8,9 +8,10 @@
 
 [node name="GameLoopTest" type="Node3D"]
 
-[node name="GameLoop" parent="." node_paths=PackedStringArray("_level_camera", "_level_generator", "_player_spawner") instance=ExtResource("1_m7egg")]
+[node name="GameLoop" parent="." node_paths=PackedStringArray("_level_camera", "_level_generator", "_level_lighting", "_player_spawner") instance=ExtResource("1_m7egg")]
 _level_camera = NodePath("../LevelCamera")
 _level_generator = NodePath("../LevelGenerator")
+_level_lighting = NodePath("../LevelLighting")
 _player_spawner = NodePath("../PlayerSpawner")
 
 [node name="LevelLighting" parent="." instance=ExtResource("4_k3upa")]
