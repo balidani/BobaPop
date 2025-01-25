@@ -1,5 +1,5 @@
 extends StaticBody3D
-
+class_name Spike
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -10,7 +10,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func bounce(_bubble, _last_velocity):
+func bounce(_bubble : BouncyBubble, _last_velocity):
+	Synth.player.play_note(_bubble.current_note)
+
 	if _bubble.immune != true:
 		_bubble.queue_free()
 	else:

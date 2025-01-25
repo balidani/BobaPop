@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bqqgyqafm7xwp"]
 
 [ext_resource type="PackedScene" uid="uid://bwb6lhd0cj5ck" path="res://src/isometric_main/CharacterMain.tscn" id="1_85ukx"]
-[ext_resource type="PackedScene" uid="uid://dqt2r2705jw4u" path="res://src/bubble_wand/tile_obstacle.tscn" id="3_s4vg2"]
+[ext_resource type="PackedScene" path="res://src/bubble_wand/tile_obstacle.tscn" id="3_s4vg2"]
 
 [sub_resource type="GDScript" id="GDScript_oby3i"]
 script/source = "extends Node3D

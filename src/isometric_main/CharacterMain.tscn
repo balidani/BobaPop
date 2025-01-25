@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bwb6lhd0cj5ck"]
+[gd_scene load_steps=10 format=3 uid="uid://bwb6lhd0cj5ck"]
 
 [ext_resource type="PackedScene" uid="uid://cmd8l7xjwjon3" path="res://src/tile_obstacle/tile_obstacle.tscn" id="1_xxr6a"]
 [ext_resource type="PackedScene" uid="uid://b6grmbjqf822v" path="res://src/tile_default/tile_default.tscn" id="2_8d666"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b76u48l0i00ks" path="res://src/music_recorder/music_recorder.tscn" id="6_l1up3"]
 [ext_resource type="PackedScene" uid="uid://b8286bcjoy4jw" path="res://src/note_tonic/note_tonic.tscn" id="7_2u14q"]
 [ext_resource type="PackedScene" uid="uid://busos5v3ue110" path="res://src/note_dominant/note_dominant.tscn" id="8_ekoxu"]
+[ext_resource type="PackedScene" uid="uid://dg6a4atb8q6bq" path="res://src/spike/spike.tscn" id="9_0p80i"]
 
 [node name="IsometricMain" type="Node3D"]
 
@@ -301,7 +302,10 @@ size = 15.0
 [node name="MusicRecorder" parent="." instance=ExtResource("6_l1up3")]
 
 [node name="NoteTonic" parent="." instance=ExtResource("7_2u14q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1, 2)
 
 [node name="NoteDominant" parent="." instance=ExtResource("8_ekoxu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.99814, 1.01324, 3.99482)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
+
+[node name="TileObstacle3" parent="." instance=ExtResource("9_0p80i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, 6)

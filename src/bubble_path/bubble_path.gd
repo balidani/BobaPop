@@ -7,6 +7,7 @@ var last_velocity: Vector3 = Vector3.ZERO
 var can_collide : bool = false
 var immune : bool = false
 var t = 0.0
+var current_note = 69
 
 func _ready():
 	get_node("CollisionShape3D").set_deferred("disabled", true)

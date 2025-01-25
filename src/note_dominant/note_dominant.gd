@@ -10,4 +10,5 @@ func bounce(_bubble: BouncyBubble, _last_velocity):
 	_ap.stop(false)
 	_ap.play("bounce")
 	
-	Synth.player.play_note(76)
+	# Synth.player.play_note(76)
+	_bubble.current_note = 76

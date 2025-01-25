@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://dg6a4atb8q6bq"]
+[gd_scene load_steps=14 format=4 uid="uid://dg6a4atb8q6bq"]
 
 [ext_resource type="Script" path="res://src/spike/spike.gd" id="1_ybu3u"]
 
@@ -49,7 +49,9 @@ void vertex() {
 void fragment() {
 	ROUGHNESS = 10.9;
 	ALBEDO = color;
-}"
+	ALPHA = 0.4;
+}
+"
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_klium"]
 
@@ -64,9 +66,14 @@ shader_parameter/speed = 0.02
 shader_parameter/color = Vector3(6, 0, 0)
 shader_parameter/noise_tex = SubResource("NoiseTexture2D_ijyiw")
 
-[sub_resource type="SphereMesh" id="SphereMesh_7t4yk"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_21cwo"]
+transparency = 1
+blend_mode = 2
 
-[node name="TileObstacle" type="StaticBody3D"]
+[sub_resource type="SphereMesh" id="SphereMesh_7t4yk"]
+material = SubResource("StandardMaterial3D_21cwo")
+
+[node name="Spike" type="StaticBody3D"]
 script = ExtResource("1_ybu3u")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
