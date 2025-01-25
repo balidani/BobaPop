@@ -32,9 +32,13 @@ func master_popper_popped():
 
 
 func player_recording_start():
-	# TODO: Do not start recording immediately, but start it on player action.
 	print("Starting the player recording")
 	_music_recorder_player.start(MUSIC_RECORDING_DURATION_S)
+
+
+func computer_recording_start():
+	print("Starting the computer recording")
+	_music_recorder_goal.start(MUSIC_RECORDING_DURATION_S)
 
 
 func retry_level():
@@ -57,11 +61,9 @@ func new_level():
 	_level_generator.generate_new_level()
 	_level_lighting.new_level()
 	_player_spawner.spawn_computer_player()
-	print("Showing the level")
+	print("Showing the level, computer mode")
 	_level_camera.target = _level_generator
 	_level_lighting.dark_mode = true
-	print("Starting the goal recording")
-	_music_recorder_goal.start(MUSIC_RECORDING_DURATION_S)
 	_level_generator.start_level()
 	await _music_recorder_goal.finished
 	print("Removing computer player")
@@ -84,17 +86,13 @@ func new_level():
 		# TODO: Make description change based on score
 		var description = "You're a Musical Maestro!"
 		
-		ScoreUI.instance.show_score(success_percentage, passed, description)
-		
+		await ScoreUI.instance.show_score(success_percentage, passed, description)
 		if passed:
 			print("Success percentage is more than %s, victory!" % SUCCESS_PERCENT_MIN)
 			break
 		
 		# You FAILED. Retry
 		print("Please retry.")
-		# Give a bit of time between resets
-		# TODO: Failure animation
-		await get_tree().create_timer(1.0).timeout
 	
 	# Next level
 	# TODO: Victory animation
