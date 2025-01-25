@@ -11,7 +11,7 @@ zip_urls=(
   "https://github.com/YuriSizov/gdsion/releases/download/0.7-beta6/libgdsion-android.zip"
   "https://github.com/YuriSizov/gdsion/releases/download/0.7-beta6/libgdsion-linux.zip"
   "https://github.com/YuriSizov/gdsion/releases/download/0.7-beta6/libgdsion-macos.zip"
-  "https://github.com/YuriSizov/gdsion/releases/download/0.7-beta6/libgdsion-macos.zip"
+  "https://github.com/YuriSizov/gdsion/releases/download/latest-unstable/libgdsion-macos.zip"
   "https://github.com/YuriSizov/gdsion/releases/download/0.7-beta6/libgdsion-web.zip"
   "https://github.com/YuriSizov/gdsion/releases/download/0.7-beta6/libgdsion-windows.zip"
 )
