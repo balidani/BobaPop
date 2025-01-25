@@ -105,7 +105,7 @@ func rate_player_recording(player_recording: MusicRecorder) -> float:
 	return rate_recording_similarity(self.recording, player_recording.recording)
 
 
-static func rate_recording_similarity(goal_recording: Array[NoteEvent], user_recording: Array[NoteEvent], time_window: float = 0.2) -> float:
+static func rate_recording_similarity(goal_recording: Array[NoteEvent], user_recording: Array[NoteEvent], time_window: float = 2) -> float:
 	"""
 	Calculates similarity between two lists of musical events.
 
@@ -165,7 +165,10 @@ static func rate_recording_similarity(goal_recording: Array[NoteEvent], user_rec
 			goal_recording_cpy.remove_at(best_match_index)  # Remove matched event from copy
 
 	# Penalty for unmatched events (simplified - just counts unmatched in user_recording for now)
-	var unmatched_penalty = (user_recording.size() - matched_count) * 0.2  # Example penalty per unmatched event
+	var unmatched_penalty =  \
+		goal_recording_cpy.len() * 0.2
+		(user_recording.size() - matched_count) * 0.2  # Example penalty per unmatched event
+	assert(unmatched_penalty <= 0.2)
 
 	var final_similarity = maxf(0.0, (total_similarity / float(user_recording.size())) - unmatched_penalty) # Normalize and apply penalty, ensure not negative
 	return final_similarity

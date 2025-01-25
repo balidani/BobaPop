@@ -43,7 +43,7 @@ func type_similarity(type1: String, type2: String) -> float:
 	"""Simple instrument string equality for now."""
 	return 1.0 if type1 == type2 else 0.5 # Example: instruments in same family get 0.5 (adjust as needed)
 
-func long_running_event_addition(is_start: bool, is_end: bool, other_start: bool, other_end: bool) -> float:
+func calculate_long_running_event_addition(is_start: bool, is_end: bool, other_start: bool, other_end: bool) -> float:
 	# Can't start and end at the same time!
 	assert(!is_start || !is_end || is_start != is_end)
 	assert(!other_start || !other_end || !other_start != other_end)
@@ -74,7 +74,7 @@ func event_similarity(other: NoteEvent, pitch_weight: float = 0.4, type_weight: 
 		self.type,
 		other.type
 	)
-	var long_running_event_addition = long_running_event_addition(
+	var long_running_event_addition = calculate_long_running_event_addition(
 		self.is_event_start,
 		self.is_event_end,
 		other.is_event_start,
