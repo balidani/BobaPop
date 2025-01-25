@@ -70,9 +70,10 @@ func new_level():
 		
 		print("Comparing recordings")
 		
-		var challenge: MusicRecorder = _music_recorder_goal.instance
-		var player_recording: MusicRecorder = _music_recorder_player.instance
+		var challenge: MusicRecorder = _music_recorder_goal
+		var player_recording: MusicRecorder = _music_recorder_player
 	
+		print(challenge.rate_player_recording(player_recording))
 		var success_percentage = challenge.compare_similarity_against(player_recording)
 		
 		print("Similarity", success_percentage)

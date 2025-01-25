@@ -2,11 +2,13 @@ extends Node
 class_name MusicRecorder
 
 # Access from random objects by MusicRecorder.instance.<method>
+# This contains the currently recording MusicRecorder.
 static var instance : MusicRecorder
 
 
 func _ready() -> void:
 	instance = self
+
 
 # Emitted when the recording is finished.
 signal finished
@@ -35,7 +37,8 @@ var is_recording = false :
 
 func start(max_duration_s : float):
 	if is_recording: return
-	print("Recording started")
+	print("Recording started: ", self)
+	instance = self
 	t = 0.0
 	_recording_start_t = t
 	_recording_end_t = t + max_duration_s
@@ -44,7 +47,7 @@ func start(max_duration_s : float):
 
 
 func stop():
-	print("Recording stopped")
+	print("Recording stopped: ", self)
 	is_recording = false
 
 
@@ -74,7 +77,7 @@ func _process(delta: float) -> void:
 func rate_player_recording(player_recording: MusicRecorder) -> float:
 	return rate_recording_similarity(self.recording, player_recording.recording)
 
-func rate_recording_similarity(goal_recording: Array[NoteEvent], user_recording: Array[NoteEvent], time_window: float = 0.2) -> float:
+static func rate_recording_similarity(goal_recording: Array[NoteEvent], user_recording: Array[NoteEvent], time_window: float = 0.2) -> float:
 	"""
 	Calculates similarity between two lists of musical events.
 
