@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bp8pu53b7km0i"]
+
+[ext_resource type="PackedScene" uid="uid://giov746jdwm7" path="res://models/cocktail.glb" id="1_3lyx3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oxvsm"]
+albedo_color = Color(1, 1, 0.270588, 1)
+
+[node name="cocktail2" instance=ExtResource("1_3lyx3")]
+
+[node name="lemon" parent="cocktail" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_oxvsm")
