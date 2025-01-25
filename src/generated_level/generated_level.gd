@@ -11,6 +11,8 @@ var master_popper_generated = false
 
 # map[Vector3i]true whether a local tile is occupied.
 var occupancy = {}
+var edge_candidates = {}
+var forbidden_edges = {}
 
 
 # Adds tiles but only if they're not occupied
@@ -18,11 +20,26 @@ func _maybe_add_tile(segment, local):
 	if local in occupancy:
 		return
 	
+	# Nuke any clashing edge candidate
+	for dz in range(-2, 3):
+		for dx in range(-2, 3):
+			var v = Vector3i(local.x * 6 + dx, 0, local.z * 6 + dz)
+			if v in edge_candidates:
+				edge_candidates.erase(v)
+			forbidden_edges[v] = 1
+	
 	occupancy[local] = true
 	segment.level = self
 	segment.transform.origin = Vector3(local * Vector3i(6, 0, 6))
 	add_child(segment)
 
+	# Add new edge candidates
+	if is_instance_of(segment, GeneratedLevelSegment):
+		var segment_segment : GeneratedLevelSegment = segment as GeneratedLevelSegment
+		for key : Vector3i in segment_segment.edge_candidates:
+			var v = Vector3i(local.x * 6 + key.x, 0, local.z * 6 + key.z)
+			if v not in forbidden_edges:
+				edge_candidates[v] = 1
 
 func _ready():
 	rng.seed = 12345
@@ -61,6 +78,13 @@ func _ready():
 					turtle_direction = Vector3i(0, 0, sign)
 			
 			turtle_origin += turtle_direction
+	
+	for key in edge_candidates:
+		var segment = SEGMENT_EDGE.instantiate()
+		segment.transform.origin = Vector3(key)
+		add_child(segment)
+	print (edge_candidates)
 
 const SEGMENT = preload("res://src/generated_level_segment/generated_level_segment.tscn")
 const SEGMENT_SPAWN = preload("res://src/generated_level_segment_spawn/generated_level_segment_spawn.tscn")
+const SEGMENT_EDGE = preload("res://src/generated_level_segment_edge/generated_level_segment_edge.tscn")

@@ -11,6 +11,7 @@ var level : GeneratedLevel
 
 # map[Vector3i]true whether a local tile is occupied.
 var occupancy = {}
+var edge_candidates = {}
 
 
 # Checks occupancy so we don't place objects in the same spot twice.
@@ -21,7 +22,6 @@ func _maybe_add_block(block, local : Vector3i):
 	occupancy[local] = true
 	block.transform.origin = Vector3(local)
 	add_child(block)
-
 
 func _ready():
 	rng.seed = str(global_position).hash()
@@ -63,6 +63,13 @@ func _ready():
 	for _o in range(rng.randi_range(1, 3)):
 		var random_pos = Vector3i(rng.randi_range(-1, 1) * 2, 2, rng.randi_range(-1, 1) * 2)
 		_maybe_add_block(OBSTACLE.instantiate(), random_pos)
+	
+	# Mark edges
+	for dz in range(-2, 3):
+		for dx in range(-2, 3):
+			if abs(dz) != 2 and abs(dx) != 2:
+				continue
+			edge_candidates[Vector3i(dx * 2, 0, dz * 2)] = 1
 
 
 const SPIKE = preload("res://src/spike/spike.tscn")
