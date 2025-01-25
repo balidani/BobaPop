@@ -20,6 +20,7 @@ func reset_real_level():
 		c.queue_free()
 	_container.process_mode = Node.PROCESS_MODE_DISABLED
 	real_level = initial_level_setup.duplicate()
+	real_level.rng.seed = rng.seed
 	_container.add_child(real_level)
 
 
@@ -35,8 +36,6 @@ func start_level():
 
 
 func _ready():
-	randomize()
-	rng.seed = randi()
 	stop_level()
 
 
@@ -51,10 +50,13 @@ func reset():
 
 # Remove all state and generate a new level.
 func generate_new_level():
+	print("generate_new_level with seed %s" % rng.seed)
 	reset()
 		
 	if use_generated_level:
-		initial_level_setup = GENERATED_LEVEL.instantiate()
+		var generated_level : GeneratedLevel = GENERATED_LEVEL.instantiate()
+		generated_level.rng.seed = rng.seed
+		initial_level_setup = generated_level.duplicate()
 	else:
 		# TODO: Hardcoded example level, replace with level generation
 		initial_level_setup = HARDCODED_LEVEL.instantiate()

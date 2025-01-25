@@ -41,8 +41,9 @@ func _maybe_add_tile(segment, local):
 			if v not in forbidden_edges:
 				edge_candidates[v] = 1
 
+
 func _ready():
-	rng.seed = 12345
+	print("Level generating with seed %s" % rng.seed)
 	
 	# Generate a cross to spawn in.
 	for x in range(-1, 1 +1):

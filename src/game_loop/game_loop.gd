@@ -49,19 +49,42 @@ func retry_level():
 	print("Resetting the real level")
 	for bubble in BouncyBubble.all_bubbles:
 		bubble.queue_free()
+	_level_generator.rng.seed = level_seed
 	_level_generator.reset_real_level()
 	print("Spawning the real player")
 	_player_spawner.spawn_real_player()
 	_level_generator.start_level()
+	
+	await _music_recorder_player.finished
+	print("Stopping level")
+	_level_generator.stop_level()
+	_player_spawner.remove_real_player()
+	
+	print("Comparing recordings")
+	
+	var challenge: MusicRecorder = _music_recorder_goal
+	var player_recording: MusicRecorder = _music_recorder_player
+
+	var success_percentage = challenge.rate_player_recording(player_recording)
+	print("Similarity: %s" % success_percentage)
+	
+	var passed = success_percentage > SUCCESS_PERCENT_MIN
+	# TODO: Make description change based on score
+	var description = "You're a Musical Maestro!"
+	ScoreUI.instance.show_score(success_percentage, passed, description)
 
 
 const SUCCESS_PERCENT_MIN = 0.8
 
 
+var level_seed = 0
 func new_level():
 	_level_camera.target = null
+	level_seed = rng.randi()
 	NoteUI.singleton.reset()
 	_level_generator.reset()
+	# Set all seeds.
+	_level_generator.rng.seed = level_seed
 	await get_tree().create_timer(2.0).timeout
 	print("Generating a new level")
 	_level_generator.generate_new_level()
@@ -80,23 +103,9 @@ func new_level():
 	_level_lighting.dark_mode = false
 	
 	retry_level()
-	await _music_recorder_player.finished
-	print("Stopping level")
-	_level_generator.stop_level()
-	_player_spawner.remove_real_player()
-	
-	print("Comparing recordings")
-	
-	var challenge: MusicRecorder = _music_recorder_goal
-	var player_recording: MusicRecorder = _music_recorder_player
 
-	var success_percentage = challenge.rate_player_recording(player_recording)
-	print("Similarity: %s" % success_percentage)
-	
-	var passed = success_percentage > SUCCESS_PERCENT_MIN
-	# TODO: Make description change based on score
-	var description = "You're a Musical Maestro!"
-	ScoreUI.instance.show_score(success_percentage, passed, description)
+
+var rng = RandomNumberGenerator.new()
 
 
 func _ready():
@@ -121,12 +130,17 @@ func _ready():
 		breakpoint
 		return
 	
-	print("Game loop initializing")
 	if instance != null:
 		push_error("Multiple game loops")
 		breakpoint
 		return
 	instance = self
+	
+	var custom_seed = null
+	if custom_seed == null:
+		randomize()
+		custom_seed = randi()
+	print("Game loop initializing with seed %s" % custom_seed)
 	
 	# Wait for everything to be ready.
 	# TODO: This should be called in _ready() of a parent node.

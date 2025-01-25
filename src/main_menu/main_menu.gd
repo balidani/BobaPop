@@ -12,8 +12,6 @@ func _ready() -> void:
 	_level_lighting.random_angle()
 
 
-const MAIN_GAME = preload("res://src/main_game/main_game.tscn")
-
-
 func _on_main_menu_ui_play_button_pressed() -> void:
-	get_tree().change_scene_to_packed(MAIN_GAME)
+	get_tree().root.add_child(load("res://src/main_game/main_game.tscn").instantiate())
+	queue_free()

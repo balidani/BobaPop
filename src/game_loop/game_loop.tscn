@@ -9,5 +9,6 @@ _music_recorder_goal = NodePath("MusicRecorderGoal")
 _music_recorder_player = NodePath("MusicRecorderPlayer")
 
 [node name="MusicRecorderPlayer" parent="." instance=ExtResource("2_0hnj6")]
+is_player = true
 
 [node name="MusicRecorderGoal" parent="." instance=ExtResource("2_0hnj6")]

@@ -46,16 +46,29 @@ func show_score(score, passed, desc):
 	
 	_ap.stop(false)
 	_ap.play("score_slam")
+	_next_level_button.disabled = false
+	_retry_button.disabled = false
 	await _ap.animation_finished
 
 
 func _on_menu_pressed() -> void:
-	get_tree().change_scene_to_packed(MAIN_MENU)
+	get_tree().root.add_child(load("res://src/main_menu/main_menu.tscn").instantiate())
+	queue_free()
 
 
 func _on_retry_pressed() -> void:
+	_next_level_button.disabled = true
+	_retry_button.disabled = true
+	_ap.stop(true)
+	_ap.play("score_away")
+	await _ap.animation_finished
 	retry.emit()
 
 
 func _on_next_level_button_pressed() -> void:
+	_next_level_button.disabled = true
+	_retry_button.disabled = true
+	_ap.stop(true)
+	_ap.play("score_away")
+	await _ap.animation_finished
 	next_level.emit()

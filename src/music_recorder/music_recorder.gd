@@ -5,6 +5,9 @@ class_name MusicRecorder
 # This contains the currently recording MusicRecorder.
 static var instance : MusicRecorder
 
+# Is this a player recorder?
+@export var is_player = false
+
 
 func _ready() -> void:
 	instance = self
@@ -54,6 +57,8 @@ var is_recording = false :
 
 func start(max_duration_s : float):
 	if is_recording: return
+	if is_player:
+		NoteProgress.instance.player_recording = true
 	print("Recording started: ", self)
 	instance = self
 	t = 0.0
@@ -67,7 +72,10 @@ func start(max_duration_s : float):
 
 
 func stop():
+	if not is_recording: return
 	print("Recording stopped: ", self)
+	if is_player:
+		NoteProgress.instance.player_recording = true
 	is_recording = false
 
 

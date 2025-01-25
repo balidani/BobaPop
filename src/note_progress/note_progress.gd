@@ -9,6 +9,16 @@ static var instance : NoteProgress
 @onready var _player_notes : Control = $PlayerNotes
 
 
+var player_recording = false :
+	set(p):
+		player_recording = p
+		# Hide the computer notes to see the player attempt better.
+		if player_recording:
+			_computer_notes.modulate = Color(1.0, 1.0, 1.0, 0.5)
+		else:
+			_computer_notes.modulate = Color(1.0, 1.0, 1.0, 1.0)
+
+
 var progress = 0.0 :
 	set(p):
 		progress = p
@@ -22,7 +32,7 @@ func add_note(event : NoteEvent, recording_length):
 	
 	# Change colour based on whether the computer is playing or not.
 	if GameLoop.instance.computer_playing:
-		note.self_modulate = Color(1.0, 0.0, 1.0)
+		note.self_modulate = Color(1.0, 0.0, 0.5)
 	else:
 		note.self_modulate = Color(0.0, 1.0, 1.0)
 	
