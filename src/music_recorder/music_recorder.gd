@@ -36,6 +36,7 @@ var is_recording = false :
 
 
 func start(max_duration_s : float):
+	if is_recording: return
 	print("Recording started")
 	t = 0.0
 	_recording_start_t = t

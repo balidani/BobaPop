@@ -24,8 +24,7 @@ func _maybe_add_block(block, local : Vector3i):
 
 
 func _ready():
-	randomize()
-	rng.seed = randi()
+	rng.seed = str(global_position).hash()
 	
 	# TODO: Generate some more interesting patterns.
 	var floor = TILE_3W3L.instantiate()

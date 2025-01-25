@@ -12,6 +12,9 @@ var real_level
 var initial_level_setup
 
 
+var rng = RandomNumberGenerator.new()
+
+
 func reset_real_level():
 	for c in _container.get_children():
 		c.queue_free()
@@ -32,6 +35,8 @@ func start_level():
 
 
 func _ready():
+	randomize()
+	rng.seed = randi()
 	stop_level()
 
 

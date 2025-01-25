@@ -25,8 +25,9 @@ func _maybe_add_tile(segment, local):
 
 
 func _ready():
-	randomize()
-	rng.seed = randi()
+	rng.seed = 12345
+	
+	print("RAND INT %s" % rng.randi())
 	
 	# Always generate a 3x3.
 	for x in range(-1, 1 +1):

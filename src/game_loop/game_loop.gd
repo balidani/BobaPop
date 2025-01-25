@@ -31,15 +31,18 @@ func master_popper_popped():
 	retry_level()
 
 
+func player_recording_start():
+	# TODO: Do not start recording immediately, but start it on player action.
+	print("Starting the player recording")
+	_music_recorder_player.start(MUSIC_RECORDING_DURATION_S)
+
+
 func retry_level():
 	print("Resetting the real level")
 	_level_generator.reset_real_level()
 	print("Spawning the real player")
 	_player_spawner.spawn_real_player()
 	_level_generator.start_level()
-	# TODO: Do not start recording immediately, but start it on player action.
-	print("Starting the player recording")
-	_music_recorder_player.start(MUSIC_RECORDING_DURATION_S)
 
 
 func pass_level():
@@ -78,7 +81,6 @@ func new_level():
 		print("Hardcoded, need to retry.")
 		# Give a bit of time between resets
 		await get_tree().create_timer(1.0).timeout
-	
 
 
 func _ready():
