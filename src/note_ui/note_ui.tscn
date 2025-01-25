@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bqtj8bjhw64t8"]
 
-[ext_resource type="Texture2D" uid="uid://cuo515x36t444" path="res://sprites/sheet_noclef.png" id="1_85da1"]
+[ext_resource type="Texture2D" uid="uid://3ea5ne0x68dn" path="res://sprites/sheet_noclef.png" id="1_85da1"]
 [ext_resource type="Texture2D" uid="uid://bwscuviskw5ge" path="res://sprites/clef.png" id="2_gvrbn"]
 [ext_resource type="PackedScene" uid="uid://w38jxx7hhrnn" path="res://src/note_progress/note_progress.tscn" id="2_rj3y8"]
 
@@ -11,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Control" type="Control" parent="."]
 custom_minimum_size = Vector2(400, 100)

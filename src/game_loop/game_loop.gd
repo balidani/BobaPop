@@ -72,34 +72,22 @@ func new_level():
 	_player_spawner.remove_computer_player()
 	print("Starting player level")
 	_level_lighting.dark_mode = false
-	while true: # infinite retries, how fun
-		retry_level()
-		await _music_recorder_player.finished
-		
-		print("Comparing recordings")
-		
-		var challenge: MusicRecorder = _music_recorder_goal
-		var player_recording: MusicRecorder = _music_recorder_player
 	
-		var success_percentage = challenge.rate_player_recording(player_recording)
-		print("Similarity: %s" % success_percentage)
-		
-		var passed = success_percentage > SUCCESS_PERCENT_MIN
-		# TODO: Make description change based on score
-		var description = "You're a Musical Maestro!"
-		
-		await ScoreUI.instance.show_score(success_percentage, passed, description)
-		if passed:
-			print("Success percentage is more than %s, victory!" % SUCCESS_PERCENT_MIN)
-			break
-		
-		# You FAILED. Retry
-		print("Please retry.")
+	retry_level()
+	await _music_recorder_player.finished
 	
-	# Next level
-	# TODO: Victory animation
-	await get_tree().create_timer(1.0).timeout
-	new_level()
+	print("Comparing recordings")
+	
+	var challenge: MusicRecorder = _music_recorder_goal
+	var player_recording: MusicRecorder = _music_recorder_player
+
+	var success_percentage = challenge.rate_player_recording(player_recording)
+	print("Similarity: %s" % success_percentage)
+	
+	var passed = success_percentage > SUCCESS_PERCENT_MIN
+	# TODO: Make description change based on score
+	var description = "You're a Musical Maestro!"
+	ScoreUI.instance.show_score(success_percentage, passed, description)
 
 
 func _ready():
@@ -131,3 +119,11 @@ func _ready():
 	# TODO: This should be called in _ready() of a parent node.
 	await get_tree().create_timer(1.0).timeout
 	new_level()
+
+
+func _on_score_ui_next_level() -> void:
+	new_level()
+
+
+func _on_score_ui_retry() -> void:
+	retry_level()

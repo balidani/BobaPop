@@ -9,6 +9,13 @@ static var instance : ScoreUI
 @onready var _pass_fail : Label = $Control/VBoxContainer/pass_fail
 @onready var _description : Label = $Control/VBoxContainer/description
 
+@onready var _retry_button : Button = $Control/VBoxContainer/HBoxContainer2/Retry
+@onready var _next_level_button : Button = $Control/VBoxContainer/HBoxContainer2/NextLevelButton
+
+
+signal retry
+signal next_level
+
 
 func _ready():
 	instance = self
@@ -29,9 +36,28 @@ func show_score(score, passed, desc):
 	
 	if passed:
 		_pass_fail.text = "PASS"
+		_retry_button.visible = false
+		_next_level_button.visible = true
 	else:
 		_pass_fail.text = "FAIL"
+		_retry_button.visible = true
+		_next_level_button.visible = false
 	
 	_ap.stop(false)
 	_ap.play("score_slam")
 	await _ap.animation_finished
+
+
+const MAIN_MENU = preload("res://src/main_menu/main_menu.tscn")
+
+
+func _on_menu_pressed() -> void:
+	get_tree().change_scene_to_packed(MAIN_MENU)
+
+
+func _on_retry_pressed() -> void:
+	retry.emit()
+
+
+func _on_next_level_button_pressed() -> void:
+	next_level.emit()
