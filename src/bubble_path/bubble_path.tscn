@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dnr5rjm3bwrgt"]
+[gd_scene load_steps=14 format=3 uid="uid://dnr5rjm3bwrgt"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://w2eko4jy8j5l" path="res://src/bubble_path/bounce.tres" id="1_a8rah"]
 [ext_resource type="Script" path="res://src/bubble_path/bubble_path.gd" id="1_pll3f"]
 [ext_resource type="AudioStream" uid="uid://dw2m5fxhfjykq" path="res://sounds/jump.ogg" id="3_jx51l"]
 [ext_resource type="Shader" path="res://src/bubble_path/bubble_rainbow.gdshader" id="3_qr841"]
+[ext_resource type="Texture2D" uid="uid://c4opm013h8e1u" path="res://particle.png" id="5_i7va4"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_4xfrs"]
 
@@ -21,6 +22,26 @@ shader_parameter/noise_tex = SubResource("NoiseTexture2D_1xwse")
 [sub_resource type="SphereMesh" id="SphereMesh_fygxx"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6isg4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r55r4"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("5_i7va4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_deun5"]
+lifetime_randomness = 0.15
+angle_min = -720.0
+angle_max = 642.6
+inherit_velocity_ratio = -1.355
+direction = Vector3(0, 0, 0)
+initial_velocity_min = 11.69
+initial_velocity_max = 11.69
+gravity = Vector3(0, 0, 0)
+damping_min = 21.028
+damping_max = 27.336
+
+[sub_resource type="QuadMesh" id="QuadMesh_rod56"]
 
 [node name="BubblePath" type="RigidBody3D"]
 axis_lock_linear_y = true
@@ -43,5 +64,14 @@ shape = SubResource("SphereShape3D_6isg4")
 stream = ExtResource("3_jx51l")
 max_db = 0.0
 pitch_scale = 0.75
+
+[node name="sparcs" type="GPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_r55r4")
+emitting = false
+amount = 11
+lifetime = 0.18
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_deun5")
+draw_pass_1 = SubResource("QuadMesh_rod56")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
