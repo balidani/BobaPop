@@ -53,7 +53,7 @@ func stop():
 
 func _finish_recording():
 	if not is_recording: return
-	print("Recording finished")
+	print("Recording finished: ", self)
 	finished.emit()
 	is_recording = false
 	# Save the recording.sad d
@@ -74,8 +74,10 @@ func _process(delta: float) -> void:
 		set_process(false)
 		return
 
+
 func rate_player_recording(player_recording: MusicRecorder) -> float:
 	return rate_recording_similarity(self.recording, player_recording.recording)
+
 
 static func rate_recording_similarity(goal_recording: Array[NoteEvent], user_recording: Array[NoteEvent], time_window: float = 0.2) -> float:
 	"""

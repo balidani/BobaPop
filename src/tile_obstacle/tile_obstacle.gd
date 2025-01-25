@@ -9,4 +9,13 @@ var a_major = [440, 554, 659]
 func bounce(_bubble: BouncyBubble, _last_velocity):
 	#_asp.play(0.0)
 	_ap.play("bounce")
-	Synth.player.play_note(57 + randi_range(0, 24))
+	var pitch = 440 * abs(_bubble.linear_velocity.x)
+	MusicRecorder.instance.record(
+		NoteEvent.new(
+			pitch,
+			"bounce",
+			false,
+			false,
+		)
+	)
+	Synth.player.play_note(pitch)

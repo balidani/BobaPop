@@ -17,7 +17,7 @@ func bounce(_bubble: BouncyBubble, _last_velocity):
 			false,
 		)
 	)
-	Synth.player.play_note(440 * abs(_bubble.linear_velocity.x))
+	Synth.player.play_note(pitch)
 	add_child(EFFECT.instantiate())
 	GameLoop.instance.master_popper_popped()
 

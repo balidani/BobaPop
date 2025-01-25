@@ -49,6 +49,9 @@ func pass_level():
 	pass
 
 
+const SUCCESS_PERCENT_MIN = 0.8
+
+
 func new_level():
 	print("Generating a new level")
 	_level_generator.generate_new_level()
@@ -73,15 +76,23 @@ func new_level():
 		var challenge: MusicRecorder = _music_recorder_goal
 		var player_recording: MusicRecorder = _music_recorder_player
 	
-		print(challenge.rate_player_recording(player_recording))
-		var success_percentage = challenge.compare_similarity_against(player_recording)
+		var success_percentage = challenge.rate_player_recording(player_recording)
+		print("Similarity: %s" % success_percentage)
 		
-		print("Similarity", success_percentage)
+		if success_percentage > SUCCESS_PERCENT_MIN:
+			print("Success percentage is more than %s, victory!" % SUCCESS_PERCENT_MIN)
+			break
 		
-		# TODO: Compare recordings
-		print("Hardcoded, need to retry.")
+		# You FAILED. Retry
+		print("Please retry.")
 		# Give a bit of time between resets
+		# TODO: Failure animation
 		await get_tree().create_timer(1.0).timeout
+	
+	# Next level
+	# TODO: Victory animation
+	await get_tree().create_timer(1.0).timeout
+	new_level()
 
 
 func _ready():
