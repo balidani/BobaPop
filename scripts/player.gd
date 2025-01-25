@@ -149,7 +149,7 @@ func handle_controls(delta):
 
 	# Jumping
 
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("jump") and not is_ai:
 		shoot_bubble()
 		#if jump_single or jump_double:
 			#jump()
