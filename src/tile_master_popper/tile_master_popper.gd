@@ -8,16 +8,14 @@ class_name TileMasterPopper
 func bounce(_bubble: BouncyBubble, _last_velocity):
 	_ap.stop(false)
 	_ap.play("bounce")
-	var pitch = 440 * abs(_bubble.linear_velocity.x)
-	MusicRecorder.instance.record(
+	MusicRecorder.instance.play_note(
 		NoteEvent.new(
-			pitch,
+			69,  # A4
 			"bounce",
 			false,
 			false,
 		)
 	)
-	Synth.player.play_note(pitch)
 	add_child(EFFECT.instantiate())
 	GameLoop.instance.master_popper_popped()
 

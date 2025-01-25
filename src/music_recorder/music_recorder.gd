@@ -23,6 +23,10 @@ func record(event: NoteEvent):
 	event.timestamp = t - _recording_start_t
 	recording.push_back(event)
 
+# Play a note and record it at the same time.
+func play_note(event: NoteEvent):
+	Synth.player.play_note(event.pitch)
+	record(event)
 
 # When the recording was started. Used to normalize timestamps.
 var _recording_start_t = 0.0
