@@ -14,7 +14,7 @@ config/name="Starter Kit 3D Platformer"
 config/tags=PackedStringArray("starterkit")
 run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-boot_splash/bg_color=Color(0.92549, 0.92549, 0.960784, 1)
+boot_splash/bg_color=Color(0.94902, 0.529412, 0.6, 1)
 boot_splash/image="res://splash-screen.png"
 config/icon="res://icon.png"
 

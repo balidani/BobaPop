@@ -2,6 +2,7 @@
 .godot/
 .vscode/
 third_party/gdsion
+.DS_Store
 
 *.zip
 
