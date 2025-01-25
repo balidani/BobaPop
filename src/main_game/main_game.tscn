@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://l2et6w1bhtq6"]
+[gd_scene load_steps=9 format=3 uid="uid://l2et6w1bhtq6"]
 
 [ext_resource type="Script" path="res://src/main_game/main_game.gd" id="1_23jdi"]
 [ext_resource type="PackedScene" uid="uid://cephmiseqa2ro" path="res://src/game_loop/game_loop.tscn" id="2_jfs3o"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://kucp0se2xjk5" path="res://src/level_camera/level_camera.tscn" id="5_eubcx"]
 [ext_resource type="PackedScene" uid="uid://vomxg4q02xyc" path="res://src/player_spawner/player_spawner.tscn" id="6_q71dp"]
 [ext_resource type="PackedScene" uid="uid://b8a15c62h080w" path="res://src/score_ui/score_ui.tscn" id="7_o4dxf"]
+[ext_resource type="PackedScene" uid="uid://bqtj8bjhw64t8" path="res://src/note_ui/note_ui.tscn" id="8_mpkcm"]
 
 [node name="MainGame" type="Node3D"]
 script = ExtResource("1_23jdi")
@@ -28,3 +29,5 @@ use_generated_level = true
 _level_camera = NodePath("../LevelCamera")
 
 [node name="ScoreUI" parent="." instance=ExtResource("7_o4dxf")]
+
+[node name="NoteUI" parent="." instance=ExtResource("8_mpkcm")]

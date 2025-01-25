@@ -21,6 +21,11 @@ var recording: Array[NoteEvent] = []
 # All things that make sounds that matter for the game score must call record()
 func record(event: NoteEvent):
 	event.timestamp = t - _recording_start_t
+	
+	# Update NoteProgress.
+	if NoteProgress.instance:
+		NoteProgress.instance.add_note(event, _recording_length_t)
+	
 	recording.push_back(event)
 
 # Play a note and record it at the same time.
@@ -38,6 +43,7 @@ func play_note(pitch: int, type: String="bubble"):
 # When the recording was started. Used to normalize timestamps.
 var _recording_start_t = 0.0
 var _recording_end_t = INF
+var _recording_length_t = 0.0
 
 
 var is_recording = false :
@@ -51,8 +57,11 @@ func start(max_duration_s : float):
 	print("Recording started: ", self)
 	instance = self
 	t = 0.0
+	
 	_recording_start_t = t
 	_recording_end_t = t + max_duration_s
+	_recording_length_t = _recording_end_t - _recording_start_t
+	
 	recording = []
 	is_recording = true
 
@@ -77,6 +86,12 @@ var t = 0.0
 func _process(delta: float) -> void:
 	if not is_recording:
 		return
+	
+	var progress = 0.0
+	# Update NoteProgress.
+	if NoteProgress.instance:
+		var p = (t - _recording_start_t) / _recording_length_t
+		NoteProgress.instance.progress = p
 	
 	t += delta
 	# dsprint("%s >= %s" % [t, _recording_end_t])

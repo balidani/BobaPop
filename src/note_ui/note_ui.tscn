@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqtj8bjhw64t8"]
+
+[ext_resource type="Texture2D" uid="uid://cuo515x36t444" path="res://sprites/sheet_noclef.png" id="1_85da1"]
+[ext_resource type="Texture2D" uid="uid://bwscuviskw5ge" path="res://sprites/clef.png" id="2_gvrbn"]
+[ext_resource type="PackedScene" uid="uid://w38jxx7hhrnn" path="res://src/note_progress/note_progress.tscn" id="2_rj3y8"]
+
+[node name="NoteUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_right = 200.0
+offset_bottom = 100.0
+grow_horizontal = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Control"]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 15.0
+offset_right = 200.0
+offset_bottom = 75.0
+grow_horizontal = 2
+texture = ExtResource("1_85da1")
+expand_mode = 2
+
+[node name="NoteProgress" parent="Control/TextureRect2" instance=ExtResource("2_rj3y8")]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 10.0
+offset_right = 390.125
+offset_bottom = 42.0
+
+[node name="TextureRect3" type="TextureRect" parent="Control/TextureRect2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.141
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 64.4
+offset_top = -31.0
+offset_right = 39.0
+offset_bottom = 27.0
+grow_vertical = 2
+pivot_offset = Vector2(15, 29)
+texture = ExtResource("2_gvrbn")
+expand_mode = 3
+stretch_mode = 5
