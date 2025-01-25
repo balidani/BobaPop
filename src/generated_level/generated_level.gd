@@ -29,6 +29,12 @@ func _ready():
 	
 	print("RAND INT %s" % rng.randi())
 	
+	# Generate a cross to spawn in.
+	for x in range(-1, 1 +1):
+		_maybe_add_tile(SEGMENT_SPAWN.instantiate(), Vector3i(x, 0, 0))
+	for z in range(-1, 1 +1):
+		_maybe_add_tile(SEGMENT_SPAWN.instantiate(), Vector3i(0, 0, z))
+	
 	# Always generate a 3x3.
 	for x in range(-1, 1 +1):
 		for z in range(-1, 1 +1):
@@ -59,3 +65,4 @@ func _ready():
 			turtle_origin += turtle_direction
 
 const SEGMENT = preload("res://src/generated_level_segment/generated_level_segment.tscn")
+const SEGMENT_SPAWN = preload("res://src/generated_level_segment_spawn/generated_level_segment_spawn.tscn")

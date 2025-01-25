@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dv8psq042rwo4"]
 
 [ext_resource type="Script" path="res://src/main_menu_ui/main_menu_ui.gd" id="1_0cp5y"]
-[ext_resource type="Texture2D" uid="uid://ry8mvp5m6agm" path="res://spash_screen_eyes.png" id="2_i0jqr"]
+[ext_resource type="Texture2D" uid="uid://djxwduby451m6" path="res://splash-transparent.png" id="2_y63jx"]
 [ext_resource type="Texture2D" uid="uid://7fwwd4eiwro1" path="res://splash-screen-musli.png" id="3_uicg6"]
 
 [sub_resource type="Animation" id="Animation_ow1ib"]
@@ -117,7 +117,7 @@ offset_right = 144.842
 offset_bottom = 100.0
 grow_horizontal = 2
 pivot_offset = Vector2(144.5, 50)
-texture = ExtResource("2_i0jqr")
+texture = ExtResource("2_y63jx")
 expand_mode = 3
 stretch_mode = 5
 

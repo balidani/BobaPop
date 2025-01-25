@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://rrrsosgmb00j"]
+
+[ext_resource type="Script" path="res://src/generated_level_segment_spawn/generated_level_segment_spawn.gd" id="1_ar52q"]
+
+[node name="GeneratedLevelSegmentSpawn" type="Node3D"]
+script = ExtResource("1_ar52q")
