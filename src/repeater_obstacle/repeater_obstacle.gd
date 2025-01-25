@@ -18,10 +18,11 @@ func spawn_bubble(incoming : Vector3, rot : float):
 	yrot = deg_to_rad(yrot)
 	yrot += rot
 	
-	var forward_direction = incoming * 2
+	var forward_direction = -incoming * 2
 	var spawn_position = global_transform.origin + forward_direction
 	# Floating above ground so no drag
 	spawn_position += Vector3(0, 1, 0)
+	# 
 	
 	bubble_instance.global_transform.origin = spawn_position
 	
@@ -38,5 +39,5 @@ func bounce(_bubble : RigidBody3D, _last_velocity : Vector3):
 
 	if count < 100:
 		count += 1
-		spawn_bubble(-incoming, PI / 2)
-		spawn_bubble(-incoming, - PI / 2)
+		spawn_bubble(-incoming, PI - PI / 4)
+		spawn_bubble(-incoming, PI + PI / 4)
