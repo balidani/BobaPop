@@ -22,3 +22,5 @@ use_generated_level = true
 [node name="RotatingCamera" parent="." instance=ExtResource("5_t4xf8")]
 
 [node name="MainMenuUI" parent="." instance=ExtResource("6_3tf36")]
+
+[connection signal="play_button_pressed" from="MainMenuUI" to="." method="_on_main_menu_ui_play_button_pressed"]

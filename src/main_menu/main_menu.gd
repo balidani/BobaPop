@@ -10,3 +10,10 @@ extends Node3D
 func _ready() -> void:
 	_level_generator.generate_new_level()
 	_level_lighting.new_level()
+
+
+const MAIN_GAME = preload("res://src/main_game/main_game.tscn")
+
+
+func _on_main_menu_ui_play_button_pressed() -> void:
+	get_tree().change_scene_to_packed(MAIN_GAME)

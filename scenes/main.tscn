@@ -1,29 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bqqgyqafm7xwp"]
+[gd_scene load_steps=2 format=3 uid="uid://bqqgyqafm7xwp"]
 
-[ext_resource type="PackedScene" uid="uid://bwb6lhd0cj5ck" path="res://src/isometric_main/CharacterMain.tscn" id="1_85ukx"]
-
-[sub_resource type="GDScript" id="GDScript_oby3i"]
-script/source = "extends Node3D
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-"
+[ext_resource type="PackedScene" uid="uid://hhybp10x0tlw" path="res://src/main_menu/main_menu.tscn" id="1_shvp2"]
 
 [node name="Main" type="Node3D"]
 
-[node name="IsometricMain" parent="." instance=ExtResource("1_85ukx")]
-script = SubResource("GDScript_oby3i")
-
-[node name="TileObstacle2" parent="."]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.07294, 0.912113, -3.53424)
-script = null
+[node name="MainMenu" parent="." instance=ExtResource("1_shvp2")]
