@@ -54,6 +54,11 @@ func _ready():
 		var random_pos = Vector3i(rng.randi_range(-1, 1) * 2, 2, rng.randi_range(-1, 1) * 2)
 		_maybe_add_block(SPIKE.instantiate(), random_pos)
 	
+		# Make black hole
+	if rng.randf() < 0.1:
+		var random_pos = Vector3i(rng.randi_range(-1, 1) * 2, 2, rng.randi_range(-1, 1) * 2)
+		_maybe_add_block(SPIKE.instantiate(), random_pos)
+	
 	# Pepper in a few obstacles.
 	for _o in range(rng.randi_range(1, 3)):
 		var random_pos = Vector3i(rng.randi_range(-1, 1) * 2, 2, rng.randi_range(-1, 1) * 2)
@@ -67,3 +72,4 @@ const NOTE_TONIC = preload("res://src/note_tonic/note_tonic.tscn")
 const NOTE_DOMINANT = preload("res://src/note_dominant/note_dominant.tscn")
 const OBSTACLE = preload("res://src/tile_obstacle/tile_obstacle.tscn")
 const TILE_3W3L = preload("res://src/tile_3w3l/tile_3w3l.tscn")
+const BLACK_HOLE = preload("res://src/black_hole/black_hole.tscn")

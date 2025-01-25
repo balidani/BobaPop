@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=4 uid="uid://b7qpafhtvykhw"]
 
-[ext_resource type="Script" path="res://src/spike/spike.gd" id="1_dwi4n"]
+[ext_resource type="Script" path="res://src/black_hole/black_hole.gd" id="1_tn1s1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mm7nh"]
 size = Vector3(2, 2, 2)
@@ -63,7 +63,7 @@ render_priority = 0
 shader = SubResource("Shader_cq836")
 shader_parameter/spikiness = 100.0
 shader_parameter/speed = 0.02
-shader_parameter/color = Vector3(6, 0, 0)
+shader_parameter/color = Vector3(1, 0, 6)
 shader_parameter/noise_tex = SubResource("NoiseTexture2D_ijyiw")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_21cwo"]
@@ -73,8 +73,8 @@ blend_mode = 2
 [sub_resource type="SphereMesh" id="SphereMesh_7t4yk"]
 material = SubResource("StandardMaterial3D_21cwo")
 
-[node name="Spike" type="StaticBody3D"]
-script = ExtResource("1_dwi4n")
+[node name="BlackHole" type="StaticBody3D"]
+script = ExtResource("1_tn1s1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.999941, 0.0108732, 0, -0.0108732, 0.999941, 0, 0, 0, 1, 0, 0, 0)
@@ -91,4 +91,5 @@ libraries = {
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 material_overlay = SubResource("ShaderMaterial_0juw2")
+transparency = 0.13
 mesh = SubResource("SphereMesh_7t4yk")
