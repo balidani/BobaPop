@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cephmiseqa2ro"]
+
+[ext_resource type="Script" path="res://src/game_loop/game_loop.gd" id="1_jx25n"]
+[ext_resource type="PackedScene" uid="uid://b76u48l0i00ks" path="res://src/music_recorder/music_recorder.tscn" id="2_0hnj6"]
+
+[node name="GameLoop" type="Node" node_paths=PackedStringArray("_music_recorder_goal", "_music_recorder_player")]
+script = ExtResource("1_jx25n")
+_music_recorder_goal = NodePath("MusicRecorderGoal")
+_music_recorder_player = NodePath("MusicRecorderPlayer")
+
+[node name="MusicRecorderPlayer" parent="." instance=ExtResource("2_0hnj6")]
+
+[node name="MusicRecorderGoal" parent="." instance=ExtResource("2_0hnj6")]

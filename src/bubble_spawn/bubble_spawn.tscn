@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbuv1lci0r82a"]
+
+[ext_resource type="Script" path="res://src/bubble_spawn/bubble_spawn.gd" id="1_7yi5x"]
+
+[node name="BubbleSpawn" type="Node3D"]
+script = ExtResource("1_7yi5x")
+
+[node name="Bubbles" type="Node3D" parent="."]

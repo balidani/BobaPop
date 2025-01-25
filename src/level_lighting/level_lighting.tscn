@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://db1kqfof73j4s"]
+
+[ext_resource type="Script" path="res://src/level_lighting/level_lighting.gd" id="1_32g4p"]
+
+[node name="LevelLighting" type="Node3D"]
+script = ExtResource("1_32g4p")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+light_energy = 2.0
+shadow_enabled = true
