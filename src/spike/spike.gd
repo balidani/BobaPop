@@ -12,12 +12,8 @@ func _process(delta: float) -> void:
 
 func bounce(_bubble : BouncyBubble, _last_velocity):
 	MusicRecorder.instance.play_note(
-		NoteEvent.new(
-			_bubble.current_note,
-			"bounce",
-			false,
-			false,
-		)
+		_bubble.current_note,
+		"bounce",
 	)
 	
 	if _bubble.immune != true:

@@ -7,12 +7,8 @@ class_name TileObstacle
 func bounce(_bubble: BouncyBubble, _last_velocity):
 	_ap.play("bounce")
 	MusicRecorder.instance.play_note(
-		NoteEvent.new(
-			57 + randi_range(0, 24),
-			"bounce",
-			false,
-			false,
-		)
+		57, # TODO: More fun
+		"bounce",
 	)
 	if LevelLighting.instance.dark_mode:
 		_glow.glow()

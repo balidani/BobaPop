@@ -24,9 +24,16 @@ func record(event: NoteEvent):
 	recording.push_back(event)
 
 # Play a note and record it at the same time.
-func play_note(event: NoteEvent):
+func play_note(pitch: int, type: str="bubble"):
 	Synth.player.play_note(event.pitch)
-	record(event)
+	record(
+		NoteEvent.new(
+			pitch,
+			"bounce",
+			false,
+			false,
+		)
+	)
 
 # When the recording was started. Used to normalize timestamps.
 var _recording_start_t = 0.0

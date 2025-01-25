@@ -9,12 +9,8 @@ func bounce(_bubble: BouncyBubble, _last_velocity):
 	_ap.stop(false)
 	_ap.play("bounce")
 	MusicRecorder.instance.play_note(
-		NoteEvent.new(
-			69,  # A4
-			"bounce",
-			false,
-			false,
-		)
+		69,  # A4
+		"bounce",
 	)
 	add_child(EFFECT.instantiate())
 	GameLoop.instance.master_popper_popped()
