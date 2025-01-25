@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=4 uid="uid://bw6l3nhchpkjs"]
 
 [ext_resource type="Script" path="res://src/repeater_obstacle/repeater_obstacle.gd" id="1_dujgb"]
-[ext_resource type="PackedScene" uid="uid://b54kt5lbflecb" path="res://models/arcade-machine.glb" id="2_c82pn"]
+[ext_resource type="PackedScene" uid="uid://b2jvlqfx5ftv4" path="res://models/weapon-turret.glb" id="2_804hq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mm7nh"]
 size = Vector3(2, 2, 2)
@@ -30,6 +30,9 @@ _data = {
 [node name="RepeatedObstacle" type="StaticBody3D"]
 script = ExtResource("1_dujgb")
 
+[node name="weapon-turret2" parent="." instance=ExtResource("2_804hq")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -1, 0)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_mm7nh")
 
@@ -41,6 +44,3 @@ pitch_scale = 0.5
 libraries = {
 "": SubResource("AnimationLibrary_fr4hk")
 }
-
-[node name="arcade-machine2" parent="." instance=ExtResource("2_c82pn")]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, -1, 0)

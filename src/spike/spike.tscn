@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=4 uid="uid://dg6a4atb8q6bq"]
+[gd_scene load_steps=9 format=4 uid="uid://dg6a4atb8q6bq"]
 
 [ext_resource type="Script" path="res://src/spike/spike.gd" id="1_ybu3u"]
+[ext_resource type="PackedScene" uid="uid://c44jvejkao5lq" path="res://models/weapon-ammo-arrow.glb" id="2_ekdlh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mm7nh"]
 size = Vector3(2, 2, 2)
@@ -26,53 +27,6 @@ _data = {
 "bounce": SubResource("Animation_1y3ov")
 }
 
-[sub_resource type="Shader" id="Shader_cq836"]
-code = "shader_type spatial;
-
-uniform sampler2D noise_tex;
-uniform float spikiness;
-uniform float speed;
-uniform vec3 color;
-
-float fresnel(vec3 normal, mat4 camera_matrix){
-	vec3 view_direction_world = (camera_matrix * vec4(0.0,0.0,1.0,0.0)).xyz;
-	vec3 normal_world = (camera_matrix * vec4(normal,0.0)).xyz;
-	float d = dot(view_direction_world, normal_world);
-	d = abs(d);
-	d = clamp(d, 0.0, 1.0);
-	return 1.0 - d;
-}
-void vertex() {
-	float height = texture(noise_tex, VERTEX.xz * spikiness + vec2(TIME)*speed).r;
-	VERTEX += NORMAL * height;
-}
-void fragment() {
-	ROUGHNESS = 10.9;
-	ALBEDO = color;
-	ALPHA = 0.4;
-}
-"
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_klium"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ijyiw"]
-noise = SubResource("FastNoiseLite_klium")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0juw2"]
-render_priority = 0
-shader = SubResource("Shader_cq836")
-shader_parameter/spikiness = 100.0
-shader_parameter/speed = 0.02
-shader_parameter/color = Vector3(6, 0, 0)
-shader_parameter/noise_tex = SubResource("NoiseTexture2D_ijyiw")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_21cwo"]
-transparency = 1
-blend_mode = 2
-
-[sub_resource type="SphereMesh" id="SphereMesh_7t4yk"]
-material = SubResource("StandardMaterial3D_21cwo")
-
 [node name="Spike" type="StaticBody3D"]
 script = ExtResource("1_ybu3u")
 
@@ -89,6 +43,20 @@ libraries = {
 "": SubResource("AnimationLibrary_fr4hk")
 }
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-material_overlay = SubResource("ShaderMaterial_0juw2")
-mesh = SubResource("SphereMesh_7t4yk")
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.284073, -0.89025, -0.310842)
+
+[node name="weapon-ammo-arrow2" parent="Node3D" instance=ExtResource("2_ekdlh")]
+transform = Transform3D(-0.175147, -0.649783, 1.88338, -0.0601677, 1.8915, 0.646991, -1.99141, -1.28862e-09, -0.185193, -0.268481, 0.161303, 0.623074)
+
+[node name="weapon-ammo-arrow3" parent="Node3D" instance=ExtResource("2_ekdlh")]
+transform = Transform3D(1.96082, -0.3778, 0.11152, 0.285874, 1.75434, 0.91682, -0.271009, -0.882921, 1.77398, -0.651995, 0.164461, 0.283337)
+
+[node name="weapon-ammo-arrow4" parent="Node3D" instance=ExtResource("2_ekdlh")]
+transform = Transform3D(-1.98062, -0.273969, 0.0456451, -0.253029, 1.91538, 0.517016, -0.114537, 0.506231, -1.93148, 0.0525157, 0.0445057, 0.283337)
+
+[node name="weapon-ammo-arrow5" parent="Node3D" instance=ExtResource("2_ekdlh")]
+transform = Transform3D(-0.357172, 0.734167, -1.82577, -0.172993, 1.8367, 0.772405, 1.96023, 0.295863, -0.264506, -0.314635, 0.107856, -0.130977)
+
+[node name="weapon-ammo-arrow6" parent="Node3D" instance=ExtResource("2_ekdlh")]
+transform = Transform3D(-0.270109, 1.97123, 0.203165, 0.290756, -0.163402, 1.97199, 1.96023, 0.295863, -0.264506, -0.314635, 0.498074, 0.296577)
