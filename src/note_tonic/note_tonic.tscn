@@ -44,4 +44,4 @@ libraries = {
 }
 
 [node name="cocktail3" parent="." instance=ExtResource("2_37rmn")]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, -1, 0)

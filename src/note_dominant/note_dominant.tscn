@@ -44,4 +44,4 @@ libraries = {
 }
 
 [node name="tree2" parent="." instance=ExtResource("2_ygx71")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -1, 0)
