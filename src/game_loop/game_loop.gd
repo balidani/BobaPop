@@ -43,7 +43,7 @@ func computer_recording_start():
 
 func retry_level():
 	print("Resetting the real level")
-	for bubble in Bubble.all_bubbles:
+	for bubble in BouncyBubble.all_bubbles:
 		bubble.queue_free()
 	_level_generator.reset_real_level()
 	print("Spawning the real player")

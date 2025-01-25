@@ -167,13 +167,8 @@ func handle_gravity(delta):
 
 func shoot_bubble():
 	# Start the player recording, if not already.
-	if GameLoop.instance:
-		if is_ai:
-			GameLoop.instance.computer_recording_start()
-		else:
-			GameLoop.instance.player_recording_start()
-	
-	
+	if GameLoop.instance and not is_ai:
+		GameLoop.instance.player_recording_start()
 	# Instance the bubble
 	var bubble_instance : BouncyBubble = BouncyBubbleScene.instantiate() as BouncyBubble
 	
