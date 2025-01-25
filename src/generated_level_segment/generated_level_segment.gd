@@ -29,11 +29,12 @@ func _ready():
 	
 	# Possibly generate a special block.
 	if rng.randf() < 0.3:
+		# TODO: Rotate the special blocks.
 		var random_pos = Vector3i(rng.randi_range(-1, 1) * 2, 2, rng.randi_range(-1, 1) * 2)
 		_maybe_add_block(REPEATER.instantiate(), random_pos)
 	
-	# Pepper a few obstacles.
-	for _o in range(rng.randi() % 2):
+	# Pepper in a few obstacles.
+	for _o in range(rng.randi_range(2, 4)):
 		var random_pos = Vector3i(rng.randi_range(-1, 1) * 2, 2, rng.randi_range(-1, 1) * 2)
 		_maybe_add_block(OBSTACLE.instantiate(), random_pos)
 

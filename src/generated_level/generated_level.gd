@@ -15,7 +15,7 @@ func _maybe_add_tile(segment, local):
 		return
 	
 	occupancy[local] = true
-	segment.transform.origin = Vector3(local)
+	segment.transform.origin = Vector3(local * Vector3i(6, 0, 6))
 	add_child(segment)
 
 
@@ -23,12 +23,17 @@ func _ready():
 	randomize()
 	rng.seed = randi()
 	
+	# Always generate a 3x3.
+	for x in range(-1, 1 +1):
+		for z in range(-1, 1 +1):
+			_maybe_add_tile(SEGMENT.instantiate(), Vector3i(x, 0, z))
+	
 	# Floors.
 	for _iterations in range(15):
 		var turtle_origin = Vector3i(0, 0, 0)
 		var turtle_direction = Vector3i(0, 0, 0)
 		for _turtle in range(4):
-			_maybe_add_tile(SEGMENT.instantiate(), Vector3(turtle_origin))
+			_maybe_add_tile(SEGMENT.instantiate(), turtle_origin)
 			
 			if rng.randf() < 0.8:
 				# New direction for the turtle.
@@ -45,6 +50,6 @@ func _ready():
 				else:
 					turtle_direction = Vector3i(0, 0, sign)
 			
-			turtle_origin += turtle_direction * Vector3i(6, 0, 6)
+			turtle_origin += turtle_direction
 
 const SEGMENT = preload("res://src/generated_level_segment/generated_level_segment.tscn")

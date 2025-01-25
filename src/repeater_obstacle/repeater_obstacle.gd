@@ -22,14 +22,13 @@ func spawn_bubble(incoming : Vector3, rot : float):
 	var spawn_position = global_transform.origin + forward_direction
 	# Floating above ground so no drag
 	spawn_position += Vector3(0, 1, 0)
-	# 
-	
-	bubble_instance.global_transform.origin = spawn_position
 	
 	bubble_instance.rotation = Vector3(0, yrot, 0)
 	
 	# Add the cloud instance to the scene
 	get_parent().add_child(bubble_instance)
+	# 
+	bubble_instance.global_transform.origin = spawn_position
 
 func bounce(_bubble : RigidBody3D, _last_velocity : Vector3):
 	
