@@ -16,7 +16,7 @@ static var instance : GameLoop
 @export var _player_spawner : PlayerSpawner
 
 
-const MUSIC_RECORDING_DURATION_S = 30.0
+const MUSIC_RECORDING_DURATION_S = 5.0
 
 
 func master_popper_popped():
@@ -80,7 +80,13 @@ func new_level():
 		var success_percentage = challenge.rate_player_recording(player_recording)
 		print("Similarity: %s" % success_percentage)
 		
-		if success_percentage > SUCCESS_PERCENT_MIN:
+		var passed = success_percentage > SUCCESS_PERCENT_MIN
+		# TODO: Make description change based on score
+		var description = "You're a Musical Maestro!"
+		
+		ScoreUI.instance.show_score(success_percentage, passed, description)
+		
+		if passed:
 			print("Success percentage is more than %s, victory!" % SUCCESS_PERCENT_MIN)
 			break
 		
