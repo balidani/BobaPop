@@ -17,7 +17,6 @@ func spawn_bubble(incoming : Vector3, rot : float):
 	yrot = round(rad_to_deg(yrot) / 45.0) * 45.0
 	yrot = deg_to_rad(yrot)
 	yrot += rot
-	print (rad_to_deg(yrot))
 
 	var forward_direction = -incoming * 2
 	var spawn_position = global_transform.origin + forward_direction
