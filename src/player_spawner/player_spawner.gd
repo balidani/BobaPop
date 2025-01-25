@@ -14,7 +14,7 @@ func spawn_computer_player():
 	computer_player = PLAYER.instantiate()
 	computer_player.view = _level_camera
 	_container.add_child(computer_player)
-	computer_player.fake_input = true
+	computer_player.is_ai = true
 
 
 func remove_computer_player():

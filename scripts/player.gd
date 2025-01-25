@@ -22,7 +22,7 @@ var jump_double = true
 var coins = 0
 
 var rng = RandomNumberGenerator.new()
-var fake_input : bool = false
+var is_ai : bool = false
 var last_fake_input : Vector3 = Vector3(1, 0, 0)
 var fake_shots : int = 0
 var t : float = 0
@@ -124,7 +124,7 @@ func handle_controls(delta):
 	input.x = Input.get_axis("move_left", "move_right")
 	input.z = Input.get_axis("move_forward", "move_back")
 	
-	if fake_input:
+	if is_ai:
 		if rng.randf() < 0.1:
 			var dir = rng.randi_range(0, 4)
 			if dir == 0:
@@ -167,7 +167,7 @@ func handle_gravity(delta):
 
 func shoot_bubble():
 	# Start the player recording, if not already.
-	if GameLoop.instance:
+	if GameLoop.instance and not is_ai:
 		GameLoop.instance.player_recording_start()
 	# Instance the bubble
 	var bubble_instance : BouncyBubble = BouncyBubbleScene.instantiate() as BouncyBubble
