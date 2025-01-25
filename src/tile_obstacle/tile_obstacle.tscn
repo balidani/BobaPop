@@ -32,7 +32,7 @@ tracks/0/keys = PackedFloat32Array(0, 1, 1.1, 1.1, 1.1)
 
 [sub_resource type="Animation" id="Animation_1y3ov"]
 resource_name = "bounce"
-length = 0.5
+length = 0.1
 tracks/0/type = "scale_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
