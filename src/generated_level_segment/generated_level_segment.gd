@@ -1,14 +1,14 @@
 extends Node3D
 class_name GeneratedLevelSegment
 
-const SPIKE = preload("res://src/spike/spike.tscn")
-const MASTER_POPPER = preload("res://src/tile_master_popper/tile_master_popper.tscn")
-const REPEATER = preload("res://src/repeater_obstacle/repeater_obstacle.tscn")
-const NOTE_TONIC = preload("res://src/note_tonic/note_tonic.tscn")
-const NOTE_DOMINANT = preload("res://src/note_dominant/note_dominant.tscn")
-const OBSTACLE = preload("res://src/tile_obstacle/tile_obstacle.tscn")
-const TILE_3W3L = preload("res://src/tile_3w3l/tile_3w3l.tscn")
-const BLACK_HOLE = preload("res://src/black_hole/black_hole.tscn")
+const SPIKE = preload("res://src/tiles/spike/spike.tscn")
+const MASTER_POPPER = preload("res://src/tiles/tile_master_popper/tile_master_popper.tscn")
+const REPEATER = preload("res://src/tiles/repeater_obstacle/repeater_obstacle.tscn")
+const NOTE_TONIC = preload("res://src/tiles/note_tonic/note_tonic.tscn")
+const NOTE_DOMINANT = preload("res://src/tiles/note_dominant/note_dominant.tscn")
+const OBSTACLE = preload("res://src/tiles/tile_obstacle/tile_obstacle.tscn")
+const TILE_3W3L = preload("res://src/tiles/tile_3w3l/tile_3w3l.tscn")
+const BLACK_HOLE = preload("res://src/tiles/black_hole/black_hole.tscn")
 const AMEN = preload("res://src/tiles/tile_amen/tile_amen.tscn")
 
 

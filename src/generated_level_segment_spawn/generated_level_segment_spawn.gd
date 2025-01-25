@@ -50,7 +50,7 @@ func _ready():
 			_maybe_add_block(TILE.instantiate(), Vector3i(x * 2, 0, z * 2))
 
 
-const TILE = preload("res://src/tile_default/tile_default.tscn")
-const TILE_2W1L = preload("res://src/tile_2w1l/tile_2w1l.tscn")
-const TILE_2W2L = preload("res://src/tile_2w2l/tile_2w2l.tscn")
-const TILE_3W3L = preload("res://src/tile_3w3l/tile_3w3l.tscn")
+const TILE = preload("res://src/tiles/tile_default/tile_default.tscn")
+const TILE_2W1L = preload("res://src/tiles/tile_2w1l/tile_2w1l.tscn")
+const TILE_2W2L = preload("res://src/tiles/tile_2w2l/tile_2w2l.tscn")
+const TILE_3W3L = preload("res://src/tiles/tile_3w3l/tile_3w3l.tscn")

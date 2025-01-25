@@ -105,7 +105,12 @@ func rate_player_recording(player_recording: MusicRecorder) -> float:
 	return rate_recording_similarity(self.recording, player_recording.recording)
 
 
-static func rate_recording_similarity(goal_recording: Array[NoteEvent], user_recording: Array[NoteEvent], time_window: float = 2) -> float:
+static func rate_recording_similarity( \
+		goal_recording: Array[NoteEvent], \
+		user_recording: Array[NoteEvent], \
+		time_window: float = 2, \
+		max_unmatched_panelty: float = 0.5, \
+	) -> float:
 	"""
 	Calculates similarity between two lists of musical events.
 
@@ -113,6 +118,7 @@ static func rate_recording_similarity(goal_recording: Array[NoteEvent], user_rec
 		user_recording: First list of event dictionaries.
 		goal_recording: Second list of event dictionaries.
 		time_window: Time window for matching events (in seconds).
+		max_unmatched_panelty: The maximum panelty for notes that weren't played
 
 	Returns:
 		Similarity score (0.0 to 1.0).
@@ -165,10 +171,13 @@ static func rate_recording_similarity(goal_recording: Array[NoteEvent], user_rec
 			goal_recording_cpy.remove_at(best_match_index)  # Remove matched event from copy
 
 	# Penalty for unmatched events (simplified - just counts unmatched in user_recording for now)
-	var unmatched_penalty =  \
-		goal_recording_cpy.len() * 0.2
-		(user_recording.size() - matched_count) * 0.2  # Example penalty per unmatched event
-	assert(unmatched_penalty <= 0.2)
+	var unmatched_penalty = \
+		max( \
+			(goal_recording_cpy.size() / goal_recording.size()), \
+			((user_recording.size() - matched_count) / user_recording.size()) \
+		)   # Example penalty per unmatched event
+	assert(unmatched_penalty <= 1)
+	unmatched_penalty = unmatched_penalty * max_unmatched_panelty
 
 	var final_similarity = maxf(0.0, (total_similarity / float(user_recording.size())) - unmatched_penalty) # Normalize and apply penalty, ensure not negative
 	return final_similarity

@@ -18,5 +18,5 @@ func _ready():
 	_add_block(NOTE_DOMINANT.instantiate(), Vector3i(0, 2, 0))
 
 
-const TILE = preload("res://src/tile_default/tile_default.tscn")
-const NOTE_DOMINANT = preload("res://src/note_dominant/note_dominant.tscn")
+const TILE = preload("res://src/tiles/tile_default/tile_default.tscn")
+const NOTE_DOMINANT = preload("res://src/tiles/note_dominant/note_dominant.tscn")
