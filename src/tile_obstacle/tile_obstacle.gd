@@ -7,15 +7,5 @@ class_name TileObstacle
 
 func bounce(_bubble: BouncyBubble, _last_velocity):
 	#_asp.play(0.0)
-	#_ap.stop(false)
 	#_ap.play("bounce")
-	var pitch = 440 * abs(_bubble.linear_velocity.x)
-	MusicRecorder.instance.record(
-		NoteEvent.new(
-			pitch,
-			"bounce",
-			false,
-			false,
-		)
-	)
-	Synth.player.play_note(440 * abs(_bubble.linear_velocity.x))
+	Synth.player.play_note(57 + randi_range(0, 24))

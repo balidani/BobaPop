@@ -9,4 +9,4 @@ func bounce(_bubble: BouncyBubble, _last_velocity):
 	#_asp.play(0.0)
 	_ap.stop(false)
 	_ap.play("bounce")
-	Synth.player.play_note(440)
+	Synth.player.play_note(69)
