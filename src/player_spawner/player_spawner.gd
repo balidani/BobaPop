@@ -21,6 +21,9 @@ func remove_computer_player():
 
 
 func spawn_real_player():
+	# Remove previous player.
+	if real_player:
+		real_player.queue_free()
 	real_player = PLAYER.instantiate()
 	real_player.view = _level_camera
 	_container.add_child(real_player)
