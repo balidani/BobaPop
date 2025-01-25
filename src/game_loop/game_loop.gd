@@ -15,8 +15,8 @@ static var instance : GameLoop
 @export var _level_lighting : LevelLighting
 @export var _player_spawner : PlayerSpawner
 
-
 const MUSIC_RECORDING_DURATION_S = 5.0
+
 
 
 func master_popper_popped():
@@ -39,6 +39,8 @@ func player_recording_start():
 
 func retry_level():
 	print("Resetting the real level")
+	for bubble in Bubble.all_bubbles:
+		bubble.queue_free()
 	_level_generator.reset_real_level()
 	print("Spawning the real player")
 	_player_spawner.spawn_real_player()

@@ -185,9 +185,7 @@ func shoot_bubble():
 	yrot = deg_to_rad(yrot)
 	bubble_instance.rotation = Vector3(0, yrot, 0)
 
-	
-	# Add the cloud instance to the scene
-	get_parent().add_child(bubble_instance)
+	GameLoop.instance.get_parent().add_child(bubble_instance)
 
 # Jumping
 
