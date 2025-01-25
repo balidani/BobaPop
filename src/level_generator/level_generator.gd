@@ -40,14 +40,18 @@ func _ready():
 	stop_level()
 
 
-# Remove all state and generate a new level.
-func generate_new_level():
+func reset():
 	# Wait in case not ready yet.
 	if not is_node_ready():
 		await ready
 	# Clear out container
 	for c in _container.get_children():
 		c.queue_free()
+
+
+# Remove all state and generate a new level.
+func generate_new_level():
+	reset()
 		
 	if use_generated_level:
 		initial_level_setup = GENERATED_LEVEL.instantiate()

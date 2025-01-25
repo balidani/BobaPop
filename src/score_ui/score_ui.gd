@@ -56,8 +56,14 @@ func _on_menu_pressed() -> void:
 
 
 func _on_retry_pressed() -> void:
+	_ap.stop(true)
+	_ap.play("score_away")
+	await _ap.animation_finished
 	retry.emit()
 
 
 func _on_next_level_button_pressed() -> void:
+	_ap.stop(true)
+	_ap.play("score_away")
+	await _ap.animation_finished
 	next_level.emit()

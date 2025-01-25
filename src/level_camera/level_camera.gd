@@ -29,7 +29,8 @@ func _ready():
 
 func _process(delta):
 	if target == null:
-		set_process(false)
+		self.position = self.position.lerp(Vector3(0, 0, 0), delta * 4)
+		camera.position = camera.position.lerp(Vector3(0, 0, 0), 8 * delta)
 		return
 	
 	# Set position and rotation to targets

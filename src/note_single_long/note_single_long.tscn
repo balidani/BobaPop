@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ctn01qal226l1"]
 
-[ext_resource type="Texture2D" uid="uid://b5r1bvilcs8s6" path="res://sprites/single_note.png" id="1_mqx02"]
+[ext_resource type="Texture2D" uid="uid://df8kwu23xbsc4" path="res://sprites/single_note_bw.png" id="1_pchlo"]
 
 [node name="NoteSingle" type="TextureRect"]
 custom_minimum_size = Vector2(30, 30)
@@ -13,6 +13,6 @@ offset_right = -1261.0
 offset_bottom = -713.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_mqx02")
+texture = ExtResource("1_pchlo")
 expand_mode = 1
 stretch_mode = 5

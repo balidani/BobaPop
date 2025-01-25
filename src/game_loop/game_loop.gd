@@ -18,6 +18,9 @@ static var instance : GameLoop
 const MUSIC_RECORDING_DURATION_S = 5.0
 
 
+# True when computer is playing.
+var computer_playing = false
+
 
 func master_popper_popped():
 	print("Master popper popped")
@@ -42,6 +45,7 @@ func computer_recording_start():
 
 
 func retry_level():
+	NoteProgress.instance.reset_player_notes()
 	print("Resetting the real level")
 	for bubble in BouncyBubble.all_bubbles:
 		bubble.queue_free()
@@ -51,19 +55,20 @@ func retry_level():
 	_level_generator.start_level()
 
 
-func pass_level():
-	pass
-
-
 const SUCCESS_PERCENT_MIN = 0.8
 
 
 func new_level():
+	_level_camera.target = null
+	NoteUI.singleton.reset()
+	_level_generator.reset()
+	await get_tree().create_timer(2.0).timeout
 	print("Generating a new level")
 	_level_generator.generate_new_level()
 	_level_lighting.new_level()
 	_player_spawner.spawn_computer_player()
 	print("Showing the level, computer mode")
+	computer_playing = true
 	_level_camera.target = _level_generator
 	_level_lighting.dark_mode = true
 	_level_generator.start_level()
@@ -71,10 +76,14 @@ func new_level():
 	print("Removing computer player")
 	_player_spawner.remove_computer_player()
 	print("Starting player level")
+	computer_playing = false
 	_level_lighting.dark_mode = false
 	
 	retry_level()
 	await _music_recorder_player.finished
+	print("Stopping level")
+	_level_generator.stop_level()
+	_player_spawner.remove_real_player()
 	
 	print("Comparing recordings")
 	
@@ -113,6 +122,10 @@ func _ready():
 		return
 	
 	print("Game loop initializing")
+	if instance != null:
+		push_error("Multiple game loops")
+		breakpoint
+		return
 	instance = self
 	
 	# Wait for everything to be ready.

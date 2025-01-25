@@ -48,7 +48,7 @@ var _recording_length_t = 0.0
 
 var is_recording = false :
 	set(i):
-		is_recording = true
+		is_recording = i
 		set_process(true)
 
 
