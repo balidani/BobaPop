@@ -10,7 +10,10 @@ config_version=5
 
 [application]
 
-config/name="Starter Kit 3D Platformer"
+config/name="BobaPop"
+config/description="Yhee YoooBublless
+GAME MUSLIE MUKIC"
+config/version="v0.0.0"
 config/tags=PackedStringArray("starterkit")
 run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
