@@ -7,8 +7,6 @@ static var instance : MusicRecorder
 
 func _ready() -> void:
 	instance = self
-	print("Here!")
-
 
 # Emitted when the recording is finished.
 signal finished

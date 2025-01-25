@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqqgyqafm7xwp"]
+[gd_scene load_steps=3 format=3 uid="uid://bqqgyqafm7xwp"]
 
 [ext_resource type="PackedScene" uid="uid://bwb6lhd0cj5ck" path="res://src/isometric_main/CharacterMain.tscn" id="1_85ukx"]
-[ext_resource type="PackedScene" path="res://src/bubble_wand/tile_obstacle.tscn" id="3_s4vg2"]
 
 [sub_resource type="GDScript" id="GDScript_oby3i"]
 script/source = "extends Node3D
@@ -16,5 +15,15 @@ func _process(delta: float) -> void:
 [node name="IsometricMain" parent="." instance=ExtResource("1_85ukx")]
 script = SubResource("GDScript_oby3i")
 
-[node name="TileObstacle2" parent="." instance=ExtResource("3_s4vg2")]
+[node name="TileObstacle2" parent="."]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.07294, 0.912113, -3.53424)
+script = null
