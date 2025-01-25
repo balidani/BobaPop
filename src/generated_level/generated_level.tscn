@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ct0csbdpypv58"]
+
+[ext_resource type="Script" path="res://src/generated_level/generated_level.gd" id="1_bdolg"]
+
+[node name="GeneratedLevel" type="Node3D"]
+script = ExtResource("1_bdolg")

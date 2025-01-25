@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6cdb2jiqcufa"]
+
+[ext_resource type="Script" path="res://src/generated_level_segment/generated_level_segment.gd" id="1_hqvrx"]
+
+[node name="GeneratedLevelSegment" type="Node3D"]
+script = ExtResource("1_hqvrx")

@@ -6,6 +6,10 @@ class_name LevelLighting
 var rng = RandomNumberGenerator.new()
 
 
+func new_level():
+	_randomize()
+
+
 # Just get a random angle for the light.
 func _randomize():
 	var b = global_transform.basis

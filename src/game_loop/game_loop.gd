@@ -12,6 +12,7 @@ static var instance : GameLoop
 
 @export var _level_camera : LevelCamera
 @export var _level_generator : LevelGenerator
+@export var _level_lighting : LevelLighting
 @export var _player_spawner : PlayerSpawner
 
 
@@ -37,6 +38,7 @@ func pass_level():
 func new_level():
 	print("Generating a new level")
 	_level_generator.generate_new_level()
+	_level_lighting.new_level()
 	_player_spawner.spawn_computer_player()
 	print("Showing the level")
 	_level_camera.target = _level_generator

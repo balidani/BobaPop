@@ -2,11 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://banltn2jgmglc" path="res://mesh/tile_default.glb" id="1_fjnp8"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w2cf3"]
-albedo_color = Color(0.987396, 0.467469, 0.657493, 1)
-metallic = 0.3
-metallic_specular = 0.17
-roughness = 0.3
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_scnnj"]
+albedo_color = Color(1, 0.650019, 0.742175, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mm7nh"]
 size = Vector3(2, 2, 2)
@@ -15,8 +12,8 @@ size = Vector3(2, 2, 2)
 
 [node name="tile_default" parent="." instance=ExtResource("1_fjnp8")]
 
-[node name="Cube" parent="tile_default" index="0"]
-material_override = SubResource("StandardMaterial3D_w2cf3")
+[node name="Cube_001" parent="tile_default" index="0"]
+material_override = SubResource("StandardMaterial3D_scnnj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_mm7nh")

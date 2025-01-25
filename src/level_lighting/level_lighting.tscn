@@ -6,5 +6,4 @@
 script = ExtResource("1_32g4p")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-light_energy = 2.0
 shadow_enabled = true

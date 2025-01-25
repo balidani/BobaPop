@@ -3,11 +3,8 @@
 [ext_resource type="Script" path="res://src/tile_obstacle/tile_obstacle.gd" id="1_7k40a"]
 [ext_resource type="PackedScene" uid="uid://banltn2jgmglc" path="res://mesh/tile_default.glb" id="1_wnc5e"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qafnk"]
-albedo_color = Color(0.415637, 0.435985, 1, 1)
-metallic = 0.3
-metallic_specular = 0.17
-roughness = 0.55
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kv86r"]
+albedo_color = Color(0.450124, 0.566812, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mm7nh"]
 size = Vector3(2, 2, 2)
@@ -25,7 +22,7 @@ length = 0.001
 tracks/0/type = "scale_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("tile_default/Cube")
+tracks/0/path = NodePath("tile_default")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 1.1, 1.1, 1.1)
@@ -36,7 +33,7 @@ length = 0.1
 tracks/0/type = "scale_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("tile_default/Cube")
+tracks/0/path = NodePath("tile_default")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.1, 1, 1.1, 1.1, 1.1, 0.5, 1, 1, 1, 1)
@@ -51,10 +48,10 @@ _data = {
 script = ExtResource("1_7k40a")
 
 [node name="tile_default" parent="." instance=ExtResource("1_wnc5e")]
-
-[node name="Cube" parent="tile_default" index="0"]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_qafnk")
+
+[node name="Cube_001" parent="tile_default" index="0"]
+material_override = SubResource("StandardMaterial3D_kv86r")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_mm7nh")

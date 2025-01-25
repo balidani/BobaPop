@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://bv5dw62c02mge"]
+
+[ext_resource type="PackedScene" uid="uid://cephmiseqa2ro" path="res://src/game_loop/game_loop.tscn" id="1_p6lip"]
+[ext_resource type="PackedScene" uid="uid://db1kqfof73j4s" path="res://src/level_lighting/level_lighting.tscn" id="2_0q8op"]
+[ext_resource type="PackedScene" uid="uid://c51yjmr0bxj6" path="res://src/level_generator/level_generator.tscn" id="3_yxmco"]
+[ext_resource type="PackedScene" uid="uid://kucp0se2xjk5" path="res://src/level_camera/level_camera.tscn" id="4_wo7la"]
+[ext_resource type="PackedScene" uid="uid://vomxg4q02xyc" path="res://src/player_spawner/player_spawner.tscn" id="5_yphuo"]
+
+[node name="LevelGeneratorTest" type="Node3D"]
+
+[node name="GameLoop" parent="." node_paths=PackedStringArray("_level_camera", "_level_generator", "_level_lighting", "_player_spawner") instance=ExtResource("1_p6lip")]
+_level_camera = NodePath("../LevelCamera")
+_level_generator = NodePath("../LevelGenerator")
+_level_lighting = NodePath("../LevelLighting")
+_player_spawner = NodePath("../PlayerSpawner")
+
+[node name="LevelLighting" parent="." instance=ExtResource("2_0q8op")]
+
+[node name="LevelGenerator" parent="." instance=ExtResource("3_yxmco")]
+use_generated_level = true
+
+[node name="LevelCamera" parent="." instance=ExtResource("4_wo7la")]
+
+[node name="PlayerSpawner" parent="." node_paths=PackedStringArray("_level_camera") instance=ExtResource("5_yphuo")]
+_level_camera = NodePath("../LevelCamera")

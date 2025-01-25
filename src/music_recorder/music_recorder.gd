@@ -59,7 +59,7 @@ func _process(delta: float) -> void:
 		return
 	
 	t += delta
-	print("%s >= %s" % [t, _recording_end_t])
+	# dsprint("%s >= %s" % [t, _recording_end_t])
 	if t >= _recording_end_t:
 		_finish_recording()
 		set_process(false)
