@@ -1,21 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://b6grmbjqf822v"]
+[gd_scene load_steps=5 format=3 uid="uid://b6grmbjqf822v"]
 
+[ext_resource type="Script" path="res://src/tile_default/tile_default.gd" id="1_6qaxu"]
 [ext_resource type="PackedScene" uid="uid://banltn2jgmglc" path="res://mesh/tile_default.glb" id="1_fjnp8"]
+[ext_resource type="Material" uid="uid://b6evibqitolpc" path="res://src/tile_default/ground.tres" id="3_yug4x"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_scnnj"]
-albedo_color = Color(1, 0.650019, 0.742175, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_mm7nh"]
-size = Vector3(2, 2, 2)
+[sub_resource type="BoxShape3D" id="BoxShape3D_o0sph"]
+size = Vector3(1.9, 1.9, 1.9)
 
 [node name="TileDefault" type="StaticBody3D"]
+script = ExtResource("1_6qaxu")
 
 [node name="tile_default" parent="." instance=ExtResource("1_fjnp8")]
 
 [node name="Cube_001" parent="tile_default" index="0"]
-material_override = SubResource("StandardMaterial3D_scnnj")
+material_override = ExtResource("3_yug4x")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_mm7nh")
+shape = SubResource("BoxShape3D_o0sph")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_o0sph")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
 
 [editable path="tile_default"]

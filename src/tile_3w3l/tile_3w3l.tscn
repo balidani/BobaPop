@@ -1,12 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://ci4g4x6reql7n"]
+[gd_scene load_steps=5 format=3 uid="uid://ci4g4x6reql7n"]
 
 [ext_resource type="Material" uid="uid://b6evibqitolpc" path="res://src/tile_default/ground.tres" id="2_amqb8"]
 [ext_resource type="PackedScene" uid="uid://cgkmamfi7nbbp" path="res://mesh/tile_3w3l.glb" id="3_wv1ev"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_mm7nh"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_buwjf"]
+size = Vector3(5.9, 1.9, 5.9)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lrjwl"]
 size = Vector3(6, 2, 6)
 
 [node name="Tile3w3l" type="StaticBody3D"]
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_buwjf")
 
 [node name="tile_3w3l" parent="." instance=ExtResource("3_wv1ev")]
 
@@ -14,6 +22,6 @@ size = Vector3(6, 2, 6)
 material_override = ExtResource("2_amqb8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_mm7nh")
+shape = SubResource("BoxShape3D_lrjwl")
 
 [editable path="tile_3w3l"]

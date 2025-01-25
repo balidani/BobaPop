@@ -26,10 +26,6 @@ func _maybe_add_block(block, local : Vector3i):
 func _ready():
 	rng.seed = str(global_position).hash()
 	
-	# TODO: Generate some more interesting patterns.
-	var floor = TILE_3W3L.instantiate()
-	add_child(floor)
-	
 	# Possibly generate a master popper block.
 	if rng.randf() < 0.1:
 		if not level.master_popper_generated:

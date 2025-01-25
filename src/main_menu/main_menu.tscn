@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://hhybp10x0tlw"]
+[gd_scene load_steps=8 format=3 uid="uid://hhybp10x0tlw"]
 
 [ext_resource type="Script" path="res://src/main_menu/main_menu.gd" id="1_8573a"]
 [ext_resource type="PackedScene" uid="uid://db1kqfof73j4s" path="res://src/level_lighting/level_lighting.tscn" id="2_tc4mn"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://vomxg4q02xyc" path="res://src/player_spawner/player_spawner.tscn" id="5_ohjxy"]
 [ext_resource type="PackedScene" uid="uid://bjegk8bpm8o28" path="res://src/rotating_camera/rotating_camera.tscn" id="5_t4xf8"]
 [ext_resource type="PackedScene" uid="uid://dv8psq042rwo4" path="res://src/main_menu_ui/main_menu_ui.tscn" id="6_3tf36"]
+[ext_resource type="AudioStream" uid="uid://cdy4ai0cjo7hm" path="res://sounds/music/sweet_bubble_pop.mp3" id="7_d5gpf"]
 
 [node name="MainMenu" type="Node3D" node_paths=PackedStringArray("_level_generator", "_level_lighting")]
 script = ExtResource("1_8573a")
@@ -22,5 +23,9 @@ use_generated_level = true
 [node name="RotatingCamera" parent="." instance=ExtResource("5_t4xf8")]
 
 [node name="MainMenuUI" parent="." instance=ExtResource("6_3tf36")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_d5gpf")
+autoplay = true
 
 [connection signal="play_button_pressed" from="MainMenuUI" to="." method="_on_main_menu_ui_play_button_pressed"]

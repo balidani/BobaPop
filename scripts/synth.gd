@@ -18,4 +18,4 @@ func _ready() -> void:
 	
 	player.change_instrument(9)
 
-	player.play_tune(metroid_chill)
+	# player.play_tune(metroid_chill)
