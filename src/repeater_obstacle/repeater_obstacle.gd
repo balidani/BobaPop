@@ -9,6 +9,11 @@ var BouncyBubbleScene = preload("res://src/bubble_path/bubble_path.tscn")
 
 var count = 0
 
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
 func bounce(_bubble):
 	if count < 2:
 		count += 1

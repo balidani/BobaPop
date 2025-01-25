@@ -1,7 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqqgyqafm7xwp"]
+[gd_scene load_steps=3 format=3 uid="uid://bqqgyqafm7xwp"]
 
-[ext_resource type="PackedScene" path="res://src/isometric_main/CharacterMain.tscn" id="1_85ukx"]
+[ext_resource type="PackedScene" uid="uid://bwb6lhd0cj5ck" path="res://src/isometric_main/CharacterMain.tscn" id="1_85ukx"]
+
+[sub_resource type="GDScript" id="GDScript_oby3i"]
+script/source = "extends Node3D
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
 
 [node name="Main" type="Node3D"]
 
 [node name="IsometricMain" parent="." instance=ExtResource("1_85ukx")]
+script = SubResource("GDScript_oby3i")

@@ -8,10 +8,10 @@ func _ready() -> void:
 	
 	music_player.initialize()
 	music_player.start_streaming()
-	
-	music_player.change_instrument(9)
 	music_player.change_filter(2)
 	music_player.change_filter_power(20)
+	
+	music_player.change_instrument(9)
 	
 	music_player.play_note(440)
 	

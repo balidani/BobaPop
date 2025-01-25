@@ -21,6 +21,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Audio="*res://scripts/audio.gd"
+Synth="*res://scripts/synth.gd"
 
 [display]
 

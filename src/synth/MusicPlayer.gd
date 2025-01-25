@@ -175,7 +175,7 @@ func change_filter(shift: int) -> void:
 	_update_filter()
 	filter_changed.emit()
 
-# A value from 0 to 100
+
 func change_filter_power(value: int) -> void:
 	_active_filter_power = clampi(value, 0, 100)
 
