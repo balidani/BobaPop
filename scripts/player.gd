@@ -137,7 +137,7 @@ func handle_controls(delta):
 				last_fake_input = Vector3(0, 0, -1)
 		input = last_fake_input
 	
-		if t > fake_shots * 3 and fake_shots < 3:
+		if t > (fake_shots + 1) * 4 and fake_shots < 3:
 			fake_shots += 1
 			shoot_bubble()
 
@@ -179,7 +179,11 @@ func shoot_bubble():
 	# Set the position of the cloud instance
 	bubble_instance.global_transform.origin = spawn_position
 	
-	bubble_instance.rotation = Vector3(0, rotation_direction + PI, 0)
+	var yrot = rotation_direction + PI
+	# Quantize
+	yrot = round(rad_to_deg(yrot) / 45.0) * 45.0
+	yrot = deg_to_rad(yrot)
+	bubble_instance.rotation = Vector3(0, yrot, 0)
 
 	
 	# Add the cloud instance to the scene
