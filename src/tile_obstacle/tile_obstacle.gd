@@ -5,7 +5,7 @@ class_name TileObstacle
 @onready var _asp : AudioStreamPlayer3D = $AudioStreamPlayer3D
 
 
-func bounce(_bubble: BouncyBubble):
+func bounce(_bubble: BouncyBubble, _last_velocity):
 	#_asp.play(0.0)
 	#_ap.play("bounce")
 	Synth.player.play_note(440 * abs(_bubble.linear_velocity.x))
