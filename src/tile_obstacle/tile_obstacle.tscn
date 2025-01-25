@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://banltn2jgmglc" path="res://mesh/tile_default.glb" id="1_wnc5e"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qafnk"]
-albedo_color = Color(0.300069, 0.307739, 0.278935, 1)
+albedo_color = Color(0.415637, 0.435985, 1, 1)
 metallic = 0.3
 metallic_specular = 0.17
 roughness = 0.55
