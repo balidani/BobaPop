@@ -66,7 +66,8 @@ void fragment() {
 
 	float a = atan(VERTEX.y, VERTEX.x) / TAU;
 
-	vec3 col = hsl2rgb(vec3(a, 1.0, 0.5));
+	// vec3 col = hsl2rgb(vec3(a, 1.0, 0.5));
+	vec3 col = color;
 
 	ALBEDO = col;
 }
