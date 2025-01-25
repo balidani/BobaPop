@@ -27,8 +27,6 @@ func _maybe_add_tile(segment, local):
 func _ready():
 	rng.seed = 12345
 	
-	print("RAND INT %s" % rng.randi())
-	
 	# Generate a cross to spawn in.
 	for x in range(-1, 1 +1):
 		_maybe_add_tile(SEGMENT_SPAWN.instantiate(), Vector3i(x, 0, 0))

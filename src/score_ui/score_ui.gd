@@ -5,7 +5,7 @@ static var instance : ScoreUI
 
 
 @onready var _control : Control = $Control
-@onready var _score : Label = $Control/HBoxContainer/Score
+@onready var _score : Label = $Control/VBoxContainer/HBoxContainer/Score
 @onready var _pass_fail : Label = $Control/VBoxContainer/pass_fail
 @onready var _description : Label = $Control/VBoxContainer/description
 
@@ -24,7 +24,7 @@ func bam():
 
 func show_score(score, passed, desc):
 	_control.visible = true
-	_score.text = "%s%%" % (score * 100)
+	_score.text = "%0.1f%%" % (score * 100)
 	_description.text = str(desc)
 	
 	if passed:
@@ -34,3 +34,4 @@ func show_score(score, passed, desc):
 	
 	_ap.stop(false)
 	_ap.play("score_slam")
+	await _ap.animation_finished
