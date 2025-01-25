@@ -12,16 +12,17 @@ static var instance : ScoreUI
 @onready var _retry_button : Button = $Control/VBoxContainer/HBoxContainer2/Retry
 @onready var _next_level_button : Button = $Control/VBoxContainer/HBoxContainer2/NextLevelButton
 
+@onready var _ap : AnimationPlayer = $AnimationPlayer
 
 signal retry
 signal next_level
 
 
+const MAIN_MENU = preload("res://src/main_menu/main_menu.tscn")
+
+
 func _ready():
 	instance = self
-
-
-@onready var _ap : AnimationPlayer = $AnimationPlayer
 
 
 func bam():
@@ -48,22 +49,13 @@ func show_score(score, passed, desc):
 	await _ap.animation_finished
 
 
-const MAIN_MENU = preload("res://src/main_menu/main_menu.tscn")
-
-
 func _on_menu_pressed() -> void:
 	get_tree().change_scene_to_packed(MAIN_MENU)
 
 
 func _on_retry_pressed() -> void:
-	_ap.stop(true)
-	_ap.play("score_away")
-	await _ap.animation_finished
 	retry.emit()
 
 
 func _on_next_level_button_pressed() -> void:
-	_ap.stop(true)
-	_ap.play("score_away")
-	await _ap.animation_finished
 	next_level.emit()
