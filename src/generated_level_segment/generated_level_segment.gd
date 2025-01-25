@@ -44,9 +44,9 @@ func _ready():
 		var random_pos = Vector3i(rng.randi_range(-1, 1) * 2, 2, rng.randi_range(-1, 1) * 2)
 		var random_kind = rng.randi_range(1, 3)
 		var instance = null
-		if random_kind == 0:
+		if random_kind == 1:
 			instance = REPEATER.instantiate()
-		elif random_kind == 1:
+		elif random_kind == 2:
 			instance = NOTE_TONIC.instantiate()
 		else:
 			instance = NOTE_DOMINANT.instantiate()
