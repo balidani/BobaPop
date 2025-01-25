@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name Player
 
 signal coin_collected
 
@@ -20,6 +21,12 @@ var jump_double = true
 
 var coins = 0
 
+var rng = RandomNumberGenerator.new()
+var fake_input : bool = false
+var last_fake_input : Vector3 = Vector3(1, 0, 0)
+var fake_shots : int = 0
+var t : float = 0
+
 @onready var particles_trail = $ParticlesTrail
 @onready var sound_footsteps = $SoundFootsteps
 @onready var model = $Character
@@ -30,7 +37,11 @@ var BouncyBubbleScene = preload("res://src/bubble_path/bubble_path.tscn")
 
 # Functions
 
+func _ready() -> void:
+	rng.seed = 12345
+
 func _physics_process(delta):
+	t += delta
 
 	if not model:
 		return
@@ -112,12 +123,28 @@ func handle_controls(delta):
 
 	input.x = Input.get_axis("move_left", "move_right")
 	input.z = Input.get_axis("move_forward", "move_back")
+	
+	if fake_input:
+		if rng.randf() < 0.1:
+			var dir = rng.randi_range(0, 4)
+			if dir == 0:
+				last_fake_input = Vector3(1, 0, 0)
+			elif dir == 1:
+				last_fake_input = Vector3(-1, 0, 0)
+			elif dir == 2:
+				last_fake_input = Vector3(0, 0, 1)
+			elif dir == 3:
+				last_fake_input = Vector3(0, 0, -1)
+		input = last_fake_input
+	
+		if t > fake_shots * 3 and fake_shots < 3:
+			fake_shots += 1
+			shoot_bubble()
 
 	input = input.rotated(Vector3.UP, view.rotation.y)
-
+	
 	if input.length() > 1:
 		input = input.normalized()
-
 	movement_velocity = input * movement_speed * delta
 
 	# Jumping

@@ -6,7 +6,7 @@ class_name PlayerSpawner
 @onready var _container : Node3D = $PlayerSpot
 
 
-var computer_player
+var computer_player : Player
 var real_player
 
 
@@ -14,6 +14,7 @@ func spawn_computer_player():
 	computer_player = PLAYER.instantiate()
 	computer_player.view = _level_camera
 	_container.add_child(computer_player)
+	computer_player.fake_input = true
 
 
 func remove_computer_player():

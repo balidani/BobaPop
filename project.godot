@@ -110,6 +110,11 @@ zoom_out={
 ]
 }
 
+[physics]
+
+3d/default_linear_damp=0.0
+3d/default_angular_damp=0.0
+
 [rendering]
 
 renderer/rendering_method="mobile"
