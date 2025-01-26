@@ -38,9 +38,13 @@ signal computer_playing_changed
 # Keeps increasing without bounds.
 var difficulty = Difficulty.difficulty
 
-
+var woked_shing_triggered = false
 func master_popper_popped():
 	print("Master popper popped. Computer:", computer_playing)
+	if woked_shing_triggered:
+		print("Ignored woked shing retrigger")
+	
+	woked_shing_triggered = true
 	
 	var computer_was_player = computer_playing
 	
@@ -59,6 +63,9 @@ func master_popper_popped():
 	_player_spawner.remove_real_player()
 	# Wait for master popper effect.
 	await get_tree().create_timer(5.0).timeout
+	
+	woked_shing_triggered = false
+	
 	if not computer_was_player:
 		if computer_hit_woked_shing:
 			_music_recorder_player.finish()
@@ -68,7 +75,6 @@ func master_popper_popped():
 			_level_generator.stop_level()
 			_level_camera.target = _level_generator
 			retry_level()
-
 
 func _remove_computer_stuff():
 	_music_recorder_goal.finish()
