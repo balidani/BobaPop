@@ -150,7 +150,7 @@ func retry_level():
 		"I admire your enthusiasm.",
 		"So close to being sparkly!",
 	]
-	if success_percentage == 0.0:
+	if success_percentage <= 0.6:
 		var msg_rand = rng.randi() % loss_msgs.size();
 		description = loss_msgs[msg_rand]
 		var mat : ShaderMaterial = shader_canvas.inst._gray_vignette.material
