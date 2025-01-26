@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dv8psq042rwo4"]
+[gd_scene load_steps=10 format=3 uid="uid://dv8psq042rwo4"]
 
 [ext_resource type="Script" path="res://src/main_menu_ui/main_menu_ui.gd" id="1_0cp5y"]
+[ext_resource type="PackedScene" uid="uid://baxalna5x1h17" path="res://src/fun_label/fun_label.tscn" id="2_ou4u1"]
 [ext_resource type="Texture2D" uid="uid://djxwduby451m6" path="res://splash-transparent.png" id="2_y63jx"]
 [ext_resource type="Texture2D" uid="uid://7fwwd4eiwro1" path="res://splash-screen-musli.png" id="3_uicg6"]
 [ext_resource type="Texture2D" uid="uid://i3ah4mid1dw6" path="res://cute_eyes.png" id="4_5ctxx"]
@@ -209,56 +210,57 @@ grow_vertical = 2
 script = ExtResource("1_0cp5y")
 
 [node name="Credits" type="Control" parent="."]
-custom_minimum_size = Vector2(350, 200)
+custom_minimum_size = Vector2(375, 200)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -100.0
-offset_right = 150.0
-offset_bottom = 100.0
+offset_left = -187.0
+offset_top = -112.0
+offset_right = 188.0
+offset_bottom = 88.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_thina")
 
-[node name="Label" type="Label" parent="Credits"]
-layout_mode = 1
-offset_right = 40.0
-offset_bottom = 23.0
-text = "ilm"
+[node name="FunLabel" parent="Credits" instance=ExtResource("2_ou4u1")]
+layout_mode = 0
 
-[node name="Label2" type="Label" parent="Credits"]
+[node name="FunLabel2" parent="Credits" instance=ExtResource("2_ou4u1")]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -56.0
+offset_left = -94.0
+offset_right = 0.0
 offset_bottom = 26.0
 grow_horizontal = 0
 text = "domenukk"
 
-[node name="Label3" type="Label" parent="Credits"]
+[node name="FunLabel3" parent="Credits" instance=ExtResource("2_ou4u1")]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -23.0
-offset_right = 63.0
+offset_top = -26.0
+offset_right = 70.0
+offset_bottom = 0.0
 grow_vertical = 0
 text = "balidani"
 
-[node name="Label4" type="Label" parent="Credits"]
+[node name="FunLabel4" parent="Credits" instance=ExtResource("2_ou4u1")]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -74.0
-offset_top = -23.0
+offset_left = -83.0
+offset_top = -26.0
+offset_right = 0.0
+offset_bottom = 0.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "whendrik"
@@ -291,7 +293,8 @@ offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 13
-text = "Game assets by Kenney"
+text = "Game assets by Kenney
+Synth by GDSiON"
 horizontal_alignment = 1
 
 [node name="Control" type="Control" parent="."]
@@ -300,9 +303,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -20.0
-offset_top = -25.0
+offset_top = -39.67
 offset_right = 20.0
-offset_bottom = 15.0
+offset_bottom = 0.330002
 grow_horizontal = 2
 scale = Vector2(1.5, 1.5)
 
@@ -365,9 +368,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -48.5
-offset_top = 2.44501
+offset_top = -4.25999
 offset_right = 48.5
-offset_bottom = 26.445
+offset_bottom = 19.74
 grow_horizontal = 2
 grow_vertical = 0
 

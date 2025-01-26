@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://baxalna5x1h17"]
+
+[ext_resource type="Script" path="res://src/fun_label/fun_label.gd" id="1_yovpk"]
+
+[sub_resource type="Animation" id="Animation_m02rj"]
+resource_name = "loop"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.0872665, 0.0872665, -0.0872665]
+}
+
+[sub_resource type="Animation" id="Animation_rw2kd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_daeg3"]
+_data = {
+"RESET": SubResource("Animation_rw2kd"),
+"loop": SubResource("Animation_m02rj")
+}
+
+[node name="FunLabel" type="Label"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "ilm"
+script = ExtResource("1_yovpk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_daeg3")
+}
