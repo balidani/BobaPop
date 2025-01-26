@@ -67,7 +67,7 @@ func event_similarity(other: NoteEvent, pitch_weight: float = 0.4, type_weight: 
 	var time_diff = abs(self.timestamp - other.timestamp)
 	if time_diff > max_time_diff:
 		return 0.0
-	var time_diff_malus = ((1/max_time_diff) * time_diff) * max_time_diff_malus
+	var time_diff_malus = ((1.0/max_time_diff) * time_diff) * max_time_diff_malus
 	
 	var pitch_sim = pitch_similarity(self.pitch, other.pitch)
 	var type_sim = type_similarity(

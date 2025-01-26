@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ci4g4x6reql7n"]
 
-[ext_resource type="Material" uid="uid://b6evibqitolpc" path="res://src/tiles/tile_default/ground.tres" id="2_amqb8"]
+[ext_resource type="Material" uid="uid://dnjxjmvqtp4k6" path="res://src/tiles/tile_default/ground.tres" id="2_amqb8"]
 [ext_resource type="PackedScene" uid="uid://cgkmamfi7nbbp" path="res://mesh/tile_3w3l.glb" id="3_wv1ev"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_buwjf"]

@@ -3,7 +3,6 @@ class_name RepeaterObstacle
 
 
 @onready var _ap : AnimationPlayer = $AnimationPlayer
-@onready var _asp : AudioStreamPlayer3D = $AudioStreamPlayer3D
 
 
 var BouncyBubbleScene = preload("res://src/bubble_path/bubble_path.tscn")

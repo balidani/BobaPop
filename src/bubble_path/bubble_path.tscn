@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://src/bubble_path/bubble_path.gd" id="1_pll3f"]
 [ext_resource type="AudioStream" uid="uid://dw2m5fxhfjykq" path="res://sounds/jump.ogg" id="3_jx51l"]
 [ext_resource type="Shader" path="res://src/bubble_path/bubble_rainbow.gdshader" id="3_qr841"]
-[ext_resource type="Texture2D" uid="uid://c4opm013h8e1u" path="res://particle.png" id="5_i7va4"]
+[ext_resource type="Texture2D" uid="uid://cu3xee7gi4hmb" path="res://particle.png" id="5_i7va4"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_4xfrs"]
 

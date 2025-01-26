@@ -227,7 +227,7 @@ func play_note(note: int) -> void:
 		active_drumkit.update_volume(_active_instrument.volume)
 		_driver.note_on(active_drumkit.voice_note[note], active_drumkit.voice_list[note])
 
-func play_chord(chord: Array, time: int) -> void:
+func play_chord(chord: Array, _time: int) -> void:
 	for element in chord:
 		_driver.note_on(element, _active_instrument.voice)
 

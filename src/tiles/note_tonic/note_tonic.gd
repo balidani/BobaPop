@@ -2,7 +2,6 @@ extends StaticBody3D
 class_name NoteTonic
 
 @onready var _ap : AnimationPlayer = $AnimationPlayer
-@onready var _asp : AudioStreamPlayer3D = $AudioStreamPlayer3D
 
 
 func bounce(_bubble: BouncyBubble, _last_velocity):

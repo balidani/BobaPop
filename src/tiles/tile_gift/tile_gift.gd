@@ -3,7 +3,6 @@ class_name TileGift
 
 @onready var _ap : AnimationPlayer = $AnimationPlayer
 @onready var _glow : GlowEffect = $GlowEffect
-@onready var _mesh : MeshInstance3D = $tile_default/Cube_001
 
 
 @onready var _bubble_spawn : BubbleSpawn = $BubbleSpawn

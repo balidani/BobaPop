@@ -5,7 +5,6 @@ class_name BouncyBubble
 static var all_bubbles: Dictionary = {}
 const NOP = {}
 
-@onready var _asp : AudioStreamPlayer3D = $AudioStreamPlayer3D
 
 var last_velocity: Vector3 = Vector3.ZERO
 var can_collide : bool = false

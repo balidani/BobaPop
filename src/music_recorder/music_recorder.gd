@@ -32,12 +32,12 @@ func record(event: NoteEvent):
 	recording.push_back(event)
 
 # Play a note and record it at the same time.
-func play_note(pitch: int, type: String="bubble"):
+func play_note(pitch: int, type: String="bounce"):
 	Synth.player.play_note(pitch)
 	record(
 		NoteEvent.new(
 			pitch,
-			"bounce",
+			type,
 			false,
 			false,
 		)
@@ -146,9 +146,7 @@ static func rate_recording_similarity( \
 	print("user_time_offset:", user_time_offset)
 
 	var first_timestamp_with_offset_and_time_window = goal_recording.front().timestamp + user_time_offset - time_window
-
-	var last_user_event = user_recording.front()
-		
+	
 	for user_event in user_recording:
 		if user_event.timestamp < first_timestamp_with_offset_and_time_window:
 			# These notes are out of bounds.
@@ -183,8 +181,8 @@ static func rate_recording_similarity( \
 	# Penalty for unmatched events (simplified - just counts unmatched in user_recording for now)
 	var unmatched_penalty = \
 		max( \
-			(goal_recording_cpy.size() / goal_recording.size()), \
-			((user_recording.size() - matched_count) / user_recording.size()) \
+			(goal_recording_cpy.size() / float(goal_recording.size())), \
+			((user_recording.size() - matched_count) / float(user_recording.size())) \
 		)   # Example penalty per unmatched event
 	assert(unmatched_penalty <= 1)
 	unmatched_penalty = unmatched_penalty * max_unmatched_panelty
