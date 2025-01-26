@@ -31,15 +31,6 @@ light_energy = 1.2
 shadow_enabled = true
 
 [node name="MainMenuUI" parent="." instance=ExtResource("6_3tf36")]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -75.0
-offset_right = 50.0
-offset_bottom = 75.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_d5gpf")
@@ -47,6 +38,5 @@ autoplay = true
 
 [connection signal="free_play_button_pressed" from="MainMenuUI" to="." method="_on_main_menu_ui_free_play_button_pressed"]
 [connection signal="play_button_pressed" from="MainMenuUI" to="." method="_on_main_menu_ui_play_button_pressed"]
-[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
 
 [editable path="LevelLighting"]

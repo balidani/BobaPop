@@ -38,7 +38,16 @@ func _on_play_pressed() -> void:
 
 func _on_chaos_slider_chaos_changed(value: Variant) -> void:
 	Difficulty.difficulty = value
+	_ap.speed_scale = value
 
 
 func _on_free_play_pressed() -> void:
 	free_play_button_pressed.emit()
+
+
+func _on_credits_pressed() -> void:
+	credits = true
+
+
+func _on_credits_back() -> void:
+	credits = false
