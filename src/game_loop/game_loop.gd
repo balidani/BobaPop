@@ -94,6 +94,9 @@ func retry_level():
 		bubble.queue_free()
 	_level_generator.rng.seed = level_seed
 	_level_generator.reset_real_level()
+	await get_tree().create_timer(1.0).timeout
+	NoteUI.singleton.show_play_hint()
+	await get_tree().create_timer(1.0).timeout
 	print("Spawning the real player")
 	_player_spawner.spawn_real_player()
 	_level_camera.target = _player_spawner.real_player

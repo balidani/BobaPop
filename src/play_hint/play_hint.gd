@@ -1,5 +1,5 @@
 extends Control
-class_name PlayHint
+class_name ListenHint
 
 
 @onready var _ap : AnimationPlayer = $AnimationPlayer

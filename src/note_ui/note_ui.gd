@@ -4,7 +4,8 @@ class_name NoteUI
 static var singleton : NoteUI
 
 
-@onready var _listen_hint : ListenHint = $ListenHint
+@onready var _listen_hint = $ListenHint
+@onready var _play_hint = $PlayHint
 @export var _note_progress : NoteProgress
 
 
@@ -15,6 +16,10 @@ func _ready() -> void:
 
 func show_hint():
 	_listen_hint.hint()
+
+
+func show_play_hint():
+	_play_hint.hint()
 
 
 func reset():
