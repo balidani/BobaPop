@@ -1,6 +1,7 @@
 extends Node3D
 class_name GeneratedLevelSegment
 
+
 const SPIKE = preload("res://src/tiles/spike/spike.tscn")
 const MASTER_POPPER = preload("res://src/tiles/tile_master_popper/tile_master_popper.tscn")
 const REPEATER = preload("res://src/tiles/repeater_obstacle/repeater_obstacle.tscn")
@@ -24,11 +25,13 @@ var occupancy = {}
 var edge_candidates = {}
 
 # Checks occupancy so we don't place objects in the same spot twice.
-func _maybe_add_block(block, local : Vector3i):
+func _maybe_add_block(block, local : Vector3i, orientation : int):
 	if local in occupancy:
 		return
 	
 	occupancy[local] = true
+	# int -> orientation
+	block.transform.basis = Basis().rotated(transform.basis.y, PI * 0.5 * orientation)
 	block.transform.origin = Vector3(local)
 	add_child(block)
 
@@ -41,12 +44,14 @@ func _ready():
 			level.master_popper_generated = true
 			# TODO: Rotate the special blocks.
 			var random_pos = Vector3i(rng.randi_range(-1, 1) * 2, 2, rng.randi_range(-1, 1) * 2)
-			_maybe_add_block(MASTER_POPPER.instantiate(), random_pos)
+			var random_orientation = rng.randi() % 4
+			_maybe_add_block(MASTER_POPPER.instantiate(), random_pos, random_orientation)
 	
 	# Possibly generate a special block.
 	if rng.randf() < 0.3:
 		# TODO: Rotate the special blocks.
 		var random_pos = Vector3i(rng.randi_range(-1, 1) * 2, 2, rng.randi_range(-1, 1) * 2)
+		var random_orientation = rng.randi() % 4
 		var random_kind = rng.randi_range(1, 3)
 		var instance = null
 		if random_kind == 1:
@@ -56,36 +61,41 @@ func _ready():
 		else:
 			instance = NOTE_DOMINANT.instantiate()
 		
-		_maybe_add_block(instance, random_pos)
+		_maybe_add_block(instance, random_pos, random_orientation)
 	
 	# Make a gift
 	if rng.randf() < 0.1:
 		var random_pos = Vector3i(rng.randi_range(-1, 1) * 2, 2, rng.randi_range(-1, 1) * 2)
-		_maybe_add_block(GIFT.instantiate(), random_pos)
+		var random_orientation = rng.randi() % 4
+		_maybe_add_block(GIFT.instantiate(), random_pos, random_orientation)
 	
 	# Make spikes
 	if rng.randf() < 0.1:
 		var random_pos = Vector3i(rng.randi_range(-1, 1) * 2, 2, rng.randi_range(-1, 1) * 2)
-		_maybe_add_block(SPIKE.instantiate(), random_pos)
+		var random_orientation = rng.randi() % 4
+		_maybe_add_block(SPIKE.instantiate(), random_pos, random_orientation)
 	
 	# Make black hole
 	if rng.randf() < 0.1:
 		var random_pos = Vector3i(rng.randi_range(-1, 1) * 2, 2, rng.randi_range(-1, 1) * 2)
-		_maybe_add_block(SPIKE.instantiate(), random_pos)
+		var random_orientation = rng.randi() % 4
+		_maybe_add_block(SPIKE.instantiate(), random_pos, random_orientation)
 	
 	# Pepper in a few obstacles.
 	for _o in range(rng.randi_range(1, 3)):
 		var random_pos = Vector3i(rng.randi_range(-1, 1) * 2, 2, rng.randi_range(-1, 1) * 2)
+		var random_orientation = rng.randi() % 4
 		var random_kind = rng.randi_range(1, 2)
 		if random_kind == 1:
-			_maybe_add_block(OBSTACLE.instantiate(), random_pos)
+			_maybe_add_block(OBSTACLE.instantiate(), random_pos, random_orientation)
 		else:
-			_maybe_add_block(OBSTACLE_CORNER.instantiate(), random_pos)
+			_maybe_add_block(OBSTACLE_CORNER.instantiate(), random_pos, random_orientation)
 	
 		# Pepper in a few obstacles.
 	for _o in range(rng.randi_range(1, 3)):
 		var random_pos = Vector3i(rng.randi_range(-1, 1) * 2, 2, rng.randi_range(-1, 1) * 2)
-		_maybe_add_block(AMEN.instantiate(), random_pos)
+		var random_orientation = rng.randi() % 4
+		_maybe_add_block(AMEN.instantiate(), random_pos, random_orientation)
 	
 	
 	# Mark edges
