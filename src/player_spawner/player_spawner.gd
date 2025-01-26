@@ -22,7 +22,8 @@ func spawn_computer_player():
 
 
 func remove_computer_player():
-	computer_player.queue_free()
+	if is_instance_valid(computer_player):
+		computer_player.queue_free()
 
 
 func remove_real_player():

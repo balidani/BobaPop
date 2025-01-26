@@ -81,7 +81,7 @@ func stop():
 	is_recording = false
 
 
-func _finish_recording():
+func finish():
 	if not is_recording: return
 	print("Recording finished: ", self)
 	finished.emit()
@@ -106,7 +106,7 @@ func _process(delta: float) -> void:
 	t += delta
 	# dsprint("%s >= %s" % [t, _recording_end_t])
 	if t >= _recording_end_t:
-		_finish_recording()
+		finish()
 		set_process(false)
 		return
 

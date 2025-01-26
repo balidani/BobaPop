@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://dnr5rjm3bwrgt"]
+[gd_scene load_steps=15 format=3 uid="uid://dnr5rjm3bwrgt"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://w2eko4jy8j5l" path="res://src/bubble_path/bounce.tres" id="1_a8rah"]
 [ext_resource type="Script" path="res://src/bubble_path/bubble_path.gd" id="1_pll3f"]
 [ext_resource type="AudioStream" uid="uid://dw2m5fxhfjykq" path="res://sounds/jump.ogg" id="3_jx51l"]
 [ext_resource type="Shader" path="res://src/bubble_path/bubble_rainbow.gdshader" id="3_qr841"]
 [ext_resource type="Texture2D" uid="uid://cu3xee7gi4hmb" path="res://particle.png" id="5_i7va4"]
+[ext_resource type="PackedScene" uid="uid://11iaw8c08wvs" path="res://src/glow_effect/glow_effect.tscn" id="6_ber81"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_4xfrs"]
 
@@ -63,7 +64,7 @@ shape = SubResource("SphereShape3D_6isg4")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_jx51l")
 max_db = 0.0
-pitch_scale = 0.75
+pitch_scale = 0.8
 
 [node name="sparcs" type="GPUParticles3D" parent="."]
 material_override = SubResource("StandardMaterial3D_r55r4")
@@ -73,5 +74,7 @@ lifetime = 0.18
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_deun5")
 draw_pass_1 = SubResource("QuadMesh_rod56")
+
+[node name="GlowEffect" parent="." instance=ExtResource("6_ber81")]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

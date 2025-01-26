@@ -6,17 +6,42 @@ static var all_bubbles: Dictionary = {}
 const NOP = {}
 
 
+@onready var _pop_effect : GPUParticles3D = $sparcs
+@onready var _mesh : MeshInstance3D = $MeshInstance3D
+@onready var _asp : AudioStreamPlayer3D = $AudioStreamPlayer3D
+@onready var _glow : GlowEffect = $GlowEffect
+
+
 var last_velocity: Vector3 = Vector3.ZERO
 var can_collide : bool = false
 var immune : bool = false
 var t = 0.0
-var current_note = 69
+var current_note = 0
 
 static func add_bubble(bubble: BouncyBubble):
 	all_bubbles[bubble] = NOP
 	
 static func remove_bubble(bubble: BouncyBubble):
 	all_bubbles.erase(bubble)
+
+
+func pop():
+	_pop_effect.emitting = true
+	_mesh.visible = false
+	_asp.play(0.0)
+	
+	# Pop gives some visual feedback.
+	MusicRecorder.instance.play_note(
+		57 + current_note,
+		"bubble_pop",
+	)
+	if LevelLighting.instance.dark_mode:
+		_glow.glow()
+	
+	# Emit for 100ms
+	await get_tree().create_timer(0.1).timeout
+	queue_free()
+
 
 func _enter_tree() -> void:
 	add_bubble(self)

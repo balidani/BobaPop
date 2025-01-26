@@ -27,7 +27,13 @@ var computer_playing = false
 
 func master_popper_popped():
 	print("Master popper popped")
-	_music_recorder_goal.stop()
+	
+	# If AI is recording, stop it and get ready for the player parts
+	_music_recorder_goal.finish()
+	_player_spawner.remove_computer_player()
+	computer_playing = false
+	_level_lighting.dark_mode = false
+	
 	_music_recorder_player.stop()
 	_level_generator.stop_level()
 	_level_camera.target = _level_generator
@@ -66,11 +72,6 @@ func retry_level_with_relisten():
 	_level_lighting.dark_mode = true
 	_level_generator.start_level()
 	await _music_recorder_goal.finished
-	print("Removing computer player")
-	_player_spawner.remove_computer_player()
-	print("Starting player level")
-	computer_playing = false
-	_level_lighting.dark_mode = false
 	
 	retry_level()
 
@@ -120,6 +121,7 @@ func retry_level():
 
 var level_seed = 0
 func new_level():
+	# level_seed = 1539753758 # Hardcoded for bug repro
 	level_seed = rng.randi()
 	print("Game loop initializing with seed %s" % level_seed)
 	

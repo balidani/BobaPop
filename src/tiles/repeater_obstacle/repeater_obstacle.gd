@@ -29,8 +29,7 @@ func spawn_bubble(incoming : Vector3, rot : float):
 func _on_tile_with_sound_bounced(bubble: BouncyBubble, last_velocity: Variant) -> void:
 	var incoming : Vector3 = last_velocity.normalized()
 	
-	# TODO: Bubble pop
-	bubble.queue_free()
+	bubble.pop()
 
 	spawn_bubble(-incoming, PI / 4)
 	spawn_bubble(-incoming, -PI / 4)
