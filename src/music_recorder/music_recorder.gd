@@ -73,9 +73,9 @@ func start(max_duration_s : float):
 
 func stop():
 	if not is_recording: return
-	print("Recording stopped: ", self)
 	if is_player:
-		NoteProgress.instance.player_recording = true
+		NoteProgress.instance.player_recording = false
+	print("Recording stopped: ", self)
 	is_recording = false
 
 

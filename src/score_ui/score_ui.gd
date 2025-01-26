@@ -53,6 +53,7 @@ func show_score(score, passed, desc):
 
 func _on_menu_pressed() -> void:
 	get_tree().root.add_child(load("res://src/main_menu/main_menu.tscn").instantiate())
+	MainGame.singleton.queue_free()
 	queue_free()
 
 

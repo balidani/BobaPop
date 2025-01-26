@@ -83,10 +83,9 @@ func new_level():
 	level_seed = rng.randi()
 	NoteUI.singleton.reset()
 	_level_generator.reset()
-	# Set all seeds.
-	_level_generator.rng.seed = level_seed
 	await get_tree().create_timer(2.0).timeout
 	print("Generating a new level")
+	_level_generator.rng.seed = level_seed
 	_level_generator.generate_new_level()
 	_level_lighting.new_level()
 	_player_spawner.spawn_computer_player()
