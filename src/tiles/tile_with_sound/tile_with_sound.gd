@@ -68,8 +68,21 @@ func give_material_to_mesh(mesh : MeshInstance3D):
 
 func bounce(bubble: BouncyBubble, last_velocity):
 	_ap.play("bounce")
+
+	# Map note from 0,1,2,3 to GDSiON notes.
+	# In GDSiON notes, 69 is A3 and each increment represents a half step.
+	# Note id        0 1 2 3
+	# Scale position 1 3 5 7
+
+	var gdsion_note = 69  # A
+	if note == 1:
+		gdsion_note = 73  # C#, we're in A major
+	elif note == 2:
+		gdsion_note = 76  # E
+	elif note == 3:
+		gdsion_note = 79  # G
 	MusicRecorder.instance.play_note(
-		57 + note, # TODO: More fun
+		gdsion_note, # TODO: More fun
 		"bounce",
 	)
 	if LevelLighting.instance.dark_mode:

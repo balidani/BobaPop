@@ -10,7 +10,7 @@ size = Vector3(2, 2, 2)
 
 [node name="TileWithSound" parent="." node_paths=PackedStringArray("animate_node") instance=ExtResource("1_aa03y")]
 animate_node = NodePath("../Node3D")
-note = 76
+note = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TileWithSound"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.004)
