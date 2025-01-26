@@ -44,10 +44,12 @@ func show_score(score: float, passed: bool, stars: int, desc: String):
 		_pass_fail.text = "PASS"
 		_retry_button.visible = false
 		_next_level_button.visible = true
+		_next_level_button.grab_focus()
 	else:
 		_pass_fail.text = "FAIL"
 		_retry_button.visible = true
 		_next_level_button.visible = false
+		_retry_button.grab_focus()
 	
 	_ap.stop(false)
 	_ap.play("score_slam")

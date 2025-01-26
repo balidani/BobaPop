@@ -118,11 +118,13 @@ func retry_level_with_relisten():
 		await get_tree().create_timer(1.0).timeout
 		_player_spawner.rng.seed = level_seed
 		_player_spawner.spawn_computer_player()
+		_level_camera.target = _player_spawner.computer_player
 		print("Showing the level, computer mode")
 		computer_playing = true
 		computer_hit_woked_shing = false
 		_level_generator.start_level()
 		await _music_recorder_goal.finished
+		_level_camera.target = _level_generator
 	_remove_computer_stuff()
 	
 	retry_level()

@@ -6,11 +6,26 @@ signal play_button_pressed
 signal free_play_button_pressed
 
 
+@onready var _main : Control = $Main
+@onready var _credits : Control = $Credits
+
+
+@onready var _play_button : Button = $Main/Control2/HBoxContainer/Play
+
+
+var credits = false :
+	set(c):
+		credits = c
+		_main.visible = !c
+		_credits.visible = c
+
+
 @onready var _ap : AnimationPlayer = $AnimationPlayer
 
 
 func _ready():
 	_ap.play("yhee_yoobubbles")
+	_play_button.grab_focus()
 
 
 func _on_quit_pressed() -> void:

@@ -47,5 +47,6 @@ autoplay = true
 
 [connection signal="free_play_button_pressed" from="MainMenuUI" to="." method="_on_main_menu_ui_free_play_button_pressed"]
 [connection signal="play_button_pressed" from="MainMenuUI" to="." method="_on_main_menu_ui_play_button_pressed"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
 
 [editable path="LevelLighting"]

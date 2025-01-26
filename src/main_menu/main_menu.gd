@@ -6,6 +6,9 @@ extends Node3D
 @export var _level_lighting : LevelLighting
 
 
+@onready var _asp : AudioStreamPlayer = $AudioStreamPlayer
+
+
 func generate():
 	_level_generator.generate_new_level()
 	_level_lighting.random_angle()
@@ -24,3 +27,7 @@ func _on_main_menu_ui_play_button_pressed() -> void:
 func _on_main_menu_ui_free_play_button_pressed() -> void:
 	get_tree().root.add_child(load("res://src/free_play/free_play.tscn").instantiate())
 	queue_free()
+
+
+func _on_audio_stream_player_finished() -> void:
+	_asp.play(0.0)
