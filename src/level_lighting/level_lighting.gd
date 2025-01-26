@@ -13,20 +13,28 @@ static var instance : LevelLighting
 var rng = RandomNumberGenerator.new()
 
 
+var light_energy_target = 1.2
+var background_energy_target = 0.5
+
+
 # Dark mode when the AI is playing.
 @export var dark_mode : bool :
 	set(d):
 		dark_mode = d
 		if d:
-			_light.light_energy = 0.01
-			_env.background_energy_multiplier = 0.05
+			light_energy_target = 0.0
+			background_energy_target = 0.05
 		else:
-			_light.light_energy = 1.2
-			_env.background_energy_multiplier = 0.5
+			light_energy_target = 1.2
+			background_energy_target = 0.5
+
+
+func _process(delta):
+	_light.light_energy = lerpf(_light.light_energy, light_energy_target, delta * 4.0)
+	_env.background_energy_multiplier = lerpf(_env.background_energy_multiplier, background_energy_target, delta * 4.0)
 
 
 func new_level():
-	dark_mode = true
 	random_angle()
 
 

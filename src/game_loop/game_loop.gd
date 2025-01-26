@@ -62,18 +62,20 @@ func retry_level_with_relisten():
 	_level_camera.target = null
 	NoteUI.singleton.reset()
 	_level_generator.reset()
-	NoteUI.singleton.show_hint()
-	await get_tree().create_timer(2.0).timeout
 	print("Generating a new level")
 	_level_generator.rng.seed = level_seed
 	_level_generator.generate_new_level()
 	_level_lighting.new_level()
+	_level_camera.target = _level_generator
+	await get_tree().create_timer(1.0).timeout
+	NoteUI.singleton.show_hint()
+	await get_tree().create_timer(2.0).timeout
+	_level_lighting.dark_mode = true
+	await get_tree().create_timer(1.0).timeout
 	_player_spawner.rng.seed = level_seed
 	_player_spawner.spawn_computer_player()
 	print("Showing the level, computer mode")
 	computer_playing = true
-	_level_camera.target = _level_generator
-	_level_lighting.dark_mode = true
 	_level_generator.start_level()
 	await _music_recorder_goal.finished
 	_remove_computer_stuff()

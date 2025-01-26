@@ -68,6 +68,7 @@ pitch_scale = 0.8
 
 [node name="sparcs" type="GPUParticles3D" parent="."]
 material_override = SubResource("StandardMaterial3D_r55r4")
+emitting = false
 amount = 11
 lifetime = 0.18
 explosiveness = 1.0
