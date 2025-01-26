@@ -30,10 +30,10 @@ func bam():
 	var pitch = 440
 	Synth.player.play_note(pitch)
 
-
-func show_score(score, passed, desc):
-	visible = true
-	_score.text = "%0.1f%%" % (score * 100)
+# Stars from 0 to 3
+func show_score(score: float, passed: bool, stars: int, desc: String):
+	_control.visible = true
+	_score.text = "%0.1f%% - %d" % [score * 100, stars]
 	_description.text = str(desc)
 	
 	if passed:

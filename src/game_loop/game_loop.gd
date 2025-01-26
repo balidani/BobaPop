@@ -17,6 +17,9 @@ static var instance : GameLoop
 
 const MUSIC_RECORDING_DURATION_S = 5.0
 
+const SUCCESS_PERCENT_MIN = 0.6
+const TWO_STARS_PERCENT_MIN = 0.74
+const THREE_STARS_PERCENT_MIN = 0.85
 
 # True when computer is playing.
 var computer_playing = false
@@ -95,20 +98,50 @@ func retry_level():
 
 	var success_percentage = challenge.rate_player_recording(player_recording)
 	print("Similarity: %s" % success_percentage)
+
+	var passed = true
+	var stars = 0
+	if success_percentage > THREE_STARS_PERCENT_MIN:
+		stars = 3
+	elif success_percentage > TWO_STARS_PERCENT_MIN:
+		stars = 2
+	elif success_percentage > SUCCESS_PERCENT_MIN:
+		stars = 1
+	else:
+		passed = false
+
 	
-	var passed = success_percentage > SUCCESS_PERCENT_MIN
 	# TODO: Make description change based on score
 	var description = "You're a Musical Maestro!"
-	ScoreUI.instance.show_score(success_percentage, passed, description)
-
-
-const SUCCESS_PERCENT_MIN = 0.8
+	ScoreUI.instance.show_score(success_percentage, passed, stars, description)
 
 
 var level_seed = 0
 func new_level():
+	_level_camera.target = null
 	level_seed = rng.randi()
-	retry_level_with_relisten()
+	NoteUI.singleton.reset()
+	_level_generator.reset()
+	NoteUI.singleton.show_hint()
+	await get_tree().create_timer(2.0).timeout
+	print("Generating a new level")
+	_level_generator.rng.seed = level_seed
+	_level_generator.generate_new_level()
+	_level_lighting.new_level()
+	_player_spawner.spawn_computer_player()
+	print("Showing the level, computer mode")
+	computer_playing = true
+	_level_camera.target = _level_generator
+	_level_lighting.dark_mode = true
+	_level_generator.start_level()
+	await _music_recorder_goal.finished
+	print("Removing computer player")
+	_player_spawner.remove_computer_player()
+	print("Starting player level")
+	computer_playing = false
+	_level_lighting.dark_mode = false
+	
+	retry_level()
 
 
 var rng = RandomNumberGenerator.new()

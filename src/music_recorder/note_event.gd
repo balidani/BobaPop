@@ -61,7 +61,7 @@ func calculate_long_running_event_addition(is_start: bool, is_end: bool, other_s
 		return 0.0
 	return 1.0
 
-func event_similarity(other: NoteEvent, pitch_weight: float = 0.4, type_weight: float = 0.4, long_running_weight: float = 0.2, max_time_diff=0.25, max_time_diff_malus: float = 0.2) -> float:
+func event_similarity(other: NoteEvent, pitch_weight: float = 0.4, type_weight: float = 0.4, long_running_weight: float = 0.2, max_time_diff=1, max_time_diff_malus: float = 0.2) -> float:
 	"""Calculates similarity between two musical events."""
 	
 	var time_diff = abs(self.timestamp - other.timestamp)
