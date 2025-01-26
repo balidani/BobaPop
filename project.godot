@@ -14,7 +14,7 @@ config/name="BobaPop"
 config/description="Yhee YoooBublless
 GAME MUSLIE MUKIC"
 config/version="v0.0.1alpha"
-config/tags=PackedStringArray("starterkit")
+config/tags=PackedStringArray("bobapop")
 run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 boot_splash/bg_color=Color(0.94902, 0.529412, 0.6, 1)
