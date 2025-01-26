@@ -57,6 +57,7 @@ var is_recording = false :
 
 func start(max_duration_s : float):
 	if is_recording: return
+	Clef.instance.recording = true
 	if is_player:
 		NoteProgress.instance.player_recording = true
 	print("Recording started: ", self)
@@ -73,6 +74,7 @@ func start(max_duration_s : float):
 
 func stop():
 	if not is_recording: return
+	Clef.instance.recording = false
 	if is_player:
 		NoteProgress.instance.player_recording = false
 	print("Recording stopped: ", self)

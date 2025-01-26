@@ -1,0 +1,98 @@
+[gd_scene load_steps=8 format=3 uid="uid://b0cp16rxvijrb"]
+
+[ext_resource type="Script" path="res://src/clef/clef.gd" id="1_1nh8r"]
+[ext_resource type="Texture2D" uid="uid://3ea5ne0x68dn" path="res://sprites/sheet_noclef.png" id="1_ouiut"]
+[ext_resource type="PackedScene" uid="uid://w38jxx7hhrnn" path="res://src/note_progress/note_progress.tscn" id="2_8bqw8"]
+[ext_resource type="Texture2D" uid="uid://bwscuviskw5ge" path="res://sprites/clef.png" id="3_878ih"]
+
+[sub_resource type="Animation" id="Animation_re02g"]
+resource_name = "clef_anim"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect2/TextureRect3:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.0698132, 0.0698132, -0.0698132]
+}
+
+[sub_resource type="Animation" id="Animation_3qgtr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect2/TextureRect3:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rql63"]
+_data = {
+"RESET": SubResource("Animation_3qgtr"),
+"clef_anim": SubResource("Animation_re02g")
+}
+
+[node name="Clef" type="Control"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_right = 200.0
+offset_bottom = 100.0
+grow_horizontal = 2
+script = ExtResource("1_1nh8r")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rql63")
+}
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 15.0
+offset_right = 200.0
+offset_bottom = 75.0
+grow_horizontal = 2
+texture = ExtResource("1_ouiut")
+expand_mode = 2
+
+[node name="NoteProgress" parent="TextureRect2" instance=ExtResource("2_8bqw8")]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 10.0
+offset_right = 390.125
+offset_bottom = 42.0
+
+[node name="TextureRect3" type="TextureRect" parent="TextureRect2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.141
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 64.4
+offset_top = -31.0
+offset_right = 39.0
+offset_bottom = 27.0
+grow_vertical = 2
+pivot_offset = Vector2(15, 29)
+texture = ExtResource("3_878ih")
+expand_mode = 3
+stretch_mode = 5

@@ -1,12 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bqtj8bjhw64t8"]
+[gd_scene load_steps=4 format=3 uid="uid://bqtj8bjhw64t8"]
 
-[ext_resource type="Texture2D" uid="uid://3ea5ne0x68dn" path="res://sprites/sheet_noclef.png" id="1_85da1"]
 [ext_resource type="Script" path="res://src/note_ui/note_ui.gd" id="1_t2w4v"]
-[ext_resource type="Texture2D" uid="uid://bwscuviskw5ge" path="res://sprites/clef.png" id="2_gvrbn"]
-[ext_resource type="PackedScene" uid="uid://w38jxx7hhrnn" path="res://src/note_progress/note_progress.tscn" id="2_rj3y8"]
-[ext_resource type="Theme" uid="uid://b4wlmcrqc6tk8" path="res://src/ui_theme/ui_theme.tres" id="5_30m3g"]
+[ext_resource type="PackedScene" uid="uid://b0cp16rxvijrb" path="res://src/clef/clef.tscn" id="2_8wd8j"]
+[ext_resource type="PackedScene" uid="uid://bnwcmibh2a63g" path="res://src/listen_hint/listen_hint.tscn" id="5_n24av"]
 
-[node name="NoteUI" type="Control"]
+[node name="NoteUI" type="Control" node_paths=PackedStringArray("_note_progress")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,83 +13,12 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_t2w4v")
+_note_progress = NodePath("Clef/TextureRect2/NoteProgress")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-
-[node name="Control" type="Control" parent="."]
-custom_minimum_size = Vector2(400, 100)
+[node name="Clef" parent="." instance=ExtResource("2_8wd8j")]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -200.0
-offset_right = 200.0
-offset_bottom = 100.0
-grow_horizontal = 2
 
-[node name="TextureRect2" type="TextureRect" parent="Control"]
-custom_minimum_size = Vector2(200, 60)
+[node name="ListenHint" parent="." instance=ExtResource("5_n24av")]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -200.0
-offset_top = 15.0
-offset_right = 200.0
-offset_bottom = 75.0
-grow_horizontal = 2
-texture = ExtResource("1_85da1")
-expand_mode = 2
 
-[node name="NoteProgress" parent="Control/TextureRect2" instance=ExtResource("2_rj3y8")]
-layout_mode = 0
-offset_left = 38.0
-offset_top = 10.0
-offset_right = 390.125
-offset_bottom = 42.0
-
-[node name="TextureRect3" type="TextureRect" parent="Control/TextureRect2"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.141
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 64.4
-offset_top = -31.0
-offset_right = 39.0
-offset_bottom = 27.0
-grow_vertical = 2
-pivot_offset = Vector2(15, 29)
-texture = ExtResource("2_gvrbn")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="ListenHint" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="ListenHint"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -54.0
-offset_top = -11.5
-offset_right = 54.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("5_30m3g")
-text = "Listen closely!"
+[editable path="Clef"]
