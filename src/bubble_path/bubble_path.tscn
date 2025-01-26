@@ -26,6 +26,7 @@ shader_parameter/noise_tex = SubResource("NoiseTexture2D_1xwse")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r55r4"]
 transparency = 1
+cull_mode = 2
 shading_mode = 0
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("5_i7va4")
@@ -34,8 +35,8 @@ albedo_texture = ExtResource("5_i7va4")
 lifetime_randomness = 0.15
 angle_min = -720.0
 angle_max = 642.6
-inherit_velocity_ratio = -1.355
 direction = Vector3(0, 0, 0)
+spread = 180.0
 initial_velocity_min = 11.69
 initial_velocity_max = 11.69
 gravity = Vector3(0, 0, 0)
@@ -68,10 +69,10 @@ pitch_scale = 0.8
 
 [node name="sparcs" type="GPUParticles3D" parent="."]
 material_override = SubResource("StandardMaterial3D_r55r4")
-emitting = false
 amount = 11
 lifetime = 0.18
 explosiveness = 1.0
+transform_align = 1
 process_material = SubResource("ParticleProcessMaterial_deun5")
 draw_pass_1 = SubResource("QuadMesh_rod56")
 

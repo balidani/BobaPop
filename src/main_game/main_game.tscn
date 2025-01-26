@@ -1,17 +1,31 @@
-[gd_scene load_steps=17 format=3 uid="uid://l2et6w1bhtq6"]
+[gd_scene load_steps=21 format=3 uid="uid://l2et6w1bhtq6"]
 
 [ext_resource type="Script" path="res://src/main_game/main_game.gd" id="1_23jdi"]
 [ext_resource type="PackedScene" uid="uid://cephmiseqa2ro" path="res://src/game_loop/game_loop.tscn" id="2_jfs3o"]
 [ext_resource type="PackedScene" uid="uid://db1kqfof73j4s" path="res://src/level_lighting/level_lighting.tscn" id="3_g1tk8"]
 [ext_resource type="PackedScene" uid="uid://c51yjmr0bxj6" path="res://src/level_generator/level_generator.tscn" id="4_8swyt"]
 [ext_resource type="PackedScene" uid="uid://kucp0se2xjk5" path="res://src/level_camera/level_camera.tscn" id="5_eubcx"]
+[ext_resource type="Shader" path="res://src/main_game/camera_shader.gdshader" id="6_7p235"]
 [ext_resource type="PackedScene" uid="uid://vomxg4q02xyc" path="res://src/player_spawner/player_spawner.tscn" id="6_q71dp"]
+[ext_resource type="Shader" path="res://src/main_game/saturated_rainbow_shader.gdshader" id="7_d4qq6"]
 [ext_resource type="PackedScene" uid="uid://b8a15c62h080w" path="res://src/score_ui/score_ui.tscn" id="7_o4dxf"]
 [ext_resource type="PackedScene" uid="uid://bqtj8bjhw64t8" path="res://src/note_ui/note_ui.tscn" id="8_mpkcm"]
 [ext_resource type="PackedScene" uid="uid://btf0iccai10qr" path="res://addons/versatile-mobile-joystick/joystick.tscn" id="9_icdvg"]
 [ext_resource type="PackedScene" uid="uid://rnr5s8ur7ohn" path="res://src/woked_shing/woked_shing.tscn" id="9_mf5g8"]
 [ext_resource type="Texture2D" uid="uid://b3rjj1bmqtiok" path="res://addons/versatile-mobile-joystick/default_textures/BaseJoystickTest.png" id="10_l0bp4"]
 [ext_resource type="Texture2D" uid="uid://dlgmq4q7t23o8" path="res://addons/versatile-mobile-joystick/default_textures/TipJoystickTest.png" id="11_lfp2v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7vfy5"]
+shader = ExtResource("6_7p235")
+shader_parameter/outerRadius = 1.0
+shader_parameter/MainAlpha = 0.0
+shader_parameter/vignette_color = Color(0.227451, 0.231373, 0.235294, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e66xi"]
+shader = ExtResource("7_d4qq6")
+shader_parameter/strength = 0.0
+shader_parameter/speed = 0.5
+shader_parameter/angle = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7hjgv"]
 radius = 8.2
@@ -41,6 +55,24 @@ _player_spawner = NodePath("../PlayerSpawner")
 use_generated_level = true
 
 [node name="LevelCamera" parent="." instance=ExtResource("5_eubcx")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="LevelCamera"]
+
+[node name="gray-vignette" type="ColorRect" parent="LevelCamera/CanvasLayer"]
+material = SubResource("ShaderMaterial_7vfy5")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="saturated-rainbow" type="ColorRect" parent="LevelCamera/CanvasLayer"]
+material = SubResource("ShaderMaterial_e66xi")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="PlayerSpawner" parent="." node_paths=PackedStringArray("_level_camera") instance=ExtResource("6_q71dp")]
 _level_camera = NodePath("../LevelCamera")
