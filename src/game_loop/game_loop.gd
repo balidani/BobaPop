@@ -30,6 +30,7 @@ func master_popper_popped():
 	_music_recorder_goal.stop()
 	_music_recorder_player.stop()
 	_level_generator.stop_level()
+	_level_camera.target = _level_generator
 	_player_spawner.remove_real_player()
 	# Wait for master popper effect.
 	await get_tree().create_timer(5.0).timeout

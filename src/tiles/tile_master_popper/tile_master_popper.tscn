@@ -19,6 +19,16 @@ sampling_rate = 44100.0
 [sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_i2ccd"]
 packet_sequence = SubResource("OggPacketSequence_1gmag")
 
+[sub_resource type="Animation" id="Animation_qqsxc"]
+length = 0.001
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Anim")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+
 [sub_resource type="Animation" id="Animation_whmeq"]
 resource_name = "bounce"
 length = 0.2
@@ -29,16 +39,6 @@ tracks/0/path = NodePath("Anim")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.0333333, 1, 1.1, 1.1, 1.1, 0.2, 1, 1, 1, 1)
-
-[sub_resource type="Animation" id="Animation_qqsxc"]
-length = 0.001
-tracks/0/type = "scale_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Anim")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_scrrc"]
 _data = {

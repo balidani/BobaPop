@@ -13,6 +13,7 @@ func bounce(_bubble: BouncyBubble, _last_velocity):
 		"bounce",
 	)
 	add_child(EFFECT.instantiate())
+	WokedShing.instance.cameo()
 	GameLoop.instance.master_popper_popped()
 
 
