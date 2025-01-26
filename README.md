@@ -1,3 +1,5 @@
+Play at: <https://dmnk.co/bobapop/BobaPop.html>
+
 <p align="center"><img src="splash-screen.png"/></p>
 
 【﻿ｓｗｅｅｔｉｓｈ　ｂｕｂｂｌｏ　ｆｌｏｗ　Ｂｏｂｂａ　Ｐｏｐｐｅｒｋｉｎ！】
@@ -27,7 +29,6 @@ yhee yooobublles?
 <p align="center"><img src="screenshots/screenshot15.png"/></p>
 
 ### Things
-Play at: <https://dmnk.co/bobapop/BobaPop.html>
 
 Thank you to the authors of gdsion for their software synth and support, and to kennynl for free assets
 
