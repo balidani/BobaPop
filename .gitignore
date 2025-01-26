@@ -3,6 +3,8 @@
 .vscode/
 third_party/gdsion
 .DS_Store
+exports
+*.apk*
 *~
 
 *.zip
