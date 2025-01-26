@@ -6,10 +6,14 @@ extends Node3D
 @export var _level_lighting : LevelLighting
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+func generate():
 	_level_generator.generate_new_level()
 	_level_lighting.random_angle()
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	call_deferred("generate")
 
 
 func _on_main_menu_ui_play_button_pressed() -> void:
