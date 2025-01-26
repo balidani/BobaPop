@@ -58,6 +58,7 @@ func retry_level_with_relisten():
 	_level_generator.rng.seed = level_seed
 	_level_generator.generate_new_level()
 	_level_lighting.new_level()
+	_player_spawner.rng.seed = level_seed
 	_player_spawner.spawn_computer_player()
 	print("Showing the level, computer mode")
 	computer_playing = true

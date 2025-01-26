@@ -35,10 +35,9 @@ var t : float = 0
 # Preload the bubble model
 var BouncyBubbleScene = preload("res://src/bubble_path/bubble_path.tscn")
 
+
 # Functions
 
-func _ready() -> void:
-	rng.seed = 12345
 
 func _physics_process(delta):
 	t += delta
