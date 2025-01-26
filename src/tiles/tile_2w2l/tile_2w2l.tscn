@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bwjs3m2cjjq5k"]
 
-[ext_resource type="Material" uid="uid://b6evibqitolpc" path="res://src/tile_default/ground.tres" id="2_kyulv"]
+[ext_resource type="Material" uid="uid://dnjxjmvqtp4k6" path="res://src/tiles/tile_default/ground.tres" id="2_ok40i"]
 [ext_resource type="PackedScene" uid="uid://bs34yxjtnf70m" path="res://mesh/tile_2w2l.glb" id="3_3y0ny"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mm7nh"]
@@ -14,7 +14,7 @@ size = Vector3(3.9, 1.9, 3.9)
 [node name="tile_2w2l" parent="." instance=ExtResource("3_3y0ny")]
 
 [node name="Cube_003" parent="tile_2w2l" index="0"]
-material_override = ExtResource("2_kyulv")
+material_override = ExtResource("2_ok40i")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_mm7nh")

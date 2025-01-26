@@ -1,4 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://l2et6w1bhtq6"]
+<<<<<<< HEAD
+[gd_scene load_steps=16 format=3 uid="uid://l2et6w1bhtq6"]
+=======
+[gd_scene load_steps=10 format=3 uid="uid://l2et6w1bhtq6"]
+>>>>>>> 818ce4f (Woked shing)
 
 [ext_resource type="Script" path="res://src/main_game/main_game.gd" id="1_23jdi"]
 [ext_resource type="PackedScene" uid="uid://cephmiseqa2ro" path="res://src/game_loop/game_loop.tscn" id="2_jfs3o"]
@@ -8,8 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://vomxg4q02xyc" path="res://src/player_spawner/player_spawner.tscn" id="6_q71dp"]
 [ext_resource type="PackedScene" uid="uid://b8a15c62h080w" path="res://src/score_ui/score_ui.tscn" id="7_o4dxf"]
 [ext_resource type="PackedScene" uid="uid://bqtj8bjhw64t8" path="res://src/note_ui/note_ui.tscn" id="8_mpkcm"]
+<<<<<<< HEAD
 [ext_resource type="PackedScene" uid="uid://btf0iccai10qr" path="res://addons/versatile-mobile-joystick/joystick.tscn" id="9_icdvg"]
-[ext_resource type="PackedScene" uid="uid://rnr5s8ur7ohn" path="res://src/woked_shing/woked_shing.tscn" id="9_mf5g8"]
 [ext_resource type="Texture2D" uid="uid://b3rjj1bmqtiok" path="res://addons/versatile-mobile-joystick/default_textures/BaseJoystickTest.png" id="10_l0bp4"]
 [ext_resource type="Texture2D" uid="uid://dlgmq4q7t23o8" path="res://addons/versatile-mobile-joystick/default_textures/TipJoystickTest.png" id="11_lfp2v"]
 
@@ -25,6 +29,9 @@ size = Vector2(640, 360)
 [sub_resource type="Curve" id="Curve_an3qs"]
 _data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
 point_count = 2
+=======
+[ext_resource type="PackedScene" uid="uid://rnr5s8ur7ohn" path="res://src/woked_shing/woked_shing.tscn" id="9_exl8s"]
+>>>>>>> 818ce4f (Woked shing)
 
 [node name="MainGame" type="Node3D"]
 script = ExtResource("1_23jdi")
@@ -49,8 +56,7 @@ _level_camera = NodePath("../LevelCamera")
 
 [node name="NoteUI" parent="." instance=ExtResource("8_mpkcm")]
 
-[node name="WokedShing" parent="." instance=ExtResource("9_mf5g8")]
-
+<<<<<<< HEAD
 [node name="JoystickController" parent="." instance=ExtResource("9_icdvg")]
 position = Vector2(321, 180)
 base_texture = ExtResource("10_l0bp4")
@@ -60,6 +66,9 @@ tip_limit_circle = SubResource("CircleShape2D_on8gc")
 touch_detection_region = SubResource("RectangleShape2D_7c36u")
 strength_curve = SubResource("Curve_an3qs")
 visibility_mode = 1
+=======
+[node name="WokedShing" parent="." instance=ExtResource("9_exl8s")]
+>>>>>>> 818ce4f (Woked shing)
 
 [connection signal="next_level" from="ScoreUI" to="GameLoop" method="_on_score_ui_next_level"]
 [connection signal="relisten" from="ScoreUI" to="GameLoop" method="_on_score_ui_relisten"]

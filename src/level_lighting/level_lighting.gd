@@ -18,11 +18,11 @@ var rng = RandomNumberGenerator.new()
 	set(d):
 		dark_mode = d
 		if d:
-			_light.light_energy = 0.05
+			_light.light_energy = 0.01
 			_env.background_energy_multiplier = 0.05
 		else:
-			_light.light_energy = 2.0
-			_env.background_energy_multiplier = 1.0
+			_light.light_energy = 1.2
+			_env.background_energy_multiplier = 0.5
 
 
 func new_level():

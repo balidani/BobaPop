@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://b6grmbjqf822v"]
 
-[ext_resource type="Script" path="res://src/tile_default/tile_default.gd" id="1_6qaxu"]
+[ext_resource type="Script" path="res://src/tiles/tile_default/tile_default.gd" id="1_6qaxu"]
 [ext_resource type="PackedScene" uid="uid://banltn2jgmglc" path="res://mesh/tile_default.glb" id="1_fjnp8"]
-[ext_resource type="Material" uid="uid://b6evibqitolpc" path="res://src/tile_default/ground.tres" id="3_yug4x"]
+[ext_resource type="Material" uid="uid://dnjxjmvqtp4k6" path="res://src/tiles/tile_default/ground.tres" id="3_yug4x"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o0sph"]
 size = Vector3(1.9, 1.9, 1.9)

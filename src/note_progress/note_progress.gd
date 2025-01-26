@@ -38,6 +38,8 @@ func add_note(event : NoteEvent, recording_length):
 	
 	note.position = _progress_bar.position
 	note.position.x = size.x * p
+	var y = ((float(event.pitch) - 10.0) / 125.0) * size.y
+	note.position.y += y
 	
 	if GameLoop.instance.computer_playing:
 		_computer_notes.add_child(note)
