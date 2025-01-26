@@ -46,7 +46,7 @@ func _ready():
 		difficulty = GameLoop.instance.difficulty
 	
 	# Possibly generate a master popper block.
-	if difficulty > 4.0:
+	if difficulty >= 0.0:
 		if rng.randf() < 0.1:
 			if not level.master_popper_generated:
 				level.master_popper_generated = true
@@ -75,42 +75,44 @@ func _ready():
 		
 		_maybe_add_block(instance, random_pos, random_orientation)
 	
+	var extra_difficulty = (difficulty / 10.0)
+	
 	# Make gravity thing
-	if difficulty > 1.0:
-		if rng.randf() < 0.2:
+	if difficulty >= 1.0:
+		if rng.randf() < 0.2 + extra_difficulty * 0.1:
 			var random_pos = Vector3i(rng.randi_range(-1, 1) * 2, 2, rng.randi_range(-1, 1) * 2)
 			var random_orientation = rng.randi() % 4
 			_maybe_add_block(GRAVITY_PUSH.instantiate(), random_pos, random_orientation)
 	
 	# Make a repeater
-	if rng.randf() < 0.3:
+	if rng.randf() < 0.3 + extra_difficulty * 0.2:
 		var random_pos = Vector3i(rng.randi_range(-1, 1) * 2, 2, rng.randi_range(-1, 1) * 2)
 		var random_orientation = rng.randi() % 4
 		_maybe_add_block(REPEATER.instantiate(), random_pos, random_orientation)
 	
 	# Make a gift
-	if difficulty > 2.0:
+	if difficulty >= 1.0 + extra_difficulty * 0.3:
 		if rng.randf() < 0.2:
 			var random_pos = Vector3i(rng.randi_range(-1, 1) * 2, 2, rng.randi_range(-1, 1) * 2)
 			var random_orientation = rng.randi() % 4
 			_maybe_add_block(GIFT.instantiate(), random_pos, random_orientation)
 	
 	# Make spikes
-	if difficulty > 1.0:
+	if difficulty >= 1.0 + extra_difficulty * 0.1:
 		if rng.randf() < 0.2:
 			var random_pos = Vector3i(rng.randi_range(-1, 1) * 2, 2, rng.randi_range(-1, 1) * 2)
 			var random_orientation = rng.randi() % 4
 			_maybe_add_block(SPIKE.instantiate(), random_pos, random_orientation)
 	
 	# Make black hole
-	if difficulty > 1.0:
+	if difficulty >= 1.0 + extra_difficulty * 0.5:
 		if rng.randf() < 0.2:
 			var random_pos = Vector3i(rng.randi_range(-1, 1) * 2, 2, rng.randi_range(-1, 1) * 2)
 			var random_orientation = rng.randi() % 4
 			_maybe_add_block(BLACK_HOLE.instantiate(), random_pos, random_orientation)
 	
 	# Make amen hole
-	if rng.randf() < 0.2:
+	if rng.randf() < 0.2 + extra_difficulty * 0.2:
 		var random_pos = Vector3i(rng.randi_range(-1, 1) * 2, 2, rng.randi_range(-1, 1) * 2)
 		var random_orientation = rng.randi() % 4
 		_maybe_add_block(AMEN.instantiate(), random_pos, random_orientation)

@@ -18,3 +18,7 @@ func _on_quit_pressed() -> void:
 
 func _on_play_pressed() -> void:
 	play_button_pressed.emit()
+
+
+func _on_chaos_slider_chaos_changed(value: Variant) -> void:
+	Difficulty.difficulty = value

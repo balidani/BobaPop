@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dv8psq042rwo4"]
+[gd_scene load_steps=11 format=3 uid="uid://dv8psq042rwo4"]
 
 [ext_resource type="Script" path="res://src/main_menu_ui/main_menu_ui.gd" id="1_0cp5y"]
 [ext_resource type="PackedScene" uid="uid://baxalna5x1h17" path="res://src/fun_label/fun_label.tscn" id="2_ou4u1"]
 [ext_resource type="Texture2D" uid="uid://djxwduby451m6" path="res://splash-transparent.png" id="2_y63jx"]
 [ext_resource type="Texture2D" uid="uid://7fwwd4eiwro1" path="res://splash-screen-musli.png" id="3_uicg6"]
 [ext_resource type="Texture2D" uid="uid://i3ah4mid1dw6" path="res://cute_eyes.png" id="4_5ctxx"]
+[ext_resource type="PackedScene" uid="uid://dd7i3sukpwn0m" path="res://src/chaos_slider/chaos_slider.tscn" id="6_x5b6b"]
 
 [sub_resource type="Theme" id="Theme_thina"]
 Label/colors/font_color = Color(1, 1, 1, 1)
@@ -360,26 +361,33 @@ texture = ExtResource("4_5ctxx")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="Control2" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -48.5
-offset_top = -4.25999
-offset_right = 48.5
-offset_bottom = 19.74
+offset_left = -74.0
+offset_top = -31.0
+offset_right = 78.0
+offset_bottom = 22.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Play" type="Button" parent="HBoxContainer"]
+[node name="ChaosSlider" parent="Control2" instance=ExtResource("6_x5b6b")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control2"]
+layout_mode = 2
+alignment = 1
+
+[node name="Play" type="Button" parent="Control2/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 11
 text = "Play"
 
-[node name="Quit" type="Button" parent="HBoxContainer"]
+[node name="Quit" type="Button" parent="Control2/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 11
 text = "Don't play"
@@ -389,5 +397,6 @@ libraries = {
 "": SubResource("AnimationLibrary_d0xp1")
 }
 
-[connection signal="pressed" from="HBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="HBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="chaos_changed" from="Control2/ChaosSlider" to="." method="_on_chaos_slider_chaos_changed"]
+[connection signal="pressed" from="Control2/HBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Control2/HBoxContainer/Quit" to="." method="_on_quit_pressed"]

@@ -35,7 +35,7 @@ var computer_playing = false :
 signal computer_playing_changed
 
 # Keeps increasing without bounds.
-var difficulty = 0.0
+var difficulty = Difficulty.difficulty
 
 
 func master_popper_popped():
@@ -165,7 +165,7 @@ func score_game():
 	var loss_msgs = [
 		"You truly are special",
 		"what an attempt",
-		"win-adjascent",
+		"win-adjacent",
 		"you are unwinning",
 		"I admire your enthusiasm.",
 		"So close to being sparkly!",

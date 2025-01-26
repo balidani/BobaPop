@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://dd7i3sukpwn0m"]
+
+[ext_resource type="Script" path="res://src/chaos_slider/chaos_slider.gd" id="1_3xcxb"]
+
+[node name="ChaosSlider" type="HBoxContainer"]
+alignment = 1
+script = ExtResource("1_3xcxb")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Chaos"
+
+[node name="HSlider" type="HSlider" parent="."]
+custom_minimum_size = Vector2(100, 25)
+layout_mode = 2
+max_value = 10.0
+step = 0.1
+
+[connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed"]
