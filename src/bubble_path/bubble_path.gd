@@ -31,11 +31,11 @@ func pop():
 	_asp.play(0.0)
 	
 	# Pop gives some visual feedback.
-	MusicRecorder.instance.play_note(
-		57 + current_note,
-		"bubble_pop",
-	)
-	_glow.glow()
+	#MusicRecorder.instance.play_note(
+		#57 + current_note,
+		#"bubble_pop",
+	#)
+	# _glow.glow()
 	
 	# Emit for 100ms
 	await get_tree().create_timer(0.1).timeout
