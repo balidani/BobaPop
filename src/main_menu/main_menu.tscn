@@ -36,6 +36,7 @@ shadow_enabled = true
 stream = ExtResource("7_d5gpf")
 autoplay = true
 
+[connection signal="free_play_button_pressed" from="MainMenuUI" to="." method="_on_main_menu_ui_free_play_button_pressed"]
 [connection signal="play_button_pressed" from="MainMenuUI" to="." method="_on_main_menu_ui_play_button_pressed"]
 
 [editable path="LevelLighting"]

@@ -3,6 +3,7 @@ class_name MainMenuUI
 
 
 signal play_button_pressed
+signal free_play_button_pressed
 
 
 @onready var _ap : AnimationPlayer = $AnimationPlayer
@@ -22,3 +23,7 @@ func _on_play_pressed() -> void:
 
 func _on_chaos_slider_chaos_changed(value: Variant) -> void:
 	Difficulty.difficulty = value
+
+
+func _on_free_play_pressed() -> void:
+	free_play_button_pressed.emit()

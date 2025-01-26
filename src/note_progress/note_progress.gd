@@ -50,6 +50,8 @@ func add_note(event : NoteEvent, recording_length):
 func reset_player_notes():
 	for c in _player_notes.get_children():
 		c.queue_free()
+	for c in _player_rest_symbols.get_children():
+		c.queue_free()
 
 
 func reset():

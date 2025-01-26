@@ -387,6 +387,11 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 11
 text = "Play"
 
+[node name="FreePlay" type="Button" parent="Control2/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Free Play"
+
 [node name="Quit" type="Button" parent="Control2/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 11
@@ -399,4 +404,5 @@ libraries = {
 
 [connection signal="chaos_changed" from="Control2/ChaosSlider" to="." method="_on_chaos_slider_chaos_changed"]
 [connection signal="pressed" from="Control2/HBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Control2/HBoxContainer/FreePlay" to="." method="_on_free_play_pressed"]
 [connection signal="pressed" from="Control2/HBoxContainer/Quit" to="." method="_on_quit_pressed"]

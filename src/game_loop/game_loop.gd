@@ -5,6 +5,9 @@ class_name GameLoop
 static var instance : GameLoop
 
 
+@export var free_play = false
+
+
 # "goal" contains the simulated recording. 
 # "player" contains what the player is creating.
 @export var _music_recorder_goal : MusicRecorder
@@ -77,11 +80,13 @@ func _remove_computer_stuff():
 
 
 func player_recording_start():
+	if _music_recorder_player.is_recording: return
 	print("Starting the player recording")
 	_music_recorder_player.start(MUSIC_RECORDING_DURATION_S)
 
 
 func computer_recording_start():
+	if _music_recorder_goal.is_recording: return
 	print("Starting the computer recording")
 	_music_recorder_goal.start(MUSIC_RECORDING_DURATION_S)
 
@@ -100,18 +105,20 @@ func retry_level_with_relisten():
 	_level_generator.generate_new_level()
 	_level_lighting.new_level()
 	_level_camera.target = _level_generator
-	await get_tree().create_timer(1.0).timeout
-	NoteUI.singleton.show_hint()
-	await get_tree().create_timer(2.0).timeout
-	_level_lighting.dark_mode = true
-	await get_tree().create_timer(1.0).timeout
-	_player_spawner.rng.seed = level_seed
-	_player_spawner.spawn_computer_player()
-	print("Showing the level, computer mode")
-	computer_playing = true
-	computer_hit_woked_shing = false
-	_level_generator.start_level()
-	await _music_recorder_goal.finished
+	
+	if not free_play:
+		await get_tree().create_timer(1.0).timeout
+		NoteUI.singleton.show_hint()
+		await get_tree().create_timer(2.0).timeout
+		_level_lighting.dark_mode = true
+		await get_tree().create_timer(1.0).timeout
+		_player_spawner.rng.seed = level_seed
+		_player_spawner.spawn_computer_player()
+		print("Showing the level, computer mode")
+		computer_playing = true
+		computer_hit_woked_shing = false
+		_level_generator.start_level()
+		await _music_recorder_goal.finished
 	_remove_computer_stuff()
 	
 	retry_level()
@@ -133,7 +140,16 @@ func retry_level():
 	_level_camera.target = _player_spawner.real_player
 	_level_generator.start_level()
 	await _music_recorder_player.finished
-	score_game()
+	
+	if not free_play:
+		score_game()
+	else:
+		while free_play:
+			print("Free play: Reset the recorder")
+			_music_recorder_player.stop()
+			NoteProgress.instance.reset_player_notes()
+			_music_recorder_player.start(MUSIC_RECORDING_DURATION_S)
+			await _music_recorder_player.finished
 	
 func score_game():
 	print("Stopping level")

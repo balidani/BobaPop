@@ -1,0 +1,70 @@
+[gd_scene load_steps=18 format=3 uid="uid://dwfqwgvytc1g"]
+
+[ext_resource type="Script" path="res://src/free_play/free_play.gd" id="1_fshxv"]
+[ext_resource type="PackedScene" uid="uid://cephmiseqa2ro" path="res://src/game_loop/game_loop.tscn" id="2_ki2kk"]
+[ext_resource type="PackedScene" uid="uid://db1kqfof73j4s" path="res://src/level_lighting/level_lighting.tscn" id="3_udmq1"]
+[ext_resource type="PackedScene" uid="uid://c51yjmr0bxj6" path="res://src/level_generator/level_generator.tscn" id="4_c8w4l"]
+[ext_resource type="PackedScene" uid="uid://kucp0se2xjk5" path="res://src/level_camera/level_camera.tscn" id="5_uonx5"]
+[ext_resource type="PackedScene" uid="uid://duoovp28b7bi2" path="res://src/canvas_layer.tscn" id="6_7xxwg"]
+[ext_resource type="PackedScene" uid="uid://vomxg4q02xyc" path="res://src/player_spawner/player_spawner.tscn" id="7_yu8kj"]
+[ext_resource type="PackedScene" uid="uid://b8a15c62h080w" path="res://src/score_ui/score_ui.tscn" id="8_tq7ej"]
+[ext_resource type="PackedScene" uid="uid://bqtj8bjhw64t8" path="res://src/note_ui/note_ui.tscn" id="9_0jyg7"]
+[ext_resource type="PackedScene" uid="uid://rnr5s8ur7ohn" path="res://src/woked_shing/woked_shing.tscn" id="10_8tcmq"]
+[ext_resource type="PackedScene" uid="uid://btf0iccai10qr" path="res://addons/versatile-mobile-joystick/joystick.tscn" id="11_q6cy3"]
+[ext_resource type="Texture2D" uid="uid://b3rjj1bmqtiok" path="res://addons/versatile-mobile-joystick/default_textures/BaseJoystickTest.png" id="12_lbh1v"]
+[ext_resource type="Texture2D" uid="uid://dlgmq4q7t23o8" path="res://addons/versatile-mobile-joystick/default_textures/TipJoystickTest.png" id="13_n4v4t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7hjgv"]
+radius = 8.2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_on8gc"]
+radius = 38.25
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7c36u"]
+size = Vector2(640, 360)
+
+[sub_resource type="Curve" id="Curve_an3qs"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[node name="FreePlay" type="Node3D"]
+script = ExtResource("1_fshxv")
+
+[node name="GameLoop" parent="." node_paths=PackedStringArray("_level_camera", "_level_generator", "_level_lighting", "_player_spawner") instance=ExtResource("2_ki2kk")]
+free_play = true
+_level_camera = NodePath("../LevelCamera")
+_level_generator = NodePath("../LevelGenerator")
+_level_lighting = NodePath("../LevelLighting")
+_player_spawner = NodePath("../PlayerSpawner")
+
+[node name="LevelLighting" parent="." instance=ExtResource("3_udmq1")]
+
+[node name="LevelGenerator" parent="." instance=ExtResource("4_c8w4l")]
+use_generated_level = true
+
+[node name="LevelCamera" parent="." instance=ExtResource("5_uonx5")]
+
+[node name="canvas_layer" parent="LevelCamera" instance=ExtResource("6_7xxwg")]
+
+[node name="PlayerSpawner" parent="." node_paths=PackedStringArray("_level_camera") instance=ExtResource("7_yu8kj")]
+_level_camera = NodePath("../LevelCamera")
+
+[node name="ScoreUI" parent="." instance=ExtResource("8_tq7ej")]
+
+[node name="NoteUI" parent="." instance=ExtResource("9_0jyg7")]
+
+[node name="WokedShing" parent="." instance=ExtResource("10_8tcmq")]
+
+[node name="JoystickController" parent="." instance=ExtResource("11_q6cy3")]
+position = Vector2(321, 180)
+base_texture = ExtResource("12_lbh1v")
+tip_texture = ExtResource("13_n4v4t")
+deadzone_circle = SubResource("CircleShape2D_7hjgv")
+tip_limit_circle = SubResource("CircleShape2D_on8gc")
+touch_detection_region = SubResource("RectangleShape2D_7c36u")
+strength_curve = SubResource("Curve_an3qs")
+visibility_mode = 1
+
+[connection signal="next_level" from="ScoreUI" to="GameLoop" method="_on_score_ui_next_level"]
+[connection signal="relisten" from="ScoreUI" to="GameLoop" method="_on_score_ui_relisten"]
+[connection signal="retry" from="ScoreUI" to="GameLoop" method="_on_score_ui_retry"]

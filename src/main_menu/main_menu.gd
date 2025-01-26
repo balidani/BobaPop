@@ -19,3 +19,8 @@ func _ready() -> void:
 func _on_main_menu_ui_play_button_pressed() -> void:
 	get_tree().root.add_child(load("res://src/main_game/main_game.tscn").instantiate())
 	queue_free()
+
+
+func _on_main_menu_ui_free_play_button_pressed() -> void:
+	get_tree().root.add_child(load("res://src/free_play/free_play.tscn").instantiate())
+	queue_free()
