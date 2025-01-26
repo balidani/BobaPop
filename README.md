@@ -1,4 +1,4 @@
-<p align="center"><img src="icon.png"/></p>
+<p align="center"><img src="splash-screen.png"/></p>
 
 【﻿ｓｗｅｅｔｉｓｈ　ｂｕｂｂｌｏ　ｆｌｏｗ　Ｂｏｂｂａ　Ｐｏｐｐｅｒｋｉｎ！】
 
@@ -15,6 +15,11 @@ yhee yooobublles?
 ### Screenshot
 
 <p align="center"><img src="screenshots/screenshot.png"/></p>
+
+### Things
+Play at: <https://dmnk.co/bobapop/BobaPop.html>
+
+Thank you to the authors of gdsion for their software synth and support, and to kennynl for free assets
 
 ### License
 

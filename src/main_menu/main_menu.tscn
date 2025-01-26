@@ -31,6 +31,15 @@ light_energy = 1.2
 shadow_enabled = true
 
 [node name="MainMenuUI" parent="." instance=ExtResource("6_3tf36")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -75.0
+offset_right = 50.0
+offset_bottom = 75.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_d5gpf")
