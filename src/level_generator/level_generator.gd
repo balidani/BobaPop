@@ -60,13 +60,13 @@ func generate_new_level():
 
 	if use_generated_level:
 		var generated_level : GeneratedLevel = GENERATED_LEVEL.instantiate()
-		generated_level.rng.seed = rng.seed
 		initial_level_setup = generated_level.duplicate()
 	else:
 		# TODO: Hardcoded example level, replace with level generation
 		initial_level_setup = HARDCODED_LEVEL.instantiate()
 	
 	computer_level = initial_level_setup.duplicate()
+	computer_level.rng.seed = rng.seed
 	_container.add_child(computer_level)
 
 

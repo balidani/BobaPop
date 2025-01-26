@@ -84,7 +84,6 @@ func _ready():
 		var segment = SEGMENT_EDGE.instantiate()
 		segment.transform.origin = Vector3(key)
 		add_child(segment)
-	print (edge_candidates)
 
 const SEGMENT = preload("res://src/generated_level_segment/generated_level_segment.tscn")
 const SEGMENT_SPAWN = preload("res://src/generated_level_segment_spawn/generated_level_segment_spawn.tscn")
