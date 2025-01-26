@@ -177,11 +177,11 @@ func score_game():
 	var description;
 	
 	var loss_msgs = [
-		"You truly are special",
-		"what an attempt",
+		"Truly a special try",
+		"What an attempt",
 		"win-adjacent",
-		"you are unwinning",
-		"I admire your enthusiasm.",
+		"You are unwinning",
+		"So much enthusiasm",
 		"So close to being sparkly!",
 	]
 	if success_percentage <= 0.6:

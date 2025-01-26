@@ -10,6 +10,7 @@ size = Vector3(2, 2, 2)
 [node name="TileObstacle" type="Node3D"]
 
 [node name="TileWithSound" parent="." node_paths=PackedStringArray("animate_node", "material_to_mesh") instance=ExtResource("2_twsqx")]
+interesting_for_ai = true
 animate_node = NodePath("../tile_default")
 material_to_mesh = NodePath("../tile_default/Cube_001")
 

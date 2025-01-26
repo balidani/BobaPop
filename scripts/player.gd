@@ -132,7 +132,7 @@ func handle_controls(delta):
 			print("tick", input)
 	
 	if is_ai:
-		if rng.randf() < 0.1:
+		if rng.randf() < 0.1 or t < 1.0:
 			var dir = rng.randi_range(0, 4)
 			if dir == 0:
 				last_fake_input = Vector3(1, 0, 0)
