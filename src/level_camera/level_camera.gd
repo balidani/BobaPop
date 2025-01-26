@@ -45,18 +45,20 @@ func _process(delta):
 # Handle input
 
 func handle_input(delta):
-	
 	# Rotation
 	
 	var input := Vector3.ZERO
+	var input_zoom := 0.0
 	
-	input.y = Input.get_axis("camera_left", "camera_right")
-	input.x = Input.get_axis("camera_up", "camera_down")
+	if not GameLoop.instance.computer_playing:
+		input_zoom = Input.get_axis("zoom_in", "zoom_out")
+		input.y = Input.get_axis("camera_left", "camera_right")
+		input.x = Input.get_axis("camera_up", "camera_down")
 	
 	camera_rotation += input.limit_length(1.0) * rotation_speed * delta
 	camera_rotation.x = clamp(camera_rotation.x, -60, -50)
 	
 	# Zooming
 	
-	zoom += Input.get_axis("zoom_in", "zoom_out") * zoom_speed * delta
+	zoom += input_zoom * zoom_speed * delta
 	zoom = clamp(zoom, zoom_maximum, zoom_minimum)
