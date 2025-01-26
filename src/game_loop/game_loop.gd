@@ -15,6 +15,8 @@ static var instance : GameLoop
 @export var _level_lighting : LevelLighting
 @export var _player_spawner : PlayerSpawner
 
+const USE_CONST_SEED = false
+const CONST_LEVEL_SEED = 0
 
 const MUSIC_RECORDING_DURATION_S = 5.0
 
@@ -182,8 +184,6 @@ func score_game():
 
 	ScoreUI.instance.show_score(success_percentage, passed, stars, description)
 
-const USE_CONST_SEED = true
-const CONST_LEVEL_SEED = 4278744844
 var level_seed = 0
 func new_level():
 	# level_seed = 1539753758 # Hardcoded for bug repro
