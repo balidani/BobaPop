@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://b7qpafhtvykhw"]
+[gd_scene load_steps=11 format=3 uid="uid://b7qpafhtvykhw"]
 
+[ext_resource type="Script" path="res://src/tiles/black_hole/black_hole.gd" id="1_403l6"]
 [ext_resource type="PackedScene" uid="uid://h634n2jrheym" path="res://src/tiles/tile_with_sound/tile_with_sound.tscn" id="1_he3gb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mm7nh"]
@@ -56,6 +57,7 @@ material = SubResource("StandardMaterial3D_21cwo")
 radius = 6.0
 
 [node name="BlackHole" type="Node3D"]
+script = ExtResource("1_403l6")
 
 [node name="TileWithSound" parent="." node_paths=PackedStringArray("animate_node") instance=ExtResource("1_he3gb")]
 animate_node = NodePath("../Anim")
@@ -82,3 +84,5 @@ gravity = 20.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PushArea3D"]
 shape = SubResource("SphereShape3D_2qhqc")
+
+[connection signal="bounced" from="TileWithSound" to="." method="_on_tile_with_sound_bounced"]

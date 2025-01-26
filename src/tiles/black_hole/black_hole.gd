@@ -1,8 +1,6 @@
-extends StaticBody3D
+extends Node3D
 class_name BlackHole
 
 
-
-func bounce(_bubble : BouncyBubble, _last_velocity):
-	_bubble.immune = false
-	_bubble.queue_free()
+func _on_tile_with_sound_bounced(bubble: BouncyBubble, last_velocity: Variant) -> void:
+	bubble.pop()

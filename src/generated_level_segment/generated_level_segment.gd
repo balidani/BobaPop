@@ -16,6 +16,7 @@ const BLACK_HOLE = preload("res://src/tiles/black_hole/black_hole.tscn")
 const AMEN = preload("res://src/tiles/tile_amen/tile_amen.tscn")
 const GIFT = preload("res://src/tiles/tile_gift/tile_gift.tscn")
 const GRAVITY_PUSH = preload("res://src/tiles/tile_gravity_push/tile_gravity_push.tscn")
+const GRAVITY_PULL = preload("res://src/tiles/tile_gravity_pull/tile_gravity_pull.tscn")
 
 
 var rng = RandomNumberGenerator.new()
@@ -79,10 +80,17 @@ func _ready():
 	
 	# Make gravity thing
 	if difficulty >= 1.0:
-		if rng.randf() < 0.2 + extra_difficulty * 0.1:
-			var random_pos = Vector3i(rng.randi_range(-1, 1) * 2, 2, rng.randi_range(-1, 1) * 2)
-			var random_orientation = rng.randi() % 4
-			_maybe_add_block(GRAVITY_PUSH.instantiate(), random_pos, random_orientation)
+		# Pull or push?
+		if rng.randf() < 0.5:
+			if rng.randf() < 0.2 + extra_difficulty * 0.1:
+				var random_pos = Vector3i(rng.randi_range(-1, 1) * 2, 2, rng.randi_range(-1, 1) * 2)
+				var random_orientation = rng.randi() % 4
+				_maybe_add_block(GRAVITY_PUSH.instantiate(), random_pos, random_orientation)
+		else:
+			if rng.randf() < 0.2 + extra_difficulty * 0.1:
+				var random_pos = Vector3i(rng.randi_range(-1, 1) * 2, 2, rng.randi_range(-1, 1) * 2)
+				var random_orientation = rng.randi() % 4
+				_maybe_add_block(GRAVITY_PULL.instantiate(), random_pos, random_orientation)
 	
 	# Make a repeater
 	if rng.randf() < 0.3 + extra_difficulty * 0.2:
