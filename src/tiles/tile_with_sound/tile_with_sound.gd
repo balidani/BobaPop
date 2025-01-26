@@ -80,7 +80,7 @@ func bounce(bubble: BouncyBubble, last_velocity):
 	elif note == 2:
 		gdsion_note = 76  # E
 	elif note == 3:
-		gdsion_note = 79  # G
+		gdsion_note = 80  # G#
 	MusicRecorder.instance.play_note(
 		gdsion_note, # TODO: More fun
 		"bounce",
