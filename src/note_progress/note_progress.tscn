@@ -20,6 +20,7 @@ offset_top = -30.0
 offset_right = 4.0
 offset_bottom = 30.0
 grow_vertical = 2
+mouse_filter = 2
 color = Color(1, 0, 1, 0)
 
 [node name="TextureRect" type="TextureRect" parent="ProgressBar"]
@@ -28,6 +29,7 @@ offset_left = -29.0
 offset_top = -13.5
 offset_right = 33.0
 offset_bottom = 72.5
+mouse_filter = 2
 texture = ExtResource("2_cmhcy")
 expand_mode = 4
 stretch_mode = 5
