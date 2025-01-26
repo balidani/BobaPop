@@ -4,17 +4,18 @@ class_name ScoreUI
 static var instance : ScoreUI
 
 
-@onready var _control : Control = $Control
 @onready var _score : Label = $Control/VBoxContainer/HBoxContainer/Score
 @onready var _pass_fail : Label = $Control/VBoxContainer/pass_fail
 @onready var _description : Label = $Control/VBoxContainer/description
 
-@onready var _retry_button : Button = $Control/VBoxContainer/HBoxContainer2/Retry
-@onready var _next_level_button : Button = $Control/VBoxContainer/HBoxContainer2/NextLevelButton
+@onready var _retry_button : Button = $Control2/HBoxContainer2/Retry
+@onready var _relisten_button : Button = $Control2/HBoxContainer2/Relisten
+@onready var _next_level_button : Button = $Control2/HBoxContainer2/NextLevelButton
 
 @onready var _ap : AnimationPlayer = $AnimationPlayer
 
 signal retry
+signal relisten
 signal next_level
 
 
@@ -31,7 +32,7 @@ func bam():
 
 
 func show_score(score, passed, desc):
-	_control.visible = true
+	visible = true
 	_score.text = "%0.1f%%" % (score * 100)
 	_description.text = str(desc)
 	
@@ -48,7 +49,18 @@ func show_score(score, passed, desc):
 	_ap.play("score_slam")
 	_next_level_button.disabled = false
 	_retry_button.disabled = false
+	_relisten_button.disabled = false
 	await _ap.animation_finished
+
+
+func hide_score():
+	_next_level_button.disabled = true
+	_retry_button.disabled = true
+	_relisten_button.disabled = true
+	_ap.stop(true)
+	_ap.play("score_away")
+	await _ap.animation_finished
+	visible = false
 
 
 func _on_menu_pressed() -> void:
@@ -58,18 +70,15 @@ func _on_menu_pressed() -> void:
 
 
 func _on_retry_pressed() -> void:
-	_next_level_button.disabled = true
-	_retry_button.disabled = true
-	_ap.stop(true)
-	_ap.play("score_away")
-	await _ap.animation_finished
+	await hide_score()
 	retry.emit()
 
 
 func _on_next_level_button_pressed() -> void:
-	_next_level_button.disabled = true
-	_retry_button.disabled = true
-	_ap.stop(true)
-	_ap.play("score_away")
-	await _ap.animation_finished
+	await hide_score()
 	next_level.emit()
+
+
+func _on_relisten_pressed() -> void:
+	await hide_score()
+	relisten.emit()

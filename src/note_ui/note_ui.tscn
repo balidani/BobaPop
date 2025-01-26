@@ -18,6 +18,10 @@ _note_progress = NodePath("Clef/TextureRect2/NoteProgress")
 [node name="Clef" parent="." instance=ExtResource("2_8wd8j")]
 layout_mode = 1
 
+[node name="TextureRect2" parent="Clef" index="1"]
+offset_top = 6.0
+offset_bottom = 66.0
+
 [node name="ListenHint" parent="." instance=ExtResource("5_n24av")]
 layout_mode = 1
 

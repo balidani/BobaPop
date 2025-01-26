@@ -33,4 +33,5 @@ _level_camera = NodePath("../LevelCamera")
 [node name="NoteUI" parent="." instance=ExtResource("8_mpkcm")]
 
 [connection signal="next_level" from="ScoreUI" to="GameLoop" method="_on_score_ui_next_level"]
+[connection signal="relisten" from="ScoreUI" to="GameLoop" method="_on_score_ui_relisten"]
 [connection signal="retry" from="ScoreUI" to="GameLoop" method="_on_score_ui_retry"]

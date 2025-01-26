@@ -185,6 +185,7 @@ _data = {
 }
 
 [node name="ScoreUI" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -194,7 +195,6 @@ grow_vertical = 2
 script = ExtResource("1_2c6du")
 
 [node name="Control" type="Control" parent="."]
-visible = false
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 8
@@ -203,9 +203,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -20.0
-offset_top = -20.0
+offset_top = -5.0
 offset_right = 20.0
-offset_bottom = 20.0
+offset_bottom = 35.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(20, 20)
@@ -218,16 +218,13 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -198.5
-offset_top = -71.5
+offset_top = -84.0
 offset_right = 198.5
-offset_bottom = 71.5
+offset_bottom = 84.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_kgll0")
-
-[node name="Label3" type="Label" parent="Control/VBoxContainer"]
-layout_mode = 2
-horizontal_alignment = 1
+theme_override_constants/separation = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer"]
 layout_mode = 2
@@ -245,6 +242,7 @@ text = "100%"
 
 [node name="pass_fail" type="Label" parent="Control/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 40
 text = "PASS"
 horizontal_alignment = 1
 
@@ -253,21 +251,46 @@ layout_mode = 2
 text = "You're a Musical Maestro!"
 horizontal_alignment = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Control/VBoxContainer"]
-layout_mode = 2
+[node name="Control2" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control2"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -160.5
+offset_top = -46.0
+offset_right = 160.5
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 0
 theme = ExtResource("1_kgll0")
-theme_override_constants/separation = 5
+theme_override_constants/separation = 8
 alignment = 1
 
-[node name="NextLevelButton" type="Button" parent="Control/VBoxContainer/HBoxContainer2"]
+[node name="NextLevelButton" type="Button" parent="Control2/HBoxContainer2"]
 layout_mode = 2
 text = "Next Level"
 
-[node name="Retry" type="Button" parent="Control/VBoxContainer/HBoxContainer2"]
+[node name="Retry" type="Button" parent="Control2/HBoxContainer2"]
 layout_mode = 2
 text = "Retry"
 
-[node name="Menu" type="Button" parent="Control/VBoxContainer/HBoxContainer2"]
+[node name="Relisten" type="Button" parent="Control2/HBoxContainer2"]
+layout_mode = 2
+text = "Relisten"
+
+[node name="Menu" type="Button" parent="Control2/HBoxContainer2"]
 layout_mode = 2
 text = "Main Menu"
 
@@ -276,6 +299,7 @@ libraries = {
 "": SubResource("AnimationLibrary_iy0et")
 }
 
-[connection signal="pressed" from="Control/VBoxContainer/HBoxContainer2/NextLevelButton" to="." method="_on_next_level_button_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/HBoxContainer2/Retry" to="." method="_on_retry_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/HBoxContainer2/Menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="Control2/HBoxContainer2/NextLevelButton" to="." method="_on_next_level_button_pressed"]
+[connection signal="pressed" from="Control2/HBoxContainer2/Retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="Control2/HBoxContainer2/Relisten" to="." method="_on_relisten_pressed"]
+[connection signal="pressed" from="Control2/HBoxContainer2/Menu" to="." method="_on_menu_pressed"]

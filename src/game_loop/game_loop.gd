@@ -44,6 +44,32 @@ func computer_recording_start():
 	_music_recorder_goal.start(MUSIC_RECORDING_DURATION_S)
 
 
+func retry_level_with_relisten():
+	_level_camera.target = null
+	NoteUI.singleton.reset()
+	_level_generator.reset()
+	NoteUI.singleton.show_hint()
+	await get_tree().create_timer(2.0).timeout
+	print("Generating a new level")
+	_level_generator.rng.seed = level_seed
+	_level_generator.generate_new_level()
+	_level_lighting.new_level()
+	_player_spawner.spawn_computer_player()
+	print("Showing the level, computer mode")
+	computer_playing = true
+	_level_camera.target = _level_generator
+	_level_lighting.dark_mode = true
+	_level_generator.start_level()
+	await _music_recorder_goal.finished
+	print("Removing computer player")
+	_player_spawner.remove_computer_player()
+	print("Starting player level")
+	computer_playing = false
+	_level_lighting.dark_mode = false
+	
+	retry_level()
+
+
 func retry_level():
 	NoteProgress.instance.reset_player_notes()
 	Clef.instance.recording = false
@@ -81,30 +107,8 @@ const SUCCESS_PERCENT_MIN = 0.8
 
 var level_seed = 0
 func new_level():
-	_level_camera.target = null
 	level_seed = rng.randi()
-	NoteUI.singleton.reset()
-	_level_generator.reset()
-	NoteUI.singleton.show_hint()
-	await get_tree().create_timer(2.0).timeout
-	print("Generating a new level")
-	_level_generator.rng.seed = level_seed
-	_level_generator.generate_new_level()
-	_level_lighting.new_level()
-	_player_spawner.spawn_computer_player()
-	print("Showing the level, computer mode")
-	computer_playing = true
-	_level_camera.target = _level_generator
-	_level_lighting.dark_mode = true
-	_level_generator.start_level()
-	await _music_recorder_goal.finished
-	print("Removing computer player")
-	_player_spawner.remove_computer_player()
-	print("Starting player level")
-	computer_playing = false
-	_level_lighting.dark_mode = false
-	
-	retry_level()
+	retry_level_with_relisten()
 
 
 var rng = RandomNumberGenerator.new()
@@ -156,3 +160,7 @@ func _on_score_ui_next_level() -> void:
 
 func _on_score_ui_retry() -> void:
 	retry_level()
+
+
+func _on_score_ui_relisten() -> void:
+	retry_level_with_relisten()
