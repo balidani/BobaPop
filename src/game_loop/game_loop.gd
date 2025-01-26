@@ -24,6 +24,9 @@ const THREE_STARS_PERCENT_MIN = 0.85
 # True when computer is playing.
 var computer_playing = false
 
+# Keeps increasing without bounds.
+var difficulty = 0.0
+
 
 func master_popper_popped():
 	print("Master popper popped")
@@ -130,7 +133,7 @@ var level_seed = 0
 func new_level():
 	# level_seed = 1539753758 # Hardcoded for bug repro
 	level_seed = rng.randi()
-	print("Game loop initializing with seed %s" % level_seed)
+	print("Game loop initializing with seed %s and difficulty %s" % [level_seed, difficulty])
 	
 	retry_level_with_relisten()
 
@@ -173,6 +176,7 @@ func _ready():
 
 
 func _on_score_ui_next_level() -> void:
+	difficulty += 1.0
 	new_level()
 
 

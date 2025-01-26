@@ -114,6 +114,7 @@ func handle_effects(delta):
 
 # Handle movement input
 
+var _next_ai_shot_t = 0.0
 func handle_controls(delta):
 
 	# Movement
@@ -143,8 +144,9 @@ func handle_controls(delta):
 				last_fake_input = Vector3(0, 0, -1)
 		input = last_fake_input
 	
-		if t > (fake_shots + 1) * 4 and fake_shots < 3:
+		if t > _next_ai_shot_t and fake_shots < 3 + GameLoop.instance.difficulty * 1.0:
 			fake_shots += 1
+			_next_ai_shot_t = t + (2.0 + rng.randf() * 4.0)
 			shoot_bubble()
 
 	input = input.rotated(Vector3.UP, view.rotation.y)
