@@ -15,8 +15,4 @@ func spawn():
 	_container.add_child(BUBBLE.instantiate())
 
 
-func _ready():
-	spawn()
-
-
 const BUBBLE = preload("res://src/bubble_path/bubble_path.tscn")

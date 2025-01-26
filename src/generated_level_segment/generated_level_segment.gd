@@ -11,6 +11,7 @@ const OBSTACLE_CORNER = preload("res://src/tiles/tile_obstacle_corner/tile_obsta
 const TILE_3W3L = preload("res://src/tiles/tile_3w3l/tile_3w3l.tscn")
 const BLACK_HOLE = preload("res://src/tiles/black_hole/black_hole.tscn")
 const AMEN = preload("res://src/tiles/tile_amen/tile_amen.tscn")
+const GIFT = preload("res://src/tiles/tile_gift/tile_gift.tscn")
 
 
 var rng = RandomNumberGenerator.new()
@@ -57,12 +58,17 @@ func _ready():
 		
 		_maybe_add_block(instance, random_pos)
 	
+	# Make a gift
+	if rng.randf() < 0.1:
+		var random_pos = Vector3i(rng.randi_range(-1, 1) * 2, 2, rng.randi_range(-1, 1) * 2)
+		_maybe_add_block(GIFT.instantiate(), random_pos)
+	
 	# Make spikes
 	if rng.randf() < 0.1:
 		var random_pos = Vector3i(rng.randi_range(-1, 1) * 2, 2, rng.randi_range(-1, 1) * 2)
 		_maybe_add_block(SPIKE.instantiate(), random_pos)
 	
-		# Make black hole
+	# Make black hole
 	if rng.randf() < 0.1:
 		var random_pos = Vector3i(rng.randi_range(-1, 1) * 2, 2, rng.randi_range(-1, 1) * 2)
 		_maybe_add_block(SPIKE.instantiate(), random_pos)
