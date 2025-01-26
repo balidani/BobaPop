@@ -6,4 +6,4 @@
 script = ExtResource("1_s4jp7")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 4.38095, 9.25046)
+transform = Transform3D(1, 0, 0, 0, 0.839468, 0.543409, 0, -0.543409, 0.839468, 0, 4.5, 9.25)

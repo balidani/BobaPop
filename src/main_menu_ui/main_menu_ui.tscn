@@ -10,7 +10,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("yhee:rotation")
+tracks/0/path = NodePath("Control/yhee:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -22,7 +22,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("bobapop:size")
+tracks/1/path = NodePath("Control/bobapop:size")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -34,7 +34,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("bobapop:rotation")
+tracks/2/path = NodePath("Control/bobapop:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -46,7 +46,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("cute_eyes:rotation")
+tracks/3/path = NodePath("Control/cute_eyes:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -58,7 +58,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("cute_eyes:position")
+tracks/4/path = NodePath("Control/cute_eyes:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -70,10 +70,22 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("cute_eyes:scale")
+tracks/5/path = NodePath("Control/cute_eyes:scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Control/yhee:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -86,7 +98,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("yhee:rotation")
+tracks/0/path = NodePath("Control/yhee:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -98,7 +110,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("bobapop:size")
+tracks/1/path = NodePath("Control/bobapop:size")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -110,7 +122,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("bobapop:rotation")
+tracks/2/path = NodePath("Control/bobapop:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -122,7 +134,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("cute_eyes:rotation")
+tracks/3/path = NodePath("Control/cute_eyes:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -134,22 +146,34 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("cute_eyes:position")
+tracks/4/path = NodePath("Control/cute_eyes:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(64, 58), Vector2(59, 57), Vector2(64, 58)]
+"values": [Vector2(35, 55), Vector2(30, 54), Vector2(35, 55)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("cute_eyes:scale")
+tracks/5/path = NodePath("Control/cute_eyes:scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Control/yhee:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
@@ -171,14 +195,26 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -50.0
-offset_top = -50.0
+offset_top = -75.0
 offset_right = 50.0
-offset_bottom = 50.0
+offset_bottom = 75.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0cp5y")
 
-[node name="bobapop" type="TextureRect" parent="."]
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = -25.0
+offset_right = 20.0
+offset_bottom = 15.0
+grow_horizontal = 2
+scale = Vector2(1.5, 1.5)
+
+[node name="bobapop" type="TextureRect" parent="Control"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 1
 anchors_preset = 5
@@ -193,7 +229,7 @@ texture = ExtResource("2_y63jx")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="yhee" type="TextureRect" parent="."]
+[node name="yhee" type="TextureRect" parent="Control"]
 custom_minimum_size = Vector2(125, 50)
 layout_mode = 1
 anchors_preset = -1
@@ -202,16 +238,16 @@ anchor_top = 0.614
 anchor_right = 0.5
 anchor_bottom = 0.614
 offset_left = -62.5
-offset_top = -25.1
+offset_top = 42.44
 offset_right = 62.5
-offset_bottom = 24.9
+offset_bottom = 92.44
 grow_horizontal = 2
 pivot_offset = Vector2(62, 25)
 texture = ExtResource("3_uicg6")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="cute_eyes" type="TextureRect" parent="."]
+[node name="cute_eyes" type="TextureRect" parent="Control"]
 custom_minimum_size = Vector2(40, 20)
 layout_mode = 1
 anchors_preset = -1
@@ -219,10 +255,10 @@ anchor_left = 0.5
 anchor_top = 0.614
 anchor_right = 0.5
 anchor_bottom = 0.614
-offset_left = 14.0
-offset_top = -34.1
-offset_right = 63.0071
-offset_bottom = -14.1
+offset_left = 44.0
+offset_top = 33.44
+offset_right = 93.0071
+offset_bottom = 53.44
 grow_horizontal = 2
 pivot_offset = Vector2(24, 10)
 texture = ExtResource("4_5ctxx")
@@ -237,8 +273,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -48.5
-offset_top = -24.0
+offset_top = 15.0
 offset_right = 48.5
+offset_bottom = 39.0
 grow_horizontal = 2
 grow_vertical = 0
 

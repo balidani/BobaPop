@@ -15,12 +15,20 @@ _level_lighting = NodePath("LevelLighting")
 
 [node name="LevelLighting" parent="." instance=ExtResource("2_tc4mn")]
 
+[node name="DirectionalLight3D" parent="LevelLighting" index="0"]
+visible = false
+
 [node name="LevelGenerator" parent="." instance=ExtResource("3_rg7f8")]
 use_generated_level = true
 
 [node name="PlayerSpawner" parent="." instance=ExtResource("5_ohjxy")]
 
 [node name="RotatingCamera" parent="." instance=ExtResource("5_t4xf8")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="RotatingCamera"]
+transform = Transform3D(-1, -4.37114e-08, 7.57103e-08, 0, 0.866025, 0.5, -8.74228e-08, 0.5, -0.866025, 0, 0, 0)
+light_energy = 1.2
+shadow_enabled = true
 
 [node name="MainMenuUI" parent="." instance=ExtResource("6_3tf36")]
 
@@ -29,3 +37,5 @@ stream = ExtResource("7_d5gpf")
 autoplay = true
 
 [connection signal="play_button_pressed" from="MainMenuUI" to="." method="_on_main_menu_ui_play_button_pressed"]
+
+[editable path="LevelLighting"]
