@@ -43,6 +43,17 @@ func play_note(pitch: int, type: String="bounce"):
 		)
 	)
 
+func change_effet(pitch: int):
+	Synth.player.change_filter(1)
+	record(
+		NoteEvent.new(
+			pitch,
+			"effect",
+			false,
+			false,
+		)
+	)
+
 # When the recording was started. Used to normalize timestamps.
 var _recording_start_t = 0.0
 var _recording_end_t = INF

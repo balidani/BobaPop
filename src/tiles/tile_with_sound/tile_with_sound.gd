@@ -18,6 +18,8 @@ signal bounced(bubble: BouncyBubble, last_velocity)
 		# Parent under the animated node to get the bounce animation.
 		animate_node.reparent(_bounce)
 
+# If set, change the effect in the synth when hit
+@export var effect_changer : bool = false
 
 # This node gets a material.
 @export var material_to_mesh : MeshInstance3D :
@@ -81,10 +83,14 @@ func bounce(bubble: BouncyBubble, last_velocity):
 		gdsion_note = 76  # E
 	elif note == 3:
 		gdsion_note = 80  # G#
-	MusicRecorder.instance.play_note(
-		gdsion_note, # TODO: More fun
-		"bounce",
-	)
+	
+	if effect_changer:
+		MusicRecorder.instance.change_effet(10)
+	else:
+		MusicRecorder.instance.play_note(
+			gdsion_note, # TODO: More fun
+			"bounce",
+		)
 	if LevelLighting.instance.dark_mode:
 		_glow.glow()
 	

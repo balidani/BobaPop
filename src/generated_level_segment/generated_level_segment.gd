@@ -7,6 +7,7 @@ const MASTER_POPPER = preload("res://src/tiles/tile_master_popper/tile_master_po
 const REPEATER = preload("res://src/tiles/repeater_obstacle/repeater_obstacle.tscn")
 const NOTE_TONIC = preload("res://src/tiles/note_tonic/note_tonic.tscn")
 const NOTE_DOMINANT = preload("res://src/tiles/note_dominant/note_dominant.tscn")
+const TILE_EFFECT = preload("res://src/tiles/tile_effect/tile_effect.tscn")
 const OBSTACLE = preload("res://src/tiles/tile_obstacle/tile_obstacle.tscn")
 const OBSTACLE_CORNER = preload("res://src/tiles/tile_obstacle_corner/tile_obstacle_corner.tscn")
 const TILE_3W3L = preload("res://src/tiles/tile_3w3l/tile_3w3l.tscn")
@@ -47,19 +48,20 @@ func _ready():
 			var random_orientation = rng.randi() % 4
 			_maybe_add_block(MASTER_POPPER.instantiate(), random_pos, random_orientation)
 	
-	# Possibly generate a special block.
-	if rng.randf() < 0.3:
+	if true:
 		# TODO: Rotate the special blocks.
 		var random_pos = Vector3i(rng.randi_range(-1, 1) * 2, 2, rng.randi_range(-1, 1) * 2)
 		var random_orientation = rng.randi() % 4
-		var random_kind = rng.randi_range(1, 3)
+		var random_kind = rng.randi_range(1, 4)
 		var instance = null
 		if random_kind == 1:
 			instance = REPEATER.instantiate()
 		elif random_kind == 2:
 			instance = NOTE_TONIC.instantiate()
-		else:
+		elif random_kind == 3:
 			instance = NOTE_DOMINANT.instantiate()
+		else:
+			instance = TILE_EFFECT.instantiate()
 		
 		_maybe_add_block(instance, random_pos, random_orientation)
 	

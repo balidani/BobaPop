@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dkjd5a13sgorf"]
+
+[ext_resource type="PackedScene" uid="uid://h634n2jrheym" path="res://src/tiles/tile_with_sound/tile_with_sound.tscn" id="1_r5ixn"]
+[ext_resource type="PackedScene" uid="uid://c3e0pp04sf5dv" path="res://models/table_display_planet_2.tscn" id="2_4gwlm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mm7nh"]
+size = Vector3(2, 2, 2)
+
+[node name="TileEffect" type="Node3D"]
+
+[node name="TileWithSound" parent="." node_paths=PackedStringArray("animate_node") instance=ExtResource("1_r5ixn")]
+animate_node = NodePath("../Node3D")
+effect_changer = true
+note = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileWithSound"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_mm7nh")
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="table-display-planet3" parent="Node3D" instance=ExtResource("2_4gwlm")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 1, -1, -1)
