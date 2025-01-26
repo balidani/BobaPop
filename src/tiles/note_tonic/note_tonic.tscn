@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b8286bcjoy4jw"]
 
 [ext_resource type="PackedScene" uid="uid://h634n2jrheym" path="res://src/tiles/tile_with_sound/tile_with_sound.tscn" id="1_1ikud"]
-[ext_resource type="PackedScene" uid="uid://bp8pu53b7km0i" path="res://models/cocktail_2.tscn" id="2_37rmn"]
+[ext_resource type="PackedScene" path="res://models/cocktail_2.tscn" id="2_37rmn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mm7nh"]
 size = Vector3(2, 2, 2)

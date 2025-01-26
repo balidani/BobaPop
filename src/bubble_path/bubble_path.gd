@@ -35,8 +35,7 @@ func pop():
 		57 + current_note,
 		"bubble_pop",
 	)
-	if LevelLighting.instance.dark_mode:
-		_glow.glow()
+	_glow.glow()
 	
 	# Emit for 100ms
 	await get_tree().create_timer(0.1).timeout
@@ -71,3 +70,7 @@ func _on_body_entered(body: Node) -> void:
 	#_asp.play(0.0)
 	if body.has_method("bounce"):
 		body.bounce(self, last_velocity)
+
+
+func _on_pop_timer_timeout() -> void:
+	pop()
