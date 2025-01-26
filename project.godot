@@ -38,6 +38,7 @@ gdscript/warnings/shadowed_global_identifier=0
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="viewport"
+window/stretch/aspect="keep_width"
 window/stretch/scale=2.5
 
 [editor]
