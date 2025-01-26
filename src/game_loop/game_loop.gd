@@ -22,6 +22,8 @@ const SUCCESS_PERCENT_MIN = 0.6
 const TWO_STARS_PERCENT_MIN = 0.74
 const THREE_STARS_PERCENT_MIN = 0.85
 
+var computer_hit_woked_shing: bool = false
+
 # True when computer is playing.
 var computer_playing = false :
 	set(c):
@@ -35,19 +37,34 @@ var difficulty = 0.0
 
 
 func master_popper_popped():
-	print("Master popper popped")
+	print("Master popper popped. Computer:", computer_playing)
+	
+	var computer_was_player = computer_playing
+	
+	var woked_shing_event = NoteEvent.new(
+			0, "woked shing", true, false
+		)
 	
 	# If AI is recording, stop it and get ready for the player parts
-	_remove_computer_stuff()
-	
-	_music_recorder_player.stop()
-	_level_generator.stop_level()
-	_level_camera.target = _level_generator
+	if computer_playing:
+		computer_hit_woked_shing = true
+		_music_recorder_goal.record(woked_shing_event)
+		_remove_computer_stuff()
+	else:
+		_music_recorder_player.record(woked_shing_event)
+
 	_player_spawner.remove_real_player()
 	# Wait for master popper effect.
 	await get_tree().create_timer(5.0).timeout
-	# TODO: Swap this with comparison method once it works
-	retry_level()
+	if not computer_was_player:
+		if computer_hit_woked_shing:
+			_music_recorder_player.finish()
+			# TODO: Swap this with comparison method once it works
+		else:
+			_music_recorder_player.stop()
+			_level_generator.stop_level()
+			_level_camera.target = _level_generator
+			retry_level()
 
 
 func _remove_computer_stuff():
@@ -90,6 +107,7 @@ func retry_level_with_relisten():
 	_player_spawner.spawn_computer_player()
 	print("Showing the level, computer mode")
 	computer_playing = true
+	computer_hit_woked_shing = false
 	_level_generator.start_level()
 	await _music_recorder_goal.finished
 	_remove_computer_stuff()
@@ -112,8 +130,10 @@ func retry_level():
 	_player_spawner.spawn_real_player()
 	_level_camera.target = _player_spawner.real_player
 	_level_generator.start_level()
-	
 	await _music_recorder_player.finished
+	score_game()
+	
+func score_game():
 	print("Stopping level")
 	_level_generator.stop_level()
 	_player_spawner.remove_real_player()
@@ -162,11 +182,15 @@ func retry_level():
 
 	ScoreUI.instance.show_score(success_percentage, passed, stars, description)
 
-
+const USE_CONST_SEED = true
+const CONST_LEVEL_SEED = 4278744844
 var level_seed = 0
 func new_level():
 	# level_seed = 1539753758 # Hardcoded for bug repro
-	level_seed = rng.randi()
+	if USE_CONST_SEED:
+		level_seed = 4278744844
+	else:
+		level_seed = rng.randi()
 	print("Game loop initializing with seed %s and difficulty %s" % [level_seed, difficulty])
 	
 	retry_level_with_relisten()
