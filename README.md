@@ -16,6 +16,16 @@ yhee yooobublles?
 
 <p align="center"><img src="screenshots/screenshot.png"/></p>
 
+<p align="center"><img src="screenshots/screenshot16.png"/></p>
+
+<p align="center"><img src="screenshots/screenshot17.png"/></p>
+
+<p align="center"><img src="screenshots/screenshot12.png"/></p>
+
+<p align="center"><img src="screenshots/screenshot13.png"/></p>
+
+<p align="center"><img src="screenshots/screenshot15.png"/></p>
+
 ### Things
 Play at: <https://dmnk.co/bobapop/BobaPop.html>
 
