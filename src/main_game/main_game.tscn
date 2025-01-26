@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://l2et6w1bhtq6"]
+[gd_scene load_steps=16 format=3 uid="uid://l2et6w1bhtq6"]
 
 [ext_resource type="Script" path="res://src/main_game/main_game.gd" id="1_23jdi"]
 [ext_resource type="PackedScene" uid="uid://cephmiseqa2ro" path="res://src/game_loop/game_loop.tscn" id="2_jfs3o"]
@@ -8,6 +8,22 @@
 [ext_resource type="PackedScene" uid="uid://vomxg4q02xyc" path="res://src/player_spawner/player_spawner.tscn" id="6_q71dp"]
 [ext_resource type="PackedScene" uid="uid://b8a15c62h080w" path="res://src/score_ui/score_ui.tscn" id="7_o4dxf"]
 [ext_resource type="PackedScene" uid="uid://bqtj8bjhw64t8" path="res://src/note_ui/note_ui.tscn" id="8_mpkcm"]
+[ext_resource type="PackedScene" uid="uid://btf0iccai10qr" path="res://addons/versatile-mobile-joystick/joystick.tscn" id="9_icdvg"]
+[ext_resource type="Texture2D" uid="uid://b3rjj1bmqtiok" path="res://addons/versatile-mobile-joystick/default_textures/BaseJoystickTest.png" id="10_l0bp4"]
+[ext_resource type="Texture2D" uid="uid://dlgmq4q7t23o8" path="res://addons/versatile-mobile-joystick/default_textures/TipJoystickTest.png" id="11_lfp2v"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7hjgv"]
+radius = 8.2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_on8gc"]
+radius = 38.25
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7c36u"]
+size = Vector2(640, 360)
+
+[sub_resource type="Curve" id="Curve_an3qs"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
 
 [node name="MainGame" type="Node3D"]
 script = ExtResource("1_23jdi")
@@ -31,6 +47,16 @@ _level_camera = NodePath("../LevelCamera")
 [node name="ScoreUI" parent="." instance=ExtResource("7_o4dxf")]
 
 [node name="NoteUI" parent="." instance=ExtResource("8_mpkcm")]
+
+[node name="JoystickController" parent="." instance=ExtResource("9_icdvg")]
+position = Vector2(321, 180)
+base_texture = ExtResource("10_l0bp4")
+tip_texture = ExtResource("11_lfp2v")
+deadzone_circle = SubResource("CircleShape2D_7hjgv")
+tip_limit_circle = SubResource("CircleShape2D_on8gc")
+touch_detection_region = SubResource("RectangleShape2D_7c36u")
+strength_curve = SubResource("Curve_an3qs")
+visibility_mode = 1
 
 [connection signal="next_level" from="ScoreUI" to="GameLoop" method="_on_score_ui_next_level"]
 [connection signal="relisten" from="ScoreUI" to="GameLoop" method="_on_score_ui_relisten"]

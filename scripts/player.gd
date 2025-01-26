@@ -124,6 +124,11 @@ func handle_controls(delta):
 	input.x = Input.get_axis("move_left", "move_right")
 	input.z = Input.get_axis("move_forward", "move_back")
 	
+	if input.x == 0 and input.z == 0:
+		# JoystickController support
+		input.x = Input.get_axis("ui_left", "ui_right")
+		input.z = Input.get_axis("ui_up", "ui_down")
+	
 	if is_ai:
 		if rng.randf() < 0.1:
 			var dir = rng.randi_range(0, 4)
