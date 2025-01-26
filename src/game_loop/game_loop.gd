@@ -163,9 +163,7 @@ func score_game():
 	var description;
 	
 	var loss_msgs = [
-		"It’s grevar msg_rand = rng.randi();at to see you branching out of your comfort zone!",
 		"You truly are special",
-		"It’s great to see you branching out of your comfort zone!",
 		"what an attempt",
 		"win-adjascent",
 		"you are unwinning",
