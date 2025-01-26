@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://h634n2jrheym"]
+
+[ext_resource type="Script" path="res://src/tiles/tile_with_sound/tile_with_sound.gd" id="1_e15jw"]
+[ext_resource type="PackedScene" uid="uid://11iaw8c08wvs" path="res://src/glow_effect/glow_effect.tscn" id="4_6krdp"]
+
+[sub_resource type="Animation" id="Animation_qqsxc"]
+length = 0.001
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BounceAnim")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_whmeq"]
+resource_name = "bounce"
+length = 0.2
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BounceAnim")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.0333333, 1, 1.1, 1.1, 1.1, 0.2, 1, 1, 1, 1)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_scrrc"]
+_data = {
+"RESET": SubResource("Animation_qqsxc"),
+"bounce": SubResource("Animation_whmeq")
+}
+
+[node name="TileWithSound" type="StaticBody3D"]
+script = ExtResource("1_e15jw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_scrrc")
+}
+
+[node name="BounceAnim" type="Node3D" parent="."]
+
+[node name="GlowEffect" parent="." instance=ExtResource("4_6krdp")]

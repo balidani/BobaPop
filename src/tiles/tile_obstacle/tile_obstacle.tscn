@@ -1,57 +1,24 @@
-[gd_scene load_steps=9 format=3 uid="uid://cmd8l7xjwjon3"]
+[gd_scene load_steps=5 format=3 uid="uid://cmd8l7xjwjon3"]
 
-[ext_resource type="Script" path="res://src/tiles/tile_obstacle/tile_obstacle.gd" id="1_7k40a"]
 [ext_resource type="PackedScene" uid="uid://banltn2jgmglc" path="res://mesh/tile_default.glb" id="1_wnc5e"]
-[ext_resource type="Material" uid="uid://b0glkno6cjnve" path="res://src/tiles/tile_obstacle/tile_obstacle.tres" id="3_wr0l0"]
-[ext_resource type="PackedScene" uid="uid://11iaw8c08wvs" path="res://src/glow_effect/glow_effect.tscn" id="4_lvrb7"]
+[ext_resource type="PackedScene" uid="uid://h634n2jrheym" path="res://src/tiles/tile_with_sound/tile_with_sound.tscn" id="2_twsqx"]
+[ext_resource type="Material" uid="uid://b0glkno6cjnve" path="res://src/tiles/tile_with_sound/tile_color_material.tres" id="3_wr0l0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mm7nh"]
 size = Vector3(2, 2, 2)
 
-[sub_resource type="Animation" id="Animation_043sp"]
-length = 0.001
-tracks/0/type = "scale_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("tile_default")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 1.1, 1.1, 1.1)
+[node name="TileObstacle" type="Node3D"]
 
-[sub_resource type="Animation" id="Animation_1y3ov"]
-resource_name = "bounce"
-length = 0.5
-tracks/0/type = "scale_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("tile_default")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.1, 1, 1.1, 1.1, 1.1, 0.5, 1, 1, 1, 1)
+[node name="TileWithSound" parent="." node_paths=PackedStringArray("animate_node", "material_to_mesh") instance=ExtResource("2_twsqx")]
+animate_node = NodePath("../tile_default")
+material_to_mesh = NodePath("../tile_default/Cube_001")
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_fr4hk"]
-_data = {
-"RESET": SubResource("Animation_043sp"),
-"bounce": SubResource("Animation_1y3ov")
-}
-
-[node name="TileObstacle" type="StaticBody3D"]
-script = ExtResource("1_7k40a")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileWithSound"]
+shape = SubResource("BoxShape3D_mm7nh")
 
 [node name="tile_default" parent="." instance=ExtResource("1_wnc5e")]
-transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
 
 [node name="Cube_001" parent="tile_default" index="0"]
 material_override = ExtResource("3_wr0l0")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_mm7nh")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_fr4hk")
-}
-
-[node name="GlowEffect" parent="." instance=ExtResource("4_lvrb7")]
 
 [editable path="tile_default"]

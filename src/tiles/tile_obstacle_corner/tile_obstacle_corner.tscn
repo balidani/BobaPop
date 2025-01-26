@@ -1,58 +1,24 @@
-[gd_scene load_steps=9 format=3 uid="uid://dqc6kuajhvmiq"]
+[gd_scene load_steps=5 format=3 uid="uid://cornt1hh1g8cj"]
 
-[ext_resource type="Script" path="res://src/tiles/tile_obstacle_corner/tile_obstacle_corner.gd" id="1_a62p3"]
+[ext_resource type="PackedScene" uid="uid://h634n2jrheym" path="res://src/tiles/tile_with_sound/tile_with_sound.tscn" id="1_ehpb1"]
 [ext_resource type="PackedScene" uid="uid://b1armcs5w6j20" path="res://mesh/tile_corner.glb" id="2_ys2e1"]
-[ext_resource type="Material" uid="uid://b0glkno6cjnve" path="res://src/tiles/tile_obstacle/tile_obstacle.tres" id="3_u1a5v"]
-[ext_resource type="PackedScene" uid="uid://11iaw8c08wvs" path="res://src/glow_effect/glow_effect.tscn" id="4_vn0kq"]
+[ext_resource type="Material" uid="uid://b0glkno6cjnve" path="res://src/tiles/tile_with_sound/tile_color_material.tres" id="3_pqbpu"]
 
-[sub_resource type="Animation" id="Animation_qqsxc"]
-length = 0.001
-tracks/0/type = "scale_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Anim2")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1)
-
-[sub_resource type="Animation" id="Animation_whmeq"]
-resource_name = "bounce"
-length = 0.2
-tracks/0/type = "scale_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Anim2")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.0333333, 1, 1.1, 1.1, 1.1, 0.2, 1, 1, 1, 1)
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_scrrc"]
-_data = {
-"RESET": SubResource("Animation_qqsxc"),
-"bounce": SubResource("Animation_whmeq")
-}
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_g4r2y"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_nyub2"]
 points = PackedVector3Array(-0.762069, -0.860582, -0.984961, 0.962738, 0.802383, 0.893694, 0.990225, 0.799388, 0.859556, -0.79247, 0.921741, -0.923217, 0.899098, 0.862116, -0.955925, 0.899632, -0.955122, -0.864138, 0.798298, -0.92061, 0.825288, -0.883918, 0.825347, -0.825179, -0.82042, -0.92061, -0.793523, 0.798298, 0.92061, 0.825288, 0.989315, -0.829247, 0.79705, 1, -0.528059, -0.746645, 0.868579, 0.985831, -0.802369, 0.867893, -0.800266, -0.986449, -0.858382, 0.802839, -0.989283, 0.987695, 0.827975, -0.82964, 0.829952, -0.825347, 0.888789, -0.579003, -0.98579, -0.863775, 0.867749, -0.984829, 0.583242, 0.867749, 0.984829, 0.583242, -0.609325, 0.984929, -0.801494, -0.883918, -0.825347, -0.825179, 0.829952, 0.825347, 0.888789, 0.806222, 0.861663, -0.986321, 0.806878, -0.985725, -0.863905, 0.192825, 0.187207, -1, 0.987744, -0.827857, -0.829529, -0.858382, -0.802839, -0.989283, -0.82042, 0.92061, -0.793523, 0.89345, -0.825347, 0.920635, -0.915761, -0.856969, -0.888681, 0.191119, 0.98708, -0.865026)
 
 [node name="TileObstacleCorner" type="StaticBody3D"]
-script = ExtResource("1_a62p3")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_scrrc")
-}
+[node name="TileWithSound" parent="." node_paths=PackedStringArray("animate_node", "material_to_mesh") instance=ExtResource("1_ehpb1")]
+animate_node = NodePath("../tile_corner")
+material_to_mesh = NodePath("../tile_corner/Cube_006")
 
-[node name="Anim2" type="Node3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileWithSound"]
+shape = SubResource("ConvexPolygonShape3D_nyub2")
 
-[node name="tile_corner" parent="Anim2" instance=ExtResource("2_ys2e1")]
+[node name="tile_corner" parent="." instance=ExtResource("2_ys2e1")]
 
-[node name="Cube_006" parent="Anim2/tile_corner" index="0"]
-material_override = ExtResource("3_u1a5v")
+[node name="Cube_006" parent="tile_corner" index="0"]
+material_override = ExtResource("3_pqbpu")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-shape = SubResource("ConvexPolygonShape3D_g4r2y")
-
-[node name="GlowEffect" parent="." instance=ExtResource("4_vn0kq")]
-
-[editable path="Anim2/tile_corner"]
+[editable path="tile_corner"]

@@ -1,63 +1,32 @@
-[gd_scene load_steps=10 format=3 uid="uid://f5py7b8vgmej"]
+[gd_scene load_steps=7 format=3 uid="uid://3xadqtmpgx3w"]
 
 [ext_resource type="Script" path="res://src/tiles/tile_gift/tile_gift.gd" id="1_dfnfb"]
+[ext_resource type="PackedScene" uid="uid://h634n2jrheym" path="res://src/tiles/tile_with_sound/tile_with_sound.tscn" id="2_juvun"]
 [ext_resource type="PackedScene" uid="uid://cl8pv2qdpfsdh" path="res://mesh/present-a-cube.glb" id="2_myapl"]
-[ext_resource type="PackedScene" uid="uid://11iaw8c08wvs" path="res://src/glow_effect/glow_effect.tscn" id="4_4wada"]
 [ext_resource type="PackedScene" uid="uid://cbuv1lci0r82a" path="res://src/bubble_spawn/bubble_spawn.tscn" id="4_qcm61"]
-
-[sub_resource type="Animation" id="Animation_qqsxc"]
-length = 0.001
-tracks/0/type = "scale_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Anim2")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1)
-
-[sub_resource type="Animation" id="Animation_whmeq"]
-resource_name = "bounce"
-length = 0.2
-tracks/0/type = "scale_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Anim2")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.0333333, 1, 1.1, 1.1, 1.1, 0.2, 1, 1, 1, 1)
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_scrrc"]
-_data = {
-"RESET": SubResource("Animation_qqsxc"),
-"bounce": SubResource("Animation_whmeq")
-}
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sehwh"]
-albedo_color = Color(1, 0.0117647, 0.435294, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mm7nh"]
 size = Vector3(2, 2, 2)
 
-[node name="TileGift" type="StaticBody3D"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sehwh"]
+albedo_color = Color(1, 0.0117647, 0.435294, 1)
+
+[node name="TileGift" type="Node3D"]
 script = ExtResource("1_dfnfb")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_scrrc")
-}
+[node name="TileWithSound" parent="." node_paths=PackedStringArray("animate_node") instance=ExtResource("2_juvun")]
+animate_node = NodePath("../Present")
 
-[node name="Anim2" type="Node3D" parent="."]
-
-[node name="present-a-cube2" parent="Anim2" instance=ExtResource("2_myapl")]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, -1, 0)
-
-[node name="lid" parent="Anim2/present-a-cube2/present-a-cube" index="0"]
-material_override = SubResource("StandardMaterial3D_sehwh")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileWithSound"]
 shape = SubResource("BoxShape3D_mm7nh")
 
-[node name="GlowEffect" parent="." instance=ExtResource("4_4wada")]
+[node name="Present" type="Node3D" parent="."]
+
+[node name="present-a-cube2" parent="Present" instance=ExtResource("2_myapl")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, -1, 0)
+
+[node name="lid" parent="Present/present-a-cube2/present-a-cube" index="0"]
+material_override = SubResource("StandardMaterial3D_sehwh")
 
 [node name="BubbleSpawn" parent="." instance=ExtResource("4_qcm61")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, 0, 0)
@@ -71,4 +40,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2, 0,
 [node name="BubbleSpawn4" parent="." instance=ExtResource("4_qcm61")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 
-[editable path="Anim2/present-a-cube2"]
+[connection signal="bounced" from="TileWithSound" to="." method="_on_tile_with_sound_bounced"]
+
+[editable path="Present/present-a-cube2"]

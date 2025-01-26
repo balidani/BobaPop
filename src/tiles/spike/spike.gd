@@ -1,14 +1,10 @@
-extends StaticBody3D
+extends Node3D
 class_name Spike
 
 
-func bounce(_bubble : BouncyBubble, _last_velocity):
-	MusicRecorder.instance.play_note(
-		_bubble.current_note,
-		"bounce",
-	)
-	
-	if _bubble.immune != true:
-		_bubble.queue_free()
+func _on_tile_with_sound_bounced(bubble: BouncyBubble, last_velocity: Variant) -> void:
+	if bubble.immune != true:
+		# TODO: Bubble pop
+		bubble.queue_free()
 	else:
-		_bubble.immune = false
+		bubble.immune = false

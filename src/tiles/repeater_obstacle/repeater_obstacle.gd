@@ -1,13 +1,9 @@
-extends StaticBody3D
+extends Node3D
 class_name RepeaterObstacle
 
 
-@onready var _ap : AnimationPlayer = $AnimationPlayer
+const BouncyBubbleScene = preload("res://src/bubble_path/bubble_path.tscn")
 
-
-var BouncyBubbleScene = preload("res://src/bubble_path/bubble_path.tscn")
-
-var count = 0
 
 func spawn_bubble(incoming : Vector3, rot : float):
 	var bubble_instance : BouncyBubble = BouncyBubbleScene.instantiate() as BouncyBubble
@@ -29,14 +25,12 @@ func spawn_bubble(incoming : Vector3, rot : float):
 	# 
 	bubble_instance.global_transform.origin = spawn_position
 
-func bounce(_bubble : RigidBody3D, _last_velocity : Vector3):
-	_ap.play("bounce")
 
-	var incoming : Vector3 = _last_velocity.normalized()
+func _on_tile_with_sound_bounced(bubble: BouncyBubble, last_velocity: Variant) -> void:
+	var incoming : Vector3 = last_velocity.normalized()
 	
-	_bubble.queue_free()
+	# TODO: Bubble pop
+	bubble.queue_free()
 
-	if count < 100:
-		count += 1
-		spawn_bubble(-incoming, PI / 4)
-		spawn_bubble(-incoming, -PI / 4)
+	spawn_bubble(-incoming, PI / 4)
+	spawn_bubble(-incoming, -PI / 4)

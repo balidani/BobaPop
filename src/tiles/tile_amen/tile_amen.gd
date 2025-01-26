@@ -1,14 +1,15 @@
-extends StaticBody3D
+extends Node3D
 class_name TileAmen
 # Plays AmenBros
 
-@onready var _ap : AnimationPlayer = $AnimationPlayer
+
 @onready var _asp_dot_net: AudioStreamPlayer3D = $AmenPlayer3d
-@onready var _glow : GlowEffect = $GlowEffect
+
 
 static var playing : bool = false
 
-func bounce(_bubble: BouncyBubble, _last_velocity):
+
+func _on_tile_with_sound_bounced(_bubble: BouncyBubble, _last_velocity: Variant) -> void:
 	if playing:
 		_asp_dot_net.stop()
 		playing = false
@@ -19,6 +20,3 @@ func bounce(_bubble: BouncyBubble, _last_velocity):
 	MusicRecorder.instance.record(
 		NoteEvent.new(0, "amen", playing, not playing)
 	)
-
-	if LevelLighting.instance.dark_mode:
-		_glow.glow()
