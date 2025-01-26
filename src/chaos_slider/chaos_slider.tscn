@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://dd7i3sukpwn0m"]
+[gd_scene load_steps=3 format=3 uid="uid://dd7i3sukpwn0m"]
 
 [ext_resource type="Script" path="res://src/chaos_slider/chaos_slider.gd" id="1_3xcxb"]
+
+[sub_resource type="Theme" id="Theme_60k1v"]
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_outline_color = Color(0.298039, 0, 0.313726, 1)
+Label/constants/outline_size = 10
+Label/font_sizes/font_size = 18
 
 [node name="ChaosSlider" type="HBoxContainer"]
 alignment = 1
@@ -8,6 +14,7 @@ script = ExtResource("1_3xcxb")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
+theme = SubResource("Theme_60k1v")
 text = "Chaos"
 
 [node name="HSlider" type="HSlider" parent="."]
