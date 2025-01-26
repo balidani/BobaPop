@@ -54,14 +54,18 @@ func _ready():
 	# Always generate a 3x3.
 	for x in range(-1, 1 +1):
 		for z in range(-1, 1 +1):
-			_maybe_add_tile(SEGMENT.instantiate(), Vector3i(x, 0, z))
+			var segment = SEGMENT.instantiate()
+			segment.rng.seed = rng.seed # Segments are seeded additionally by their position.
+			_maybe_add_tile(segment, Vector3i(x, 0, z))
 	
 	# Floors.
-	for _iterations in range(15):
+	for _iterations in range(4):
 		var turtle_origin = Vector3i(0, 0, 0)
 		var turtle_direction = Vector3i(0, 0, 0)
-		for _turtle in range(4):
-			_maybe_add_tile(SEGMENT.instantiate(), turtle_origin)
+		for _turtle in range(8):
+			var segment = SEGMENT.instantiate()
+			segment.rng.seed = rng.seed # Segments are seeded additionally by their position.
+			_maybe_add_tile(segment, turtle_origin)
 			
 			if rng.randf() < 0.8:
 				# New direction for the turtle.

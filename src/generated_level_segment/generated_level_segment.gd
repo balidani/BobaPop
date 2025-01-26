@@ -36,7 +36,7 @@ func _maybe_add_block(block, local : Vector3i, orientation : int):
 	add_child(block)
 
 func _ready():
-	rng.seed = str(global_position).hash()
+	rng.seed += str(global_position).hash()
 	
 	# Possibly generate a master popper block.
 	if rng.randf() < 0.1:
