@@ -51,3 +51,7 @@ func _on_credits_pressed() -> void:
 
 func _on_credits_back() -> void:
 	credits = false
+
+
+func _on_time_slider_time_changed(value: Variant) -> void:
+	Difficulty.time_value = value
