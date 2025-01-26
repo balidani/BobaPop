@@ -8,6 +8,7 @@ static var instance : NoteProgress
 @onready var _computer_notes : Control = $ComputerNotes
 @onready var _player_notes : Control = $PlayerNotes
 @onready var _note_spacing : Control = $NoteSpacing
+@onready var _rest_symbols : Control = $RestSymbols
 
 
 var player_recording = false :
@@ -26,7 +27,9 @@ var progress = 0.0 :
 		_progress_bar.position.x = size.x * p
 
 
+var _last_note_progress = 0.0
 func add_note(event : NoteEvent, recording_length):
+	_last_note_progress = progress
 	var p = event.timestamp / recording_length
 	var note = notes[event.type.hash() % len(notes)].instantiate()
 	
@@ -59,11 +62,27 @@ func reset():
 	progress = 0.0
 
 
+var _next_rest_progress = 0.125
+func _process(delta : float) -> void:
+	if progress < _next_rest_progress:
+		return
+		
+	_next_rest_progress = progress + 0.125
+		
+	if progress - _last_note_progress > 0.125:
+		_last_note_progress = progress
+		# Add a rest symbol
+		var rest_symbol = REST_SYMBOL.instantiate()
+		rest_symbol.position.x = size.x * progress
+		_rest_symbols.add_child(rest_symbol)
+
+
 # Called when the node enters the scene tree for the first time.
 var note_spacing_count = 1
 func _ready() -> void:
 	instance = self
 	progress = 0.0
+	_last_note_progress = -1.0
 	note_spacing_count = _note_spacing.get_child_count()
 
 
@@ -72,6 +91,9 @@ var notes = [
 	NOTE_SINGLE,
 	NOTE_SINGLE_LONG,
 ]
+
+
+const REST_SYMBOL = preload("res://src/rest_symbol/rest_symbol.tscn")
 
 
 const NOTE_DOUBLE = preload("res://src/note_double/note_double.tscn")

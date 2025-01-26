@@ -234,5 +234,4 @@ func collect_coin():
 
 
 func _on_ai_ray_cast_ai_try_shoot() -> void:
-	print("Ai shoow")
 	_try_shoot_bubble()

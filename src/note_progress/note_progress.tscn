@@ -40,3 +40,6 @@ anchors_preset = 0
 
 [node name="NoteSpacing" parent="." instance=ExtResource("2_8ngqi")]
 visible = false
+
+[node name="RestSymbols" type="Control" parent="."]
+anchors_preset = 0
