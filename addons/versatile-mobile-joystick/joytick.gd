@@ -2,6 +2,12 @@
 @icon("res://addons/versatile-mobile-joystick/JoystickNodeIcon.png")
 extends Node2D
 
+# How much movement is considered a click
+const MOVEMENT_SINCE_TOUCH_IS_CLICK: float = 0.1
+
+# If we got any movement since the touch started
+var movement_since_touch_start: float = 0.0
+
 # Joystick modes
 enum JoystickMode {
 	FIXED,      # Joystick doesn't move
@@ -112,8 +118,6 @@ var being_touched: bool = false:
 			if visibility_mode == VisibilityMode.WHEN_TOUCHED:
 				%Joystick.hide()
 
-# If we got any movement since the touch started
-var has_movement_since_touch_start: bool = false
 
 # Initial setup
 func _ready() -> void:
@@ -153,15 +157,8 @@ func _get_configuration_warnings() -> PackedStringArray:
 	return warnings
 
 func inject_space_bar():
-	var space_press_event = InputEventAction.new()
-	space_press_event.action = "jump"
-	space_press_event.pressed = true
-	Input.parse_input_event(space_press_event)
-
-	space_press_event = InputEventAction.new()
-	space_press_event.action = "jump"
-	space_press_event.pressed = false
-	Input.parse_input_event(space_press_event)
+	Input.action_press("jump")
+	Input.action_release("jump")
 
 # Check if point is inside touch detection region
 func _is_inside_touch_detector(pos: Vector2) -> bool:
@@ -189,13 +186,13 @@ func _input(event: InputEvent) -> void:
 			%Tip.global_position = %Base.global_position
 			_update_input_actions(Vector2.ZERO)
 			
-			print("Done. move:", has_movement_since_touch_start)
-			if not has_movement_since_touch_start:
+			print("Done. move:", movement_since_touch_start)
+			if movement_since_touch_start < MOVEMENT_SINCE_TOUCH_IS_CLICK:
 				# We have a "button press"
 				print("Sending jmp")
 				inject_space_bar()
 				
-			has_movement_since_touch_start = false
+			movement_since_touch_start = 0.0
 	
 	elif event is InputEventScreenDrag:
 		print("Drag", event)
@@ -236,7 +233,7 @@ func _move_and_calculate(event: InputEvent) -> void:
 		output.x = direction.x * strength_curve.sample(normalized_distance)
 		output.y = direction.y * strength_curve.sample(normalized_distance)
 	
-		has_movement_since_touch_start = true
+		movement_since_touch_start += normalized_distance
 	
 	_update_input_actions(output)
 
