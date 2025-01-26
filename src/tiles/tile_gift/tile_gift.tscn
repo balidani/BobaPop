@@ -15,6 +15,7 @@ albedo_color = Color(1, 0.0117647, 0.435294, 1)
 script = ExtResource("1_dfnfb")
 
 [node name="TileWithSound" parent="." node_paths=PackedStringArray("animate_node") instance=ExtResource("2_juvun")]
+interesting_for_ai = true
 animate_node = NodePath("../Present")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TileWithSound"]

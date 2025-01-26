@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dco8ehxksr1ur"]
+
+[ext_resource type="Script" path="res://src/ai_ray_cast/ai_ray_cast.gd" id="1_mkp02"]
+
+[node name="AIRayCast" type="Node3D"]
+script = ExtResource("1_mkp02")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -4.37114e-08, 0.5, 0.5)
+target_position = Vector3(0, 0, -100)
+collision_mask = 2

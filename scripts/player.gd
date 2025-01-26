@@ -144,10 +144,9 @@ func handle_controls(delta):
 				last_fake_input = Vector3(0, 0, -1)
 		input = last_fake_input
 	
-		if t > _next_ai_shot_t and fake_shots < 3 + GameLoop.instance.difficulty * 1.0:
+		if fake_shots < 3 + GameLoop.instance.difficulty * 1.0:
+			_try_shoot_bubble()
 			fake_shots += 1
-			_next_ai_shot_t = t + (2.0 + rng.randf() * 4.0)
-			shoot_bubble()
 
 	input = input.rotated(Vector3.UP, view.rotation.y)
 	
@@ -170,6 +169,14 @@ func handle_gravity(delta):
 
 		jump_single = true
 		gravity = 0
+
+
+# Rate limited
+func _try_shoot_bubble():
+	if not is_ai: return
+	if t < _next_ai_shot_t: return
+	_next_ai_shot_t = t + (1.0 + rng.randf() * 2.0)
+	shoot_bubble()
 
 
 func shoot_bubble():
@@ -224,3 +231,8 @@ func collect_coin():
 	coins += 1
 
 	coin_collected.emit(coins)
+
+
+func _on_ai_ray_cast_ai_try_shoot() -> void:
+	print("Ai shoow")
+	_try_shoot_bubble()

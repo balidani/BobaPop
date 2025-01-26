@@ -5,6 +5,10 @@ class_name TileWithSound
 signal bounced(bubble: BouncyBubble, last_velocity)
 
 
+# This node is "interesting" for the AI, and AI tries to hit it.
+@export var interesting_for_ai : bool
+
+
 # This node gets the bounce animation. Resets scale, if that's a problem
 # wrap your thing into a Node3D first.
 @export var animate_node : Node3D :

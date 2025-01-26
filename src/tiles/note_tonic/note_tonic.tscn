@@ -9,6 +9,7 @@ size = Vector3(2, 2, 2)
 [node name="NoteTonic" type="Node3D"]
 
 [node name="TileWithSound" parent="." node_paths=PackedStringArray("animate_node") instance=ExtResource("1_1ikud")]
+interesting_for_ai = true
 animate_node = NodePath("../Node3D")
 note = 0
 

@@ -48,7 +48,8 @@ func _ready():
 			var random_orientation = rng.randi() % 4
 			_maybe_add_block(MASTER_POPPER.instantiate(), random_pos, random_orientation)
 	
-	if true:
+	# Possibly generate a special block.
+	if rng.randf() < 0.8:
 		# TODO: Rotate the special blocks.
 		var random_pos = Vector3i(rng.randi_range(-1, 1) * 2, 2, rng.randi_range(-1, 1) * 2)
 		var random_orientation = rng.randi() % 4
@@ -65,23 +66,35 @@ func _ready():
 		
 		_maybe_add_block(instance, random_pos, random_orientation)
 	
+	# Make a repeater
+	if rng.randf() < 0.3:
+		var random_pos = Vector3i(rng.randi_range(-1, 1) * 2, 2, rng.randi_range(-1, 1) * 2)
+		var random_orientation = rng.randi() % 4
+		_maybe_add_block(REPEATER.instantiate(), random_pos, random_orientation)
+	
 	# Make a gift
-	if rng.randf() < 0.1:
+	if rng.randf() < 0.2:
 		var random_pos = Vector3i(rng.randi_range(-1, 1) * 2, 2, rng.randi_range(-1, 1) * 2)
 		var random_orientation = rng.randi() % 4
 		_maybe_add_block(GIFT.instantiate(), random_pos, random_orientation)
 	
 	# Make spikes
-	if rng.randf() < 0.1:
+	if rng.randf() < 0.2:
 		var random_pos = Vector3i(rng.randi_range(-1, 1) * 2, 2, rng.randi_range(-1, 1) * 2)
 		var random_orientation = rng.randi() % 4
 		_maybe_add_block(SPIKE.instantiate(), random_pos, random_orientation)
 	
 	# Make black hole
-	if rng.randf() < 0.1:
+	if rng.randf() < 0.2:
 		var random_pos = Vector3i(rng.randi_range(-1, 1) * 2, 2, rng.randi_range(-1, 1) * 2)
 		var random_orientation = rng.randi() % 4
-		_maybe_add_block(SPIKE.instantiate(), random_pos, random_orientation)
+		_maybe_add_block(BLACK_HOLE.instantiate(), random_pos, random_orientation)
+	
+	# Make amen hole
+	if rng.randf() < 0.2:
+		var random_pos = Vector3i(rng.randi_range(-1, 1) * 2, 2, rng.randi_range(-1, 1) * 2)
+		var random_orientation = rng.randi() % 4
+		_maybe_add_block(AMEN.instantiate(), random_pos, random_orientation)
 	
 	# Pepper in a few obstacles.
 	for _o in range(rng.randi_range(1, 3)):
@@ -92,12 +105,6 @@ func _ready():
 			_maybe_add_block(OBSTACLE.instantiate(), random_pos, random_orientation)
 		else:
 			_maybe_add_block(OBSTACLE_CORNER.instantiate(), random_pos, random_orientation)
-	
-		# Pepper in a few obstacles.
-	for _o in range(rng.randi_range(1, 3)):
-		var random_pos = Vector3i(rng.randi_range(-1, 1) * 2, 2, rng.randi_range(-1, 1) * 2)
-		var random_orientation = rng.randi() % 4
-		_maybe_add_block(AMEN.instantiate(), random_pos, random_orientation)
 	
 	
 	# Mark edges

@@ -11,6 +11,7 @@ size = Vector3(2, 2, 2)
 script = ExtResource("1_dujgb")
 
 [node name="TileWithSound" parent="." node_paths=PackedStringArray("animate_node", "material_to_mesh") instance=ExtResource("1_nbxo3")]
+interesting_for_ai = true
 animate_node = NodePath("../Node3D")
 material_to_mesh = NodePath("../Node3D/weapon-turret2/weapon-turret/barrel")
 
