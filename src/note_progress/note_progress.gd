@@ -4,11 +4,13 @@ class_name NoteProgress
 static var instance : NoteProgress
 
 
-@onready var _progress_bar : Control = $ColorRect
+@onready var _progress_bar : Control = $ProgressBar
 @onready var _computer_notes : Control = $ComputerNotes
 @onready var _player_notes : Control = $PlayerNotes
 @onready var _note_spacing : Control = $NoteSpacing
-@onready var _rest_symbols : Control = $RestSymbols
+
+@onready var _computer_rest_symbols : Control = $ComputerRestSymbols
+@onready var _player_rest_symbols : Control = $PlayerRestSymbols
 
 
 var player_recording = false :
@@ -32,12 +34,6 @@ func add_note(event : NoteEvent, recording_length):
 	_last_note_progress = progress
 	var p = event.timestamp / recording_length
 	var note = notes[event.type.hash() % len(notes)].instantiate()
-	
-	# Change colour based on whether the computer is playing or not.
-	if GameLoop.instance.computer_playing:
-		note.self_modulate = Color(1.0, 0.0, 0.5)
-	else:
-		note.self_modulate = Color(0.0, 1.0, 1.0)
 	
 	note.position = _note_spacing.position
 	note.position.x = size.x * p
@@ -64,6 +60,16 @@ func reset():
 
 var _next_rest_progress = 0.125
 func _process(delta : float) -> void:
+	# Change colour based on whether the computer is playing or not.
+	if GameLoop.instance.computer_playing:
+		_computer_notes.modulate = Color(1.0, 0.0, 0.5)
+		_computer_rest_symbols.modulate = Color(1.0, 0.0, 0.5)
+		_progress_bar.modulate = Color(1.0, 0.0, 0.5)
+	else:
+		_player_notes.modulate = Color(0.0, 1.0, 1.0)
+		_player_rest_symbols.modulate = Color(1.0, 0.0, 0.5)
+		_progress_bar.modulate = Color(0.0, 1.0, 1.0)
+	
 	if progress < _next_rest_progress:
 		return
 		
@@ -74,7 +80,11 @@ func _process(delta : float) -> void:
 		# Add a rest symbol
 		var rest_symbol = REST_SYMBOL.instantiate()
 		rest_symbol.position.x = size.x * progress
-		_rest_symbols.add_child(rest_symbol)
+		
+		if GameLoop.instance.computer_playing:
+			_computer_rest_symbols.add_child(rest_symbol)
+		else:
+			_player_rest_symbols.add_child(rest_symbol)
 
 
 # Called when the node enters the scene tree for the first time.

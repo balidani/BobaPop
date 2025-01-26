@@ -3,14 +3,14 @@
 [ext_resource type="Script" path="res://src/clef/clef.gd" id="1_1nh8r"]
 [ext_resource type="Texture2D" uid="uid://3ea5ne0x68dn" path="res://sprites/sheet_noclef.png" id="1_ouiut"]
 [ext_resource type="PackedScene" uid="uid://w38jxx7hhrnn" path="res://src/note_progress/note_progress.tscn" id="2_8bqw8"]
-[ext_resource type="Texture2D" uid="uid://bwscuviskw5ge" path="res://sprites/clef.png" id="3_878ih"]
+[ext_resource type="Texture2D" uid="uid://o0c0wa0o1u1m" path="res://sprites/clef_bw.png" id="4_7skio"]
 
 [sub_resource type="Animation" id="Animation_3qgtr"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect2/TextureRect3:rotation")
+tracks/0/path = NodePath("TextureRect2/ClefThingy:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -27,7 +27,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect2/TextureRect3:rotation")
+tracks/0/path = NodePath("TextureRect2/ClefThingy:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -76,12 +76,12 @@ expand_mode = 2
 
 [node name="NoteProgress" parent="TextureRect2" instance=ExtResource("2_8bqw8")]
 layout_mode = 0
-offset_left = 38.0
+offset_left = 42.0
 offset_top = 10.0
-offset_right = 390.125
+offset_right = 390.0
 offset_bottom = 42.0
 
-[node name="TextureRect3" type="TextureRect" parent="TextureRect2"]
+[node name="ClefThingy" type="TextureRect" parent="TextureRect2"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.141
@@ -93,6 +93,6 @@ offset_right = 39.0
 offset_bottom = 27.0
 grow_vertical = 2
 pivot_offset = Vector2(15, 29)
-texture = ExtResource("3_878ih")
+texture = ExtResource("4_7skio")
 expand_mode = 3
 stretch_mode = 5

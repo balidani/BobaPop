@@ -22,7 +22,12 @@ const TWO_STARS_PERCENT_MIN = 0.74
 const THREE_STARS_PERCENT_MIN = 0.85
 
 # True when computer is playing.
-var computer_playing = false
+var computer_playing = false :
+	set(c):
+		if computer_playing == c: return
+		computer_playing = c
+		computer_playing_changed.emit(c)
+signal computer_playing_changed
 
 # Keeps increasing without bounds.
 var difficulty = 0.0
@@ -129,6 +134,9 @@ func retry_level():
 	
 	# TODO: Make description change based on score
 	var description = "You're a Musical Maestro!"
+	if success_percentage == 0.0:
+		description = "Flawless"
+	
 	ScoreUI.instance.show_score(success_percentage, passed, stars, description)
 
 
