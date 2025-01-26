@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bwjs3m2cjjq5k"]
+[gd_scene load_steps=6 format=3 uid="uid://bwjs3m2cjjq5k"]
 
+[ext_resource type="Script" path="res://src/tiles/tile_2w2l/tile_2w_2l.gd" id="1_vf5uv"]
 [ext_resource type="Material" uid="uid://dnjxjmvqtp4k6" path="res://src/tiles/tile_default/ground.tres" id="2_ok40i"]
 [ext_resource type="PackedScene" uid="uid://bs34yxjtnf70m" path="res://mesh/tile_2w2l.glb" id="3_3y0ny"]
 
@@ -10,6 +11,7 @@ size = Vector3(4, 2, 4)
 size = Vector3(3.9, 1.9, 3.9)
 
 [node name="Tile2w2l" type="StaticBody3D"]
+script = ExtResource("1_vf5uv")
 
 [node name="tile_2w2l" parent="." instance=ExtResource("3_3y0ny")]
 
