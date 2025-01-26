@@ -169,6 +169,7 @@ func handle_gravity(delta):
 		jump_single = true
 		gravity = 0
 
+
 func shoot_bubble():
 	# Start the player recording, if not already.
 	if GameLoop.instance:

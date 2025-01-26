@@ -29,10 +29,7 @@ func master_popper_popped():
 	print("Master popper popped")
 	
 	# If AI is recording, stop it and get ready for the player parts
-	_music_recorder_goal.finish()
-	_player_spawner.remove_computer_player()
-	computer_playing = false
-	_level_lighting.dark_mode = false
+	_remove_computer_stuff()
 	
 	_music_recorder_player.stop()
 	_level_generator.stop_level()
@@ -42,6 +39,13 @@ func master_popper_popped():
 	await get_tree().create_timer(5.0).timeout
 	# TODO: Swap this with comparison method once it works
 	retry_level()
+
+
+func _remove_computer_stuff():
+	_music_recorder_goal.finish()
+	_player_spawner.remove_computer_player()
+	computer_playing = false
+	_level_lighting.dark_mode = false
 
 
 func player_recording_start():
@@ -72,6 +76,7 @@ func retry_level_with_relisten():
 	_level_lighting.dark_mode = true
 	_level_generator.start_level()
 	await _music_recorder_goal.finished
+	_remove_computer_stuff()
 	
 	retry_level()
 
