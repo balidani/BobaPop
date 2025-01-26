@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cc2b37he1eyd8"]
 
 [ext_resource type="PackedScene" uid="uid://dgrnpp5nhjc8k" path="res://mesh/tile_2w1l.glb" id="1_meqej"]
-[ext_resource type="Material" uid="uid://b6evibqitolpc" path="res://src/tile_default/ground.tres" id="2_vj1xh"]
+[ext_resource type="Material" uid="uid://b6evibqitolpc" path="res://src/tiles/tile_default/ground.tres" id="2_vj1xh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mm7nh"]
 size = Vector3(4, 2, 2)
