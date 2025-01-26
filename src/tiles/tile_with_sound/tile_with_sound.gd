@@ -24,6 +24,8 @@ signal bounced(bubble: BouncyBubble, last_velocity)
 
 # If set, change the effect in the synth when hit
 @export var effect_changer : bool = false
+# If set, change the instrument in the synth when hit
+@export var instrument_changer : bool = false
 
 # This node gets a material.
 @export var material_to_mesh : MeshInstance3D :
@@ -89,7 +91,9 @@ func bounce(bubble: BouncyBubble, last_velocity):
 		gdsion_note = 80  # G#
 	
 	if effect_changer:
-		MusicRecorder.instance.change_effet(10)
+		MusicRecorder.instance.change_effet()
+	elif instrument_changer:
+		MusicRecorder.instance.change_instrument()
 	else:
 		MusicRecorder.instance.play_note(
 			gdsion_note, # TODO: More fun

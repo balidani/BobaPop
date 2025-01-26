@@ -215,7 +215,7 @@ func play_note(note: int) -> void:
 	# All instruments, except drumkits.
 	if _active_instrument.type == 0:
 		_active_instrument.update_filter()
-		_driver.note_on(note, _active_instrument.voice)
+		_driver.note_on(note, _active_instrument.voice, 1000)
 
 	# Drumkits.
 	else:

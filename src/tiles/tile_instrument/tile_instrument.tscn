@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cq28t4rfq1fa6"]
+
+[ext_resource type="PackedScene" uid="uid://h634n2jrheym" path="res://src/tiles/tile_with_sound/tile_with_sound.tscn" id="1_xjnll"]
+[ext_resource type="PackedScene" uid="uid://c8aideghtbdr7" path="res://models/dance-machine.glb" id="2_ioj2p"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mm7nh"]
+size = Vector3(2, 2, 2)
+
+[node name="TileInstrument" type="Node3D"]
+
+[node name="TileWithSound" parent="." node_paths=PackedStringArray("animate_node") instance=ExtResource("1_xjnll")]
+animate_node = NodePath("../Node3D")
+instrument_changer = true
+note = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileWithSound"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("BoxShape3D_mm7nh")
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="dance-machine2" parent="Node3D" instance=ExtResource("2_ioj2p")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -1, 0)

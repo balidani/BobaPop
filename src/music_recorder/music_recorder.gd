@@ -43,12 +43,23 @@ func play_note(pitch: int, type: String="bounce"):
 		)
 	)
 
-func change_effet(pitch: int):
+func change_effet():
 	Synth.player.change_filter(1)
 	record(
 		NoteEvent.new(
-			pitch,
+			0,
 			"effect",
+			false,
+			false,
+		)
+	)
+
+func change_instrument():
+	Synth.player.change_instrument(1)
+	record(
+		NoteEvent.new(
+			0,
+			"instrument",
 			false,
 			false,
 		)
