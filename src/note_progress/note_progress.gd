@@ -64,17 +64,17 @@ var _next_rest_progress = 0.125
 func _process(delta : float) -> void:
 	# Change colour based on whether the computer is playing or not.
 	
-	var computer_hue = 0.1
+	var computer_hue = 0.0
 	var player_hue = 0.8
 	
 	if GameLoop.instance.computer_playing:
-		_computer_notes.modulate = Color.from_hsv(computer_hue, 1.0, 0.9)
-		_computer_rest_symbols.modulate = Color.from_hsv(computer_hue, 1.0, 0.9)
-		_progress_bar.modulate = Color.from_hsv(computer_hue, 1.0, 0.8)
+		_computer_notes.modulate = Color.from_hsv(computer_hue, 1.0, 1.0)
+		_computer_rest_symbols.modulate = Color.from_hsv(computer_hue, 1.0, 1.0)
+		_progress_bar.modulate = Color.from_hsv(computer_hue, 1.0, 1.0)
 	else:
 		_player_notes.modulate = Color.from_hsv(player_hue, 1.0, 1.0)
-		_player_rest_symbols.modulate = Color.from_hsv(player_hue + 0.1, 1.0, 0.7)
-		_progress_bar.modulate =  Color.from_hsv(player_hue, 1.0, 0.9)
+		_player_rest_symbols.modulate = Color.from_hsv(player_hue + 0.1, 1.0, 1.0)
+		_progress_bar.modulate =  Color.from_hsv(player_hue, 1.0, 1.0)
 	
 	if progress < _next_rest_progress:
 		return
