@@ -11,7 +11,15 @@ func reset():
 		c.queue_free()
 
 
+var t = 0.0
+var _next_spawn_t = 0.0
+func _process(delta: float) -> void:
+	t += delta
+
+
 func spawn():
+	if t < _next_spawn_t: return
+	_next_spawn_t = t + 0.5 # Rate limit to 500ms
 	_container.add_child(BUBBLE.instantiate())
 
 
