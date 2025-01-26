@@ -1,8 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://c51yjmr0bxj6"]
+[gd_scene load_steps=3 format=3 uid="uid://c51yjmr0bxj6"]
 
 [ext_resource type="Script" path="res://src/level_generator/level_generator.gd" id="1_86t30"]
+[ext_resource type="AudioStream" uid="uid://cdni1ul21ukug" path="res://sounds/music/candyland_dreams.mp3" id="2_tujp1"]
 
 [node name="LevelGenerator" type="Node3D"]
 script = ExtResource("1_86t30")
 
 [node name="Level" type="Node3D" parent="."]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_tujp1")
+volume_db = -16.515
+mix_target = 1
+parameters/looping = true

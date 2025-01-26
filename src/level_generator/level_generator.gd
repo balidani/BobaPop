@@ -3,6 +3,7 @@ class_name LevelGenerator
 
 
 @onready var _container : Node3D = $Level
+@onready var _bg_music : AudioStreamPlayer = $BackgroundMusic
 @export var use_generated_level = false
 
 
@@ -26,12 +27,16 @@ func reset_real_level():
 
 # Stop the level simulation.
 func stop_level():
+	if _bg_music != null:
+		_bg_music.stop()
 	# Do not process anything until start() is called.
 	_container.process_mode = Node.PROCESS_MODE_DISABLED
 
 
 # Start the level simulation.
 func start_level():
+	_bg_music.play()
+	_bg_music.seek(0)
 	_container.process_mode = Node.PROCESS_MODE_INHERIT
 
 
@@ -52,7 +57,7 @@ func reset():
 func generate_new_level():
 	print("generate_new_level with seed %s" % rng.seed)
 	reset()
-		
+
 	if use_generated_level:
 		var generated_level : GeneratedLevel = GENERATED_LEVEL.instantiate()
 		generated_level.rng.seed = rng.seed
