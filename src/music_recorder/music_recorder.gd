@@ -134,6 +134,11 @@ static func rate_recording_similarity( \
 		Similarity score (0.0 to 1.0).
 	"""
 	# assert(!goal_recording.is_empty()) # Silence is a valid form of music
+	if goal_recording.is_empty():
+		if user_recording.is_empty():
+			return 1.0
+		print("No recording")
+		return 0.0
 	if user_recording.is_empty():
 		print("No recording")
 		return 0.0

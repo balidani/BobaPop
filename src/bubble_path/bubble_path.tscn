@@ -35,6 +35,7 @@ albedo_texture = ExtResource("5_i7va4")
 lifetime_randomness = 0.15
 angle_min = -720.0
 angle_max = 642.6
+inherit_velocity_ratio = -1.355
 direction = Vector3(0, 0, 0)
 spread = 180.0
 initial_velocity_min = 11.69
@@ -69,6 +70,7 @@ pitch_scale = 0.8
 
 [node name="sparcs" type="GPUParticles3D" parent="."]
 material_override = SubResource("StandardMaterial3D_r55r4")
+emitting = false
 amount = 11
 lifetime = 0.18
 explosiveness = 1.0
