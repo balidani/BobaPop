@@ -1,0 +1,65 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwjq2cj72ofwl"]
+
+[ext_resource type="PackedScene" uid="uid://cfhf4biii3tmu" path="res://src/note_single/note_single.tscn" id="1_i1rsi"]
+
+[node name="NoteSpacing" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NoteSingle8" parent="." instance=ExtResource("1_i1rsi")]
+layout_mode = 1
+offset_left = -13.0
+offset_top = -29.0
+offset_right = -23.0
+offset_bottom = -39.0
+
+[node name="NoteSingle" parent="." instance=ExtResource("1_i1rsi")]
+layout_mode = 1
+offset_left = -13.0
+offset_top = -22.0
+offset_right = -23.0
+offset_bottom = -32.0
+
+[node name="NoteSingle2" parent="." instance=ExtResource("1_i1rsi")]
+layout_mode = 1
+offset_left = -13.0
+offset_top = -14.0
+offset_right = -23.0
+offset_bottom = -24.0
+
+[node name="NoteSingle3" parent="." instance=ExtResource("1_i1rsi")]
+layout_mode = 1
+offset_left = -13.0
+offset_top = -7.0
+offset_right = -23.0
+offset_bottom = -17.0
+
+[node name="NoteSingle4" parent="." instance=ExtResource("1_i1rsi")]
+layout_mode = 1
+offset_left = -13.0
+offset_top = 1.0
+offset_right = -23.0
+offset_bottom = -9.0
+
+[node name="NoteSingle5" parent="." instance=ExtResource("1_i1rsi")]
+layout_mode = 1
+offset_left = -13.0
+offset_top = 8.0
+offset_right = -23.0
+offset_bottom = -2.0
+
+[node name="NoteSingle6" parent="." instance=ExtResource("1_i1rsi")]
+layout_mode = 1
+offset_left = -13.0
+offset_top = 15.0
+offset_right = -23.0
+offset_bottom = 5.0
+
+[node name="NoteSingle7" parent="." instance=ExtResource("1_i1rsi")]
+layout_mode = 1
+offset_left = -13.0
+offset_top = 22.0
+offset_right = -23.0
+offset_bottom = 12.0

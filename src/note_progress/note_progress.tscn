@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://w38jxx7hhrnn"]
+[gd_scene load_steps=3 format=3 uid="uid://w38jxx7hhrnn"]
 
 [ext_resource type="Script" path="res://src/note_progress/note_progress.gd" id="1_8rs6d"]
+[ext_resource type="PackedScene" uid="uid://dwjq2cj72ofwl" path="res://src/clef/note_spacing.tscn" id="2_8ngqi"]
 
 [node name="NoteProgress" type="ColorRect"]
 offset_right = 364.0
@@ -25,3 +26,6 @@ anchors_preset = 0
 
 [node name="PlayerNotes" type="Control" parent="."]
 anchors_preset = 0
+
+[node name="NoteSpacing" parent="." instance=ExtResource("2_8ngqi")]
+visible = false

@@ -7,6 +7,7 @@ static var instance : NoteProgress
 @onready var _progress_bar : Control = $ColorRect
 @onready var _computer_notes : Control = $ComputerNotes
 @onready var _player_notes : Control = $PlayerNotes
+@onready var _note_spacing : Control = $NoteSpacing
 
 
 var player_recording = false :
@@ -36,10 +37,9 @@ func add_note(event : NoteEvent, recording_length):
 	else:
 		note.self_modulate = Color(0.0, 1.0, 1.0)
 	
-	note.position = _progress_bar.position
+	note.position = _note_spacing.position
 	note.position.x = size.x * p
-	var y = ((float(event.pitch) - 10.0) / 125.0) * size.y
-	note.position.y += y
+	note.position.y = _note_spacing.get_child(int(event.pitch) % note_spacing_count).position.y
 	
 	if GameLoop.instance.computer_playing:
 		_computer_notes.add_child(note)
@@ -61,9 +61,11 @@ func reset():
 
 
 # Called when the node enters the scene tree for the first time.
+var note_spacing_count = 1
 func _ready() -> void:
 	instance = self
 	progress = 0.0
+	note_spacing_count = _note_spacing.get_child_count()
 
 
 const NOTE_DOUBLE = preload("res://src/note_double/note_double.tscn")
