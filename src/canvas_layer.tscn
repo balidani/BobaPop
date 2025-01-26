@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://duoovp28b7bi2"]
+
+[ext_resource type="Script" path="res://src/canvas_layer.gd" id="1_s3jsu"]
+[ext_resource type="Shader" path="res://src/main_game/camera_shader.gdshader" id="2_syy5x"]
+[ext_resource type="Script" path="res://src/gray_vignette.gd" id="3_2beby"]
+[ext_resource type="Shader" path="res://src/main_game/saturated_rainbow_shader.gdshader" id="4_8twh1"]
+[ext_resource type="Script" path="res://src/saturated_rainbow.gd" id="5_laxv8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7vfy5"]
+shader = ExtResource("2_syy5x")
+shader_parameter/outerRadius = 1.0
+shader_parameter/MainAlpha = 0.0
+shader_parameter/vignette_color = Color(0.227451, 0.231373, 0.235294, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e66xi"]
+shader = ExtResource("4_8twh1")
+shader_parameter/strength = 0.0
+shader_parameter/speed = 0.5
+shader_parameter/angle = 0.0
+
+[node name="canvas_layer" type="CanvasLayer" node_paths=PackedStringArray("_gray_vignette", "_saturated_rainbow")]
+script = ExtResource("1_s3jsu")
+_gray_vignette = NodePath("gray-vignette")
+_saturated_rainbow = NodePath("saturated-rainbow")
+
+[node name="gray-vignette" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_7vfy5")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("3_2beby")
+
+[node name="saturated-rainbow" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_e66xi")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("5_laxv8")

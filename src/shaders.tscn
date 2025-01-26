@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://cu42jc0vats3t"]
+
+[ext_resource type="Shader" path="res://src/main_game/camera_shader.gdshader" id="1_xvf85"]
+[ext_resource type="Shader" path="res://src/main_game/saturated_rainbow_shader.gdshader" id="2_fj04d"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7vfy5"]
+shader = ExtResource("1_xvf85")
+shader_parameter/outerRadius = 1.0
+shader_parameter/MainAlpha = 0.0
+shader_parameter/vignette_color = Color(0.227451, 0.231373, 0.235294, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e66xi"]
+shader = ExtResource("2_fj04d")
+shader_parameter/strength = 0.0
+shader_parameter/speed = 0.5
+shader_parameter/angle = 0.0
+
+[node name="shaders" type="CanvasLayer"]
+
+[node name="gray-vignette" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_7vfy5")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="saturated-rainbow" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_e66xi")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
