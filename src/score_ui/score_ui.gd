@@ -32,7 +32,6 @@ func bam():
 
 # Stars from 0 to 3
 func show_score(score: float, passed: bool, stars: int, desc: String):
-	_control.visible = true
 	_score.text = "%0.1f%% - %d" % [score * 100, stars]
 	_description.text = str(desc)
 	
