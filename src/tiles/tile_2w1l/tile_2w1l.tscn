@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cc2b37he1eyd8"]
+[gd_scene load_steps=6 format=3 uid="uid://cc2b37he1eyd8"]
 
 [ext_resource type="PackedScene" uid="uid://dgrnpp5nhjc8k" path="res://mesh/tile_2w1l.glb" id="1_meqej"]
-[ext_resource type="Material" uid="uid://b6evibqitolpc" path="res://src/tiles/tile_default/ground.tres" id="2_vj1xh"]
+[ext_resource type="Script" path="res://src/tiles/tile_2w1l/tile_2w_1l.gd" id="1_nxe57"]
+[ext_resource type="Material" uid="uid://dnjxjmvqtp4k6" path="res://src/tiles/tile_default/ground.tres" id="2_vj1xh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mm7nh"]
 size = Vector3(4, 2, 2)
@@ -10,6 +11,7 @@ size = Vector3(4, 2, 2)
 size = Vector3(3.9, 1.9, 1.9)
 
 [node name="Tile2w1l" type="StaticBody3D"]
+script = ExtResource("1_nxe57")
 
 [node name="tile_2w1l" parent="." instance=ExtResource("1_meqej")]
 
