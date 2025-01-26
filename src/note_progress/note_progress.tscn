@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://w38jxx7hhrnn"]
+[gd_scene load_steps=4 format=3 uid="uid://w38jxx7hhrnn"]
 
 [ext_resource type="Script" path="res://src/note_progress/note_progress.gd" id="1_8rs6d"]
 [ext_resource type="PackedScene" uid="uid://dwjq2cj72ofwl" path="res://src/clef/note_spacing.tscn" id="2_8ngqi"]
+[ext_resource type="Texture2D" uid="uid://gc1orhiwqsfe" path="res://sprites/progress_slider.png" id="2_cmhcy"]
 
 [node name="NoteProgress" type="ColorRect"]
 offset_right = 364.0
@@ -19,7 +20,17 @@ offset_top = -30.0
 offset_right = 4.0
 offset_bottom = 30.0
 grow_vertical = 2
-color = Color(1, 0, 1, 1)
+color = Color(1, 0, 1, 0)
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect"]
+layout_mode = 0
+offset_left = -29.0
+offset_top = -13.5
+offset_right = 33.0
+offset_bottom = 72.5
+texture = ExtResource("2_cmhcy")
+expand_mode = 4
+stretch_mode = 5
 
 [node name="ComputerNotes" type="Control" parent="."]
 anchors_preset = 0

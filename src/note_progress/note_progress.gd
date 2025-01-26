@@ -28,8 +28,7 @@ var progress = 0.0 :
 
 func add_note(event : NoteEvent, recording_length):
 	var p = event.timestamp / recording_length
-	# TODO: Note pitch
-	var note = NOTE_SINGLE.instantiate()
+	var note = notes[event.type.hash() % len(notes)].instantiate()
 	
 	# Change colour based on whether the computer is playing or not.
 	if GameLoop.instance.computer_playing:
@@ -66,6 +65,13 @@ func _ready() -> void:
 	instance = self
 	progress = 0.0
 	note_spacing_count = _note_spacing.get_child_count()
+
+
+var notes = [
+	NOTE_DOUBLE,
+	NOTE_SINGLE,
+	NOTE_SINGLE_LONG,
+]
 
 
 const NOTE_DOUBLE = preload("res://src/note_double/note_double.tscn")
