@@ -4,8 +4,13 @@ class_name RepeaterObstacle
 
 const BouncyBubbleScene = preload("res://src/bubble_path/bubble_path.tscn")
 
+var t = 0.0
+var _next_spawn_t = 0.0
+func _process(delta: float) -> void:
+	t += delta
 
 func spawn_bubble(incoming : Vector3, rot : float):
+	
 	var bubble_instance : BouncyBubble = BouncyBubbleScene.instantiate() as BouncyBubble
 	
 	var yrot = atan2(incoming.x, incoming.z)
@@ -27,6 +32,9 @@ func spawn_bubble(incoming : Vector3, rot : float):
 
 
 func _on_tile_with_sound_bounced(bubble: BouncyBubble, last_velocity: Variant) -> void:
+	if t < _next_spawn_t: return
+	_next_spawn_t = t + 0.5 # Rate limit to 500ms
+
 	var incoming : Vector3 = last_velocity.normalized()
 	
 	bubble.pop()
