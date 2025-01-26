@@ -30,9 +30,8 @@ var background_energy_target = 0.5
 
 
 func _process(delta):
-	# _light.light_energy = lerpf(_light.light_energy, light_energy_target, delta * 4.0)
-	# _env.background_energy_multiplier = lerpf(_env.background_energy_multiplier, background_energy_target, delta * 4.0)
-	pass
+	_light.light_energy = lerpf(_light.light_energy, light_energy_target, delta * 4.0)
+	_env.background_energy_multiplier = lerpf(_env.background_energy_multiplier, background_energy_target, delta * 4.0)
 
 
 func new_level():
