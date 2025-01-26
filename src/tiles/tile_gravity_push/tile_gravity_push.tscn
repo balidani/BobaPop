@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://3tr6t5jrm6uk"]
+
+[ext_resource type="Script" path="res://src/tiles/tile_gravity_push/tile_gravity_push.gd" id="1_1syl7"]
+[ext_resource type="PackedScene" uid="uid://h634n2jrheym" path="res://src/tiles/tile_with_sound/tile_with_sound.tscn" id="1_vpwjq"]
+[ext_resource type="PackedScene" uid="uid://dtd7xdxc247mt" path="res://mesh/snowflake-b.glb" id="2_uvx6n"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mm7nh"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_85eea"]
+albedo_color = Color(0.3061, 0.546022, 0.83505, 1)
+metallic = 1.0
+roughness = 0.2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bdk1d"]
+radius = 6.0
+
+[node name="TileGravityPush" type="Node3D"]
+script = ExtResource("1_1syl7")
+
+[node name="TileWithSound" parent="." node_paths=PackedStringArray("animate_node") instance=ExtResource("1_vpwjq")]
+animate_node = NodePath("../Anim")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TileWithSound"]
+shape = SubResource("BoxShape3D_mm7nh")
+
+[node name="Anim" type="Node3D" parent="."]
+
+[node name="Rotate" type="Node3D" parent="Anim"]
+
+[node name="snowflake-b2" parent="Anim/Rotate" instance=ExtResource("2_uvx6n")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0.923661, -1, 0)
+
+[node name="snowflake-b" parent="Anim/Rotate/snowflake-b2" index="0"]
+material_override = SubResource("StandardMaterial3D_85eea")
+
+[node name="PushArea3D" type="Area3D" parent="."]
+gravity_space_override = 1
+gravity_point = true
+gravity_point_center = Vector3(0, 0, 0)
+gravity_direction = Vector3(0, 0, 0)
+gravity = -20.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PushArea3D"]
+shape = SubResource("SphereShape3D_bdk1d")
+
+[editable path="Anim/Rotate/snowflake-b2"]

@@ -50,7 +50,6 @@ damping_max = 27.336
 axis_lock_linear_y = true
 mass = 0.5
 physics_material_override = ExtResource("1_a8rah")
-gravity_scale = 0.0
 contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_pll3f")

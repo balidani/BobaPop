@@ -15,6 +15,7 @@ const TILE_3W3L = preload("res://src/tiles/tile_3w3l/tile_3w3l.tscn")
 const BLACK_HOLE = preload("res://src/tiles/black_hole/black_hole.tscn")
 const AMEN = preload("res://src/tiles/tile_amen/tile_amen.tscn")
 const GIFT = preload("res://src/tiles/tile_gift/tile_gift.tscn")
+const GRAVITY_PUSH = preload("res://src/tiles/tile_gravity_push/tile_gravity_push.tscn")
 
 
 var rng = RandomNumberGenerator.new()
@@ -68,6 +69,12 @@ func _ready():
 			# instance = TILE_INSTRUMENT.instantiate()
 		
 		_maybe_add_block(instance, random_pos, random_orientation)
+	
+	# Make gravity thing
+	if rng.randf() < 0.2:
+		var random_pos = Vector3i(rng.randi_range(-1, 1) * 2, 2, rng.randi_range(-1, 1) * 2)
+		var random_orientation = rng.randi() % 4
+		_maybe_add_block(GRAVITY_PUSH.instantiate(), random_pos, random_orientation)
 	
 	# Make a repeater
 	if rng.randf() < 0.3:
