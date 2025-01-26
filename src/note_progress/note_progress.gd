@@ -57,6 +57,10 @@ func reset():
 		c.queue_free()
 	for c in _player_notes.get_children():
 		c.queue_free()
+	for c in _computer_rest_symbols.get_children():
+		c.queue_free()
+	for c in _player_rest_symbols.get_children():
+		c.queue_free()
 	progress = 0.0
 
 
