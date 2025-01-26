@@ -11,6 +11,16 @@ roughness = 0.6
 
 [sub_resource type="SphereMesh" id="SphereMesh_lqu70"]
 
+[sub_resource type="Animation" id="Animation_v8aaa"]
+length = 0.001
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+
 [sub_resource type="Animation" id="Animation_wy2dk"]
 resource_name = "effect"
 length = 5.0
@@ -21,16 +31,6 @@ tracks/0/path = NodePath("MeshInstance3D")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 5, 1, 10, 10, 10)
-
-[sub_resource type="Animation" id="Animation_v8aaa"]
-length = 0.001
-tracks/0/type = "scale_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_peo5q"]
 _data = {

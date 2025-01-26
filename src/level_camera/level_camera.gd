@@ -1,7 +1,6 @@
 extends Node3D
 class_name LevelCamera
 
-
 @export var target : Node :
 	set(t):
 		target = t

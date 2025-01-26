@@ -11,7 +11,6 @@ const NOP = {}
 @onready var _asp : AudioStreamPlayer3D = $AudioStreamPlayer3D
 @onready var _glow : GlowEffect = $GlowEffect
 
-
 var last_velocity: Vector3 = Vector3.ZERO
 var can_collide : bool = false
 var immune : bool = false

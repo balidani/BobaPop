@@ -15,6 +15,7 @@ static var instance : GameLoop
 @export var _level_lighting : LevelLighting
 @export var _player_spawner : PlayerSpawner
 
+
 const MUSIC_RECORDING_DURATION_S = 5.0
 
 const SUCCESS_PERCENT_MIN = 0.6
@@ -67,6 +68,11 @@ func computer_recording_start():
 
 
 func retry_level_with_relisten():
+	var gray : ShaderMaterial = shader_canvas.inst._gray_vignette.material
+	gray.set_shader_parameter("MainAlpha", 0.0)
+	var rainbow : ShaderMaterial = shader_canvas.inst._saturated_rainbow.material
+	rainbow.set_shader_parameter("strength", 0.0)
+		
 	_level_camera.target = null
 	NoteUI.singleton.reset()
 	_level_generator.reset()
@@ -132,11 +138,28 @@ func retry_level():
 		passed = false
 
 	
-	# TODO: Make description change based on score
-	var description = "You're a Musical Maestro!"
-	if success_percentage == 0.0:
-		description = "Flawless"
+	var description;
 	
+	var loss_msgs = [
+		"It’s grevar msg_rand = rng.randi();at to see you branching out of your comfort zone!",
+		"You truly are special",
+		"It’s great to see you branching out of your comfort zone!",
+		"what an attempt",
+		"win-adjascent",
+		"you are unwinning",
+		"I admire your enthusiasm.",
+		"So close to being sparkly!",
+	]
+	if success_percentage == 0.0:
+		var msg_rand = rng.randi() % loss_msgs.size();
+		description = loss_msgs[msg_rand]
+		var mat : ShaderMaterial = shader_canvas.inst._gray_vignette.material
+		mat.set_shader_parameter("MainAlpha", 0.4)
+	else:
+		description = "flawless!"
+		var mat : ShaderMaterial = shader_canvas.inst._saturated_rainbow.material
+		mat.set_shader_parameter("strength", 0.3)
+
 	ScoreUI.instance.show_score(success_percentage, passed, stars, description)
 
 
@@ -147,7 +170,6 @@ func new_level():
 	print("Game loop initializing with seed %s and difficulty %s" % [level_seed, difficulty])
 	
 	retry_level_with_relisten()
-
 
 var rng = RandomNumberGenerator.new()
 
