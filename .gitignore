@@ -1,6 +1,7 @@
 # Godot 4+ specific ignores
 .godot/
 .vscode/
+.idea/
 third_party/gdsion
 .DS_Store
 exports

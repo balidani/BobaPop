@@ -96,6 +96,7 @@ enum VisibilityMode {
 ## Links the joystick's downward direction to this input action in the project settings.
 @export var down_movement: String = "ui_down"
 
+
 # Touch state management
 var being_touched: bool = false:
 	set(value):
@@ -110,6 +111,9 @@ var being_touched: bool = false:
 		else:
 			if visibility_mode == VisibilityMode.WHEN_TOUCHED:
 				%Joystick.hide()
+
+# If we got any movement since the touch started
+var has_movement_since_touch_start: bool = false
 
 # Initial setup
 func _ready() -> void:
@@ -148,6 +152,17 @@ func _get_configuration_warnings() -> PackedStringArray:
 			warnings.append("Please define %s" % key)
 	return warnings
 
+func inject_space_bar():
+	var space_press_event = InputEventAction.new()
+	space_press_event.action = "jump"
+	space_press_event.pressed = true
+	Input.parse_input_event(space_press_event)
+
+	space_press_event = InputEventAction.new()
+	space_press_event.action = "jump"
+	space_press_event.pressed = false
+	Input.parse_input_event(space_press_event)
+
 # Check if point is inside touch detection region
 func _is_inside_touch_detector(pos: Vector2) -> bool:
 	var rect := touch_detection_region.get_rect()
@@ -157,6 +172,7 @@ func _is_inside_touch_detector(pos: Vector2) -> bool:
 # Touch input processing
 func _input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch:
+		print(event)
 		# Touch start
 		%TouchIndicator.global_position = event.position
 		if event.pressed:
@@ -172,8 +188,17 @@ func _input(event: InputEvent) -> void:
 			%Touch.disabled = true
 			%Tip.global_position = %Base.global_position
 			_update_input_actions(Vector2.ZERO)
+			
+			print("Done. move:", has_movement_since_touch_start)
+			if not has_movement_since_touch_start:
+				# We have a "button press"
+				print("Sending jmp")
+				inject_space_bar()
+				
+			has_movement_since_touch_start = false
 	
 	elif event is InputEventScreenDrag:
+		print("Drag", event)
 		# Touch drag
 		%TouchIndicator.global_position = event.position
 		if _is_inside_touch_detector(event.position):
@@ -210,6 +235,9 @@ func _move_and_calculate(event: InputEvent) -> void:
 	if normalized_distance > 0:
 		output.x = direction.x * strength_curve.sample(normalized_distance)
 		output.y = direction.y * strength_curve.sample(normalized_distance)
+	
+		has_movement_since_touch_start = true
+	
 	_update_input_actions(output)
 
 # Update input actions based on movement

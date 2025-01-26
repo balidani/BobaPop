@@ -128,6 +128,8 @@ func handle_controls(delta):
 		# JoystickController support
 		input.x = Input.get_axis("ui_left", "ui_right")
 		input.z = Input.get_axis("ui_up", "ui_down")
+		if input.x != 0 or input.y != 0:
+			print("tick", input)
 	
 	if is_ai:
 		if rng.randf() < 0.1:
