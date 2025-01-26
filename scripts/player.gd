@@ -73,7 +73,7 @@ func _physics_process(delta):
 	# Falling/respawning
 
 	if position.y < -10:
-		get_tree().reload_current_scene()
+		GameLoop.instance.retry_level()
 
 	# Animation for scale (jumping and landing)
 

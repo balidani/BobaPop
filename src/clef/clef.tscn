@@ -5,6 +5,21 @@
 [ext_resource type="PackedScene" uid="uid://w38jxx7hhrnn" path="res://src/note_progress/note_progress.tscn" id="2_8bqw8"]
 [ext_resource type="Texture2D" uid="uid://bwscuviskw5ge" path="res://sprites/clef.png" id="3_878ih"]
 
+[sub_resource type="Animation" id="Animation_3qgtr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect2/TextureRect3:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
 [sub_resource type="Animation" id="Animation_re02g"]
 resource_name = "clef_anim"
 length = 0.4
@@ -20,21 +35,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [-0.0698132, 0.0698132, -0.0698132]
-}
-
-[sub_resource type="Animation" id="Animation_3qgtr"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect2/TextureRect3:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rql63"]

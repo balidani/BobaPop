@@ -54,6 +54,7 @@ func retry_level():
 	_level_generator.reset_real_level()
 	print("Spawning the real player")
 	_player_spawner.spawn_real_player()
+	_level_camera.target = _player_spawner.real_player
 	_level_generator.start_level()
 	
 	await _music_recorder_player.finished
