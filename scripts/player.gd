@@ -154,12 +154,10 @@ func handle_controls(delta):
 		input = input.normalized()
 	movement_velocity = input * movement_speed * delta
 
-	# Jumping
-
+	# Shoot bubble with player input
 	if Input.is_action_just_pressed("jump") and not is_ai:
 		shoot_bubble()
-		#if jump_single or jump_double:
-			#jump()
+
 
 # Handle gravity
 

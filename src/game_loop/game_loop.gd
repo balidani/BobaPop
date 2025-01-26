@@ -120,6 +120,7 @@ func retry_level():
 var level_seed = 0
 func new_level():
 	level_seed = rng.randi()
+	print("Game loop initializing with seed %s" % level_seed)
 	
 	retry_level_with_relisten()
 
@@ -154,12 +155,6 @@ func _ready():
 		breakpoint
 		return
 	instance = self
-	
-	var custom_seed = null
-	if custom_seed == null:
-		randomize()
-		custom_seed = randi()
-	print("Game loop initializing with seed %s" % custom_seed)
 	
 	# Wait for everything to be ready.
 	# TODO: This should be called in _ready() of a parent node.
