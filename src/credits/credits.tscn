@@ -1,0 +1,151 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjovxiehmxboq"]
+
+[ext_resource type="Script" path="res://src/credits/credits.gd" id="1_ceatv"]
+[ext_resource type="PackedScene" uid="uid://baxalna5x1h17" path="res://src/fun_label/fun_label.tscn" id="2_kc5rt"]
+
+[sub_resource type="Theme" id="Theme_thina"]
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_outline_color = Color(0.298039, 0, 0.313726, 1)
+Label/constants/outline_size = 10
+Label/font_sizes/font_size = 18
+
+[node name="Credits" type="Control"]
+custom_minimum_size = Vector2(100, 150)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ceatv")
+
+[node name="Control3" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_thina")
+
+[node name="Label" type="Label" parent="Control3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -217.0
+offset_top = 34.0
+offset_right = -12.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.244229
+theme_override_font_sizes/font_size = 13
+text = "Game assets by Kenney"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Control3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 24.0
+offset_top = -98.0
+offset_right = 229.0
+offset_bottom = -72.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.174693
+theme_override_font_sizes/font_size = 13
+text = "Synth by GDSiON"
+horizontal_alignment = 1
+
+[node name="Credits" type="Control" parent="."]
+custom_minimum_size = Vector2(400, 250)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -125.0
+offset_right = 200.0
+offset_bottom = 125.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_thina")
+
+[node name="FunLabel" parent="Credits" instance=ExtResource("2_kc5rt")]
+layout_mode = 0
+
+[node name="FunLabel5" parent="Credits" instance=ExtResource("2_kc5rt")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -31.0
+offset_right = 31.0
+offset_bottom = 26.0
+grow_horizontal = 2
+text = "Credits"
+
+[node name="FunLabel2" parent="Credits" instance=ExtResource("2_kc5rt")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -94.0
+offset_right = 0.0
+offset_bottom = 26.0
+grow_horizontal = 0
+text = "domenukk"
+
+[node name="FunLabel3" parent="Credits" instance=ExtResource("2_kc5rt")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+offset_right = 70.0
+offset_bottom = 0.0
+grow_vertical = 0
+text = "balidani"
+
+[node name="FunLabel4" parent="Credits" instance=ExtResource("2_kc5rt")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -83.0
+offset_top = -26.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "whendrik"
+
+[node name="Back" type="Button" parent="Credits"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -17.0
+offset_top = -24.0
+offset_right = 17.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 11
+text = "Back"
+
+[connection signal="pressed" from="Credits/Back" to="." method="_on_back_pressed"]

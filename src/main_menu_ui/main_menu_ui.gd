@@ -6,6 +6,17 @@ signal play_button_pressed
 signal free_play_button_pressed
 
 
+@onready var _main : Control = $Main
+@onready var _credits : Control = $Credits
+
+
+var credits = false :
+	set(c):
+		credits = c
+		_main.visible = !c
+		_credits.visible = c
+
+
 @onready var _ap : AnimationPlayer = $AnimationPlayer
 
 
@@ -28,3 +39,15 @@ func _on_chaos_slider_chaos_changed(value: Variant) -> void:
 
 func _on_free_play_pressed() -> void:
 	free_play_button_pressed.emit()
+
+
+func _on_credits_pressed() -> void:
+	credits = true
+
+
+func _on_credits_back() -> void:
+	credits = false
+
+
+func _on_time_slider_time_changed(value: Variant) -> void:
+	Difficulty.time_value = value

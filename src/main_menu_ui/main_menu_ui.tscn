@@ -1,17 +1,12 @@
 [gd_scene load_steps=11 format=3 uid="uid://dv8psq042rwo4"]
 
 [ext_resource type="Script" path="res://src/main_menu_ui/main_menu_ui.gd" id="1_0cp5y"]
-[ext_resource type="PackedScene" uid="uid://baxalna5x1h17" path="res://src/fun_label/fun_label.tscn" id="2_ou4u1"]
 [ext_resource type="Texture2D" uid="uid://djxwduby451m6" path="res://splash-transparent.png" id="2_y63jx"]
 [ext_resource type="Texture2D" uid="uid://7fwwd4eiwro1" path="res://splash-screen-musli.png" id="3_uicg6"]
 [ext_resource type="Texture2D" uid="uid://i3ah4mid1dw6" path="res://cute_eyes.png" id="4_5ctxx"]
+[ext_resource type="PackedScene" uid="uid://cjovxiehmxboq" path="res://src/credits/credits.tscn" id="4_ubtk5"]
 [ext_resource type="PackedScene" uid="uid://dd7i3sukpwn0m" path="res://src/chaos_slider/chaos_slider.tscn" id="6_x5b6b"]
-
-[sub_resource type="Theme" id="Theme_thina"]
-Label/colors/font_color = Color(1, 1, 1, 1)
-Label/colors/font_outline_color = Color(0.298039, 0, 0.313726, 1)
-Label/constants/outline_size = 10
-Label/font_sizes/font_size = 18
+[ext_resource type="PackedScene" uid="uid://dkjdxcfos1e1g" path="res://src/time_slider/time_slider.tscn" id="7_xsj2t"]
 
 [sub_resource type="Animation" id="Animation_ow1ib"]
 length = 0.001
@@ -197,118 +192,95 @@ _data = {
 [node name="MainMenuUI" type="Control"]
 custom_minimum_size = Vector2(100, 150)
 layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -75.0
-offset_right = 50.0
-offset_bottom = 75.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0cp5y")
 
-[node name="Credits" type="Control" parent="."]
-custom_minimum_size = Vector2(375, 200)
+[node name="Main" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -187.0
-offset_top = -112.0
-offset_right = 188.0
-offset_bottom = 88.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_thina")
 
-[node name="FunLabel" parent="Credits" instance=ExtResource("2_ou4u1")]
-layout_mode = 0
-
-[node name="FunLabel2" parent="Credits" instance=ExtResource("2_ou4u1")]
+[node name="VBoxContainer" type="VBoxContainer" parent="Main"]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -94.0
-offset_right = 0.0
-offset_bottom = 26.0
-grow_horizontal = 0
-text = "domenukk"
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -70.0
+offset_top = 7.0
+offset_right = 116.0
+offset_bottom = 63.0
+grow_horizontal = 2
+scale = Vector2(0.75, 0.75)
 
-[node name="FunLabel3" parent="Credits" instance=ExtResource("2_ou4u1")]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -26.0
-offset_right = 70.0
-offset_bottom = 0.0
-grow_vertical = 0
-text = "balidani"
+[node name="TimeSlider" parent="Main/VBoxContainer" instance=ExtResource("7_xsj2t")]
+layout_mode = 2
 
-[node name="FunLabel4" parent="Credits" instance=ExtResource("2_ou4u1")]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -83.0
-offset_top = -26.0
-offset_right = 0.0
-offset_bottom = 0.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "whendrik"
+[node name="ChaosSlider" parent="Main/VBoxContainer" instance=ExtResource("6_x5b6b")]
+layout_mode = 2
 
-[node name="Control" type="Control" parent="Credits"]
+[node name="Control2" type="VBoxContainer" parent="Main"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = 8.985
-offset_right = 20.0
-offset_bottom = 48.985
+offset_left = -102.0
+offset_top = -31.0
+offset_right = 106.0
+offset_bottom = 22.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Label" type="Label" parent="Credits/Control"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Main/Control2"]
+layout_mode = 2
+alignment = 1
+
+[node name="Play" type="Button" parent="Main/Control2/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Play"
+
+[node name="FreePlay" type="Button" parent="Main/Control2/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Free Play"
+
+[node name="Credits" type="Button" parent="Main/Control2/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Credits"
+
+[node name="Quit" type="Button" parent="Main/Control2/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Don't play"
+
+[node name="Credits" parent="." instance=ExtResource("4_ubtk5")]
+visible = false
+layout_mode = 1
+
+[node name="Control" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -102.5
-offset_top = -13.0
-offset_right = 102.5
-offset_bottom = 13.0
+offset_left = -20.0
+offset_top = -55.0
+offset_right = 20.0
+offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 13
-text = "Game assets by Kenney
-Synth by GDSiON"
-horizontal_alignment = 1
-
-[node name="Control" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_top = -39.67
-offset_right = 20.0
-offset_bottom = 0.330002
-grow_horizontal = 2
-scale = Vector2(1.5, 1.5)
+scale = Vector2(1.25, 1.25)
 
 [node name="bobapop" type="TextureRect" parent="Control"]
 custom_minimum_size = Vector2(100, 100)
@@ -361,48 +333,15 @@ texture = ExtResource("4_5ctxx")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Control2" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -74.0
-offset_top = -31.0
-offset_right = 78.0
-offset_bottom = 22.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="ChaosSlider" parent="Control2" instance=ExtResource("6_x5b6b")]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Control2"]
-layout_mode = 2
-alignment = 1
-
-[node name="Play" type="Button" parent="Control2/HBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 11
-text = "Play"
-
-[node name="FreePlay" type="Button" parent="Control2/HBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 11
-text = "Free Play"
-
-[node name="Quit" type="Button" parent="Control2/HBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 11
-text = "Don't play"
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_d0xp1")
 }
 
-[connection signal="chaos_changed" from="Control2/ChaosSlider" to="." method="_on_chaos_slider_chaos_changed"]
-[connection signal="pressed" from="Control2/HBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="Control2/HBoxContainer/FreePlay" to="." method="_on_free_play_pressed"]
-[connection signal="pressed" from="Control2/HBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="time_changed" from="Main/VBoxContainer/TimeSlider" to="." method="_on_time_slider_time_changed"]
+[connection signal="chaos_changed" from="Main/VBoxContainer/ChaosSlider" to="." method="_on_chaos_slider_chaos_changed"]
+[connection signal="pressed" from="Main/Control2/HBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Main/Control2/HBoxContainer/FreePlay" to="." method="_on_free_play_pressed"]
+[connection signal="pressed" from="Main/Control2/HBoxContainer/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="Main/Control2/HBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="back" from="Credits" to="." method="_on_credits_back"]

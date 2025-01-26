@@ -21,8 +21,6 @@ static var instance : GameLoop
 const USE_CONST_SEED = false
 const CONST_LEVEL_SEED = 0
 
-const MUSIC_RECORDING_DURATION_S = 5.0
-
 const SUCCESS_PERCENT_MIN = 0.6
 const TWO_STARS_PERCENT_MIN = 0.74
 const THREE_STARS_PERCENT_MIN = 0.85
@@ -82,13 +80,13 @@ func _remove_computer_stuff():
 func player_recording_start():
 	if _music_recorder_player.is_recording: return
 	print("Starting the player recording")
-	_music_recorder_player.start(MUSIC_RECORDING_DURATION_S)
+	_music_recorder_player.start(Difficulty.time_value)
 
 
 func computer_recording_start():
 	if _music_recorder_goal.is_recording: return
 	print("Starting the computer recording")
-	_music_recorder_goal.start(MUSIC_RECORDING_DURATION_S)
+	_music_recorder_goal.start(Difficulty.time_value)
 
 
 func retry_level_with_relisten():
@@ -148,7 +146,7 @@ func retry_level():
 			print("Free play: Reset the recorder")
 			_music_recorder_player.stop()
 			NoteProgress.instance.reset_player_notes()
-			_music_recorder_player.start(MUSIC_RECORDING_DURATION_S)
+			_music_recorder_player.start(Difficulty.time_value)
 			await _music_recorder_player.finished
 	
 func score_game():
