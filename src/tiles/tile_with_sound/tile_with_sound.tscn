@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://h634n2jrheym"]
+[gd_scene load_steps=7 format=3 uid="uid://h634n2jrheym"]
 
 [ext_resource type="Script" path="res://src/tiles/tile_with_sound/tile_with_sound.gd" id="1_e15jw"]
 [ext_resource type="PackedScene" uid="uid://11iaw8c08wvs" path="res://src/glow_effect/glow_effect.tscn" id="4_6krdp"]
@@ -30,6 +30,9 @@ _data = {
 "bounce": SubResource("Animation_whmeq")
 }
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_45dkp"]
+size = Vector3(2.1, 2.1, 2.1)
+
 [node name="TileWithSound" type="StaticBody3D"]
 collision_layer = 3
 script = ExtResource("1_e15jw")
@@ -42,3 +45,10 @@ libraries = {
 [node name="BounceAnim" type="Node3D" parent="."]
 
 [node name="GlowEffect" parent="." instance=ExtResource("4_6krdp")]
+
+[node name="HintArea3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HintArea3D"]
+shape = SubResource("BoxShape3D_45dkp")
+
+[connection signal="body_entered" from="HintArea3D" to="." method="_on_hint_area_3d_body_entered"]

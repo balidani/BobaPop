@@ -74,6 +74,23 @@ func give_material_to_mesh(mesh : MeshInstance3D):
 	mesh.material_override = _maybe_generate_note_material(note)
 
 
+func player_bump():
+	_ap.play("bounce")
+	
+	var gdsion_note = 69  # A
+	if note == 1:
+		gdsion_note = 73  # C#, we're in A major
+	elif note == 2:
+		gdsion_note = 76  # E
+	elif note == 3:
+		gdsion_note = 80  # G#
+	
+	Synth.player.play_note(gdsion_note)
+	
+	if LevelLighting.instance.dark_mode:
+		_glow.glow()
+
+
 func bounce(bubble: BouncyBubble, last_velocity):
 	_ap.play("bounce")
 
@@ -115,3 +132,9 @@ const COLORS = 4
 
 
 const MATERIAL = preload("res://src/tiles/tile_with_sound/tile_color_material.tres")
+
+
+func _on_hint_area_3d_body_entered(body: Node3D) -> void:
+	if not body.get_meta("player", false): return
+	# Player bumped, show hint
+	player_bump()
