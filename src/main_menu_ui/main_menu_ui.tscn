@@ -1,9 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://dv8psq042rwo4"]
+[gd_scene load_steps=9 format=3 uid="uid://dv8psq042rwo4"]
 
 [ext_resource type="Script" path="res://src/main_menu_ui/main_menu_ui.gd" id="1_0cp5y"]
 [ext_resource type="Texture2D" uid="uid://djxwduby451m6" path="res://splash-transparent.png" id="2_y63jx"]
 [ext_resource type="Texture2D" uid="uid://7fwwd4eiwro1" path="res://splash-screen-musli.png" id="3_uicg6"]
 [ext_resource type="Texture2D" uid="uid://i3ah4mid1dw6" path="res://cute_eyes.png" id="4_5ctxx"]
+
+[sub_resource type="Theme" id="Theme_thina"]
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_outline_color = Color(0.298039, 0, 0.313726, 1)
+Label/constants/outline_size = 10
+Label/font_sizes/font_size = 18
 
 [sub_resource type="Animation" id="Animation_ow1ib"]
 length = 0.001
@@ -202,6 +208,92 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0cp5y")
 
+[node name="Credits" type="Control" parent="."]
+custom_minimum_size = Vector2(350, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -100.0
+offset_right = 150.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_thina")
+
+[node name="Label" type="Label" parent="Credits"]
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 23.0
+text = "ilm"
+
+[node name="Label2" type="Label" parent="Credits"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -56.0
+offset_bottom = 26.0
+grow_horizontal = 0
+text = "domenukk"
+
+[node name="Label3" type="Label" parent="Credits"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 63.0
+grow_vertical = 0
+text = "balidani"
+
+[node name="Label4" type="Label" parent="Credits"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -74.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "whendrik"
+
+[node name="Control" type="Control" parent="Credits"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = 8.985
+offset_right = 20.0
+offset_bottom = 48.985
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="Credits/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -102.5
+offset_top = -13.0
+offset_right = 102.5
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 13
+text = "Game assets by Kenney"
+horizontal_alignment = 1
+
 [node name="Control" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 5
@@ -255,10 +347,10 @@ anchor_left = 0.5
 anchor_top = 0.614
 anchor_right = 0.5
 anchor_bottom = 0.614
-offset_left = 15.0
-offset_top = 30.44
-offset_right = 64.0071
-offset_bottom = 50.44
+offset_left = 44.0
+offset_top = 33.44
+offset_right = 93.0071
+offset_bottom = 53.44
 grow_horizontal = 2
 pivot_offset = Vector2(24, 10)
 texture = ExtResource("4_5ctxx")
@@ -273,9 +365,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -48.5
-offset_top = 15.0
+offset_top = 2.44501
 offset_right = 48.5
-offset_bottom = 39.0
+offset_bottom = 26.445
 grow_horizontal = 2
 grow_vertical = 0
 
