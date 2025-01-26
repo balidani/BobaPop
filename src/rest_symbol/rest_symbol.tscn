@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c0bxbi0r73drg"]
 
-[ext_resource type="Texture2D" uid="uid://bwscuviskw5ge" path="res://sprites/clef.png" id="1_ahj0y"]
+[ext_resource type="Texture2D" uid="uid://bray6gmotled2" path="res://sprites/quater_rest.png" id="1_dttnb"]
 
 [node name="RestSymbol" type="Control"]
 layout_mode = 3
@@ -9,9 +9,10 @@ anchors_preset = 0
 [node name="TextureRect" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 0
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 40.0
-texture = ExtResource("1_ahj0y")
+offset_left = -62.0
+offset_top = -12.0
+offset_right = -17.0
+offset_bottom = 39.0
+texture = ExtResource("1_dttnb")
 expand_mode = 4
 stretch_mode = 5

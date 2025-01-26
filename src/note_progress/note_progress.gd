@@ -19,8 +19,10 @@ var player_recording = false :
 		# Hide the computer notes to see the player attempt better.
 		if player_recording:
 			_computer_notes.modulate = Color(1.0, 1.0, 1.0, 0.5)
+			_computer_rest_symbols.modulate = Color(1.0, 1.0, 1.0, 0.5)
 		else:
 			_computer_notes.modulate = Color(1.0, 1.0, 1.0, 1.0)
+			_computer_rest_symbols.modulate = Color(1.0, 1.0, 1.0, 1.0)
 
 
 var progress = 0.0 :
@@ -61,14 +63,18 @@ func reset():
 var _next_rest_progress = 0.125
 func _process(delta : float) -> void:
 	# Change colour based on whether the computer is playing or not.
+	
+	var computer_hue = 0.1
+	var player_hue = 0.8
+	
 	if GameLoop.instance.computer_playing:
-		_computer_notes.modulate = Color(1.0, 0.0, 0.5)
-		_computer_rest_symbols.modulate = Color(1.0, 0.0, 0.5)
-		_progress_bar.modulate = Color(1.0, 0.0, 0.5)
+		_computer_notes.modulate = Color.from_hsv(computer_hue, 1.0, 0.9)
+		_computer_rest_symbols.modulate = Color.from_hsv(computer_hue, 1.0, 0.9)
+		_progress_bar.modulate = Color.from_hsv(computer_hue, 1.0, 0.8)
 	else:
-		_player_notes.modulate = Color(0.0, 1.0, 1.0)
-		_player_rest_symbols.modulate = Color(1.0, 0.0, 0.5)
-		_progress_bar.modulate = Color(0.0, 1.0, 1.0)
+		_player_notes.modulate = Color.from_hsv(player_hue, 1.0, 1.0)
+		_player_rest_symbols.modulate = Color.from_hsv(player_hue + 0.1, 1.0, 0.7)
+		_progress_bar.modulate =  Color.from_hsv(player_hue, 1.0, 0.9)
 	
 	if progress < _next_rest_progress:
 		return
@@ -93,6 +99,7 @@ func _ready() -> void:
 	instance = self
 	progress = 0.0
 	_last_note_progress = -1.0
+	_next_rest_progress = 0.125
 	note_spacing_count = _note_spacing.get_child_count()
 
 
