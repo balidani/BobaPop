@@ -162,6 +162,9 @@ func inject_space_bar():
 
 # Check if point is inside touch detection region
 func _is_inside_touch_detector(pos: Vector2) -> bool:
+	# BobaPop: Simply use the whole screen.
+	# Fixes an issue with portrait mode.
+	return true
 	var rect := touch_detection_region.get_rect()
 	var relative_pos = pos - global_position
 	return rect.has_point(abs(relative_pos))
