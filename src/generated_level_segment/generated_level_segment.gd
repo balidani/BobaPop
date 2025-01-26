@@ -7,6 +7,7 @@ const REPEATER = preload("res://src/tiles/repeater_obstacle/repeater_obstacle.ts
 const NOTE_TONIC = preload("res://src/tiles/note_tonic/note_tonic.tscn")
 const NOTE_DOMINANT = preload("res://src/tiles/note_dominant/note_dominant.tscn")
 const OBSTACLE = preload("res://src/tiles/tile_obstacle/tile_obstacle.tscn")
+const OBSTACLE_CORNER = preload("res://src/tiles/tile_obstacle_corner/tile_obstacle_corner.tscn")
 const TILE_3W3L = preload("res://src/tiles/tile_3w3l/tile_3w3l.tscn")
 const BLACK_HOLE = preload("res://src/tiles/black_hole/black_hole.tscn")
 const AMEN = preload("res://src/tiles/tile_amen/tile_amen.tscn")
@@ -69,7 +70,11 @@ func _ready():
 	# Pepper in a few obstacles.
 	for _o in range(rng.randi_range(1, 3)):
 		var random_pos = Vector3i(rng.randi_range(-1, 1) * 2, 2, rng.randi_range(-1, 1) * 2)
-		_maybe_add_block(OBSTACLE.instantiate(), random_pos)
+		var random_kind = rng.randi_range(1, 2)
+		if random_kind == 1:
+			_maybe_add_block(OBSTACLE.instantiate(), random_pos)
+		else:
+			_maybe_add_block(OBSTACLE_CORNER.instantiate(), random_pos)
 	
 		# Pepper in a few obstacles.
 	for _o in range(rng.randi_range(1, 3)):
