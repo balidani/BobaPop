@@ -16,6 +16,6 @@ func _ready() -> void:
 	player.change_filter(2)
 	player.change_filter_power(20)
 	
-	player.change_instrument(9)
+	#player.change_instrument(9)
 
 	# player.play_tune(metroid_chill)

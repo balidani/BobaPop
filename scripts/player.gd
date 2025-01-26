@@ -80,9 +80,9 @@ func _physics_process(delta):
 
 	# Animation when landing
 
-	if is_on_floor() and gravity > 2 and !previously_floored:
-		model.scale = Vector3(1.25, 0.75, 1.25)
-		Audio.play("res://sounds/land.ogg")
+	#if is_on_floor() and gravity > 2 and !previously_floored:
+		#model.scale = Vector3(1.25, 0.75, 1.25)
+		#Audio.play("res://sounds/land.ogg")
 
 	previously_floored = is_on_floor()
 
@@ -91,7 +91,6 @@ func _physics_process(delta):
 func handle_effects(delta):
 
 	particles_trail.emitting = false
-	sound_footsteps.stream_paused = true
 
 	if is_on_floor():
 		var horizontal_velocity = Vector2(velocity.x, velocity.z)
@@ -100,15 +99,20 @@ func handle_effects(delta):
 			if animation.current_animation != "walk":
 				animation.play("walk", 0.1)
 
-			if speed_factor > 0.3:
-				sound_footsteps.stream_paused = false
-				sound_footsteps.pitch_scale = speed_factor
+			if speed_factor > 0.2:
+				if sound_footsteps.stream_paused:
+					sound_footsteps.stream_paused = false
+				# TODO: seems to have some issues with js
+				# sound_footsteps.pitch_scale = speed_factor
 
 			if speed_factor > 0.75:
 				particles_trail.emitting = true
 
-		elif animation.current_animation != "idle":
-			animation.play("idle", 0.1)
+		else:
+			sound_footsteps.stream_paused = true
+			if animation.current_animation != "idle":
+				animation.play("idle", 0.1)
+
 	elif animation.current_animation != "jump":
 		animation.play("jump", 0.1)
 

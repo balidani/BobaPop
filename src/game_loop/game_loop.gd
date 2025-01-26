@@ -96,6 +96,10 @@ func computer_recording_start():
 
 
 func retry_level_with_relisten():
+	
+	Synth.player.set_active_instrument(active_instrument)
+	Synth.player.set_active_filter(active_filter)
+	
 	var gray : ShaderMaterial = shader_canvas.inst._gray_vignette.material
 	gray.set_shader_parameter("MainAlpha", 0.0)
 	var rainbow : ShaderMaterial = shader_canvas.inst._saturated_rainbow.material
@@ -204,6 +208,9 @@ func score_game():
 
 	ScoreUI.instance.show_score(success_percentage, passed, stars, description)
 
+
+var active_instrument
+var active_filter
 var level_seed = 0
 func new_level():
 	# level_seed = 1539753758 # Hardcoded for bug repro
@@ -212,6 +219,9 @@ func new_level():
 	else:
 		level_seed = rng.randi()
 	print("Game loop initializing with seed %s and difficulty %s" % [level_seed, difficulty])
+	
+	active_instrument = Synth.player.get_active_instrument()
+	active_filter = Synth.player.get_active_filter()
 	
 	retry_level_with_relisten()
 

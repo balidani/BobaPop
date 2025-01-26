@@ -14,23 +14,24 @@ signal instrument_changed()
 signal filter_changed()
 
 const AVAILABLE_INSTRUMENTS := [
-	{ "category": "MIDI", "name": "Grand Piano" }, #0
-	{ "category": "MIDI", "name": "Glockenspiel" }, #1
-	{ "category": "MIDI", "name": "Xylophone" }, #2
-	{ "category": "MIDI", "name": "Rock Organ" }, #3
-	{ "category": "MIDI", "name": "Accordion" }, #4
-	{ "category": "MIDI", "name": "Nylon Guitar" }, #5
-	{ "category": "MIDI", "name": "Electric Guitar" }, #6
-	{ "category": "MIDI", "name": "Trumpet" }, #7
-	{ "category": "MIDI", "name": "Oboe" }, #8
-
 	{ "category": "BELL", "name": "Glocken 1" }, #9
+	{ "category": "MIDI", "name": "Grand Piano" }, #0
+	#{ "category": "MIDI", "name": "Glockenspiel" }, #1
+	{ "category": "MIDI", "name": "Xylophone" }, #2
+	#{ "category": "MIDI", "name": "Rock Organ" }, #3
+	#{ "category": "MIDI", "name": "Accordion" }, #4
+	#{ "category": "MIDI", "name": "Nylon Guitar" }, #5
+	#{ "category": "MIDI", "name": "Electric Guitar" }, #6
+	#{ "category": "MIDI", "name": "Trumpet" }, #7
+	#{ "category": "MIDI", "name": "Oboe" }, #8
 
-	{ "category": "CHIPTUNE", "name": "Square Wave" }, #10
-	{ "category": "CHIPTUNE", "name": "Dual Saw" }, #11
-	{ "category": "CHIPTUNE", "name": "Triangle LO-FI" }, #12
 
-	{ "category": "DRUMKIT", "name": "Simple Drumkit" }, #13
+	#{ "category": "CHIPTUNE", "name": "Square Wave" }, #10
+	#{ "category": "CHIPTUNE", "name": "Dual Saw" }, #11
+	#{ "category": "CHIPTUNE", "name": "Triangle LO-FI" }, #12
+
+	#{ "category": "DRUMKIT", "name": "Simple Drumkit" }, #13
+	
 ]
 
 const AVAILABLE_FILTERS := [
@@ -92,6 +93,7 @@ func _update_instrument() -> void:
 	_active_instrument.clear()
 
 	var preset: Dictionary = AVAILABLE_INSTRUMENTS[_active_instrument_index]
+	print(preset)
 	var voice_data := _voice_manager.get_voice_data(preset["category"], preset["name"])
 	if not voice_data:
 		return
@@ -144,13 +146,24 @@ func _update_filter() -> void:
 	elif _active_effect is SiControllableFilterHighPass:
 		_active_effect.set_params_manually(((1.0 * _active_filter_power) / 100.0), 0.9)
 
+func reset():
+	notes.clear()
 
 # Configuration.
-
-func get_active_instrument() -> Instrument:
-	return _active_instrument
+func get_active_instrument() -> Array:
+	return [_active_instrument, _active_instrument_index]
+	
+func set_active_instrument(instrument: Array):
+	_active_instrument = instrument[0]
+	_active_instrument_index = instrument[1]
+	_update_instrument()
+	instrument_changed.emit()
 
 func change_instrument(shift: int) -> void:
+	for note in notes:
+		stop_note(note)
+	notes.clear()
+
 	_active_instrument_index += shift
 	if _active_instrument_index < 0:
 		_active_instrument_index = AVAILABLE_INSTRUMENTS.size() - 1
@@ -161,9 +174,13 @@ func change_instrument(shift: int) -> void:
 	instrument_changed.emit()
 
 
-func get_active_filter() -> String:
-	return AVAILABLE_FILTERS[_active_filter_index]
+func get_active_filter() -> int:
+	return _active_filter_index
 
+func set_active_filter(filter_id: int):
+	_active_filter_index = filter_id
+	_update_filter()
+	filter_changed.emit()
 
 func change_filter(shift: int) -> void:
 	_active_filter_index += shift
@@ -210,13 +227,14 @@ func start_streaming() -> void:
 	_driver.stream(false)
 	print("Driver is streaming.")
 
+var notes: Array[int] = []
 
 func play_note(note: int) -> void:
+	notes.push_back(note)
 	# All instruments, except drumkits.
 	if _active_instrument.type == 0:
 		_active_instrument.update_filter()
 		_driver.note_on(note, _active_instrument.voice, 1000)
-
 	# Drumkits.
 	else:
 		var active_drumkit := _voice_manager.get_drumkit(_active_instrument.type)
@@ -226,10 +244,13 @@ func play_note(note: int) -> void:
 		active_drumkit.update_filter(_active_instrument.cutoff, _active_instrument.resonance)
 		active_drumkit.update_volume(_active_instrument.volume)
 		_driver.note_on(active_drumkit.voice_note[note], active_drumkit.voice_list[note])
+	
+	# TODO:
+	# We could use an async timer here to auto-stop the note.
 
 func play_chord(chord: Array, _time: int) -> void:
 	for element in chord:
-		_driver.note_on(element, _active_instrument.voice)
+		play_note(element)
 
 
 func stop_note(note: int) -> void:

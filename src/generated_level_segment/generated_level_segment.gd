@@ -61,7 +61,7 @@ func _ready():
 		# TODO: Rotate the special blocks.
 		var random_pos = Vector3i(rng.randi_range(-1, 1) * 2, 2, rng.randi_range(-1, 1) * 2)
 		var random_orientation = rng.randi() % 4
-		var random_kind = rng.randi_range(1, 4)
+		var random_kind = rng.randi_range(1, 5)
 		var instance = null
 		if random_kind == 1:
 			instance = REPEATER.instantiate()
@@ -71,8 +71,8 @@ func _ready():
 			instance = NOTE_DOMINANT.instantiate()
 		elif random_kind == 4:
 			instance = TILE_EFFECT.instantiate()
-		# else:
-			# instance = TILE_INSTRUMENT.instantiate()
+		else:
+			instance = TILE_INSTRUMENT.instantiate()
 		
 		_maybe_add_block(instance, random_pos, random_orientation)
 	
