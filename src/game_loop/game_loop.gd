@@ -38,6 +38,9 @@ signal computer_playing_changed
 # Keeps increasing without bounds.
 var difficulty = Difficulty.difficulty
 
+var score_total = 0
+var levels_cleared = 0
+
 var woked_shing_triggered = false
 func master_popper_popped():
 	print("Master popper popped. Computer:", computer_playing)
@@ -184,6 +187,11 @@ func score_game():
 		stars = 1
 	else:
 		passed = false
+	
+	
+	if passed:
+		levels_cleared += 1
+		score_total += int(Difficulty.time_value * 150.0 * success_percentage)
 
 	
 	var description;

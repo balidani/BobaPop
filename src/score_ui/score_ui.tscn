@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b8a15c62h080w"]
+[gd_scene load_steps=8 format=3 uid="uid://b8a15c62h080w"]
 
 [ext_resource type="Script" path="res://src/score_ui/score_ui.gd" id="1_2c6du"]
 [ext_resource type="Theme" uid="uid://b4wlmcrqc6tk8" path="res://src/ui_theme/ui_theme.tres" id="1_kgll0"]
@@ -32,7 +32,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Control/VBoxContainer/pass_fail:visible")
+tracks/2/path = NodePath("Control/ScoreOne/pass_fail:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -44,7 +44,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Control/VBoxContainer/description:visible")
+tracks/3/path = NodePath("Control/ScoreOne/description:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -64,6 +64,30 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Control/ScoreTotal:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Control/ScoreOne:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_7apkd"]
@@ -87,10 +111,34 @@ tracks/1/path = NodePath("Control:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/ScoreTotal:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/ScoreOne:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_ahrcf"]
@@ -143,7 +191,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Control/VBoxContainer/pass_fail:visible")
+tracks/3/path = NodePath("Control/ScoreOne/pass_fail:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -155,7 +203,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Control/VBoxContainer/description:visible")
+tracks/4/path = NodePath("Control/ScoreOne/description:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -176,15 +224,67 @@ tracks/5/keys = {
 "update": 0,
 "values": [0.558505, 0.0]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Control/ScoreTotal:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Control/ScoreOne:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_uwa8c"]
+resource_name = "score_away_totals"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/ScoreTotal:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/ScoreOne:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iy0et"]
 _data = {
 "RESET": SubResource("Animation_c1va7"),
 "score_away": SubResource("Animation_7apkd"),
+"score_away_totals": SubResource("Animation_uwa8c"),
 "score_slam": SubResource("Animation_ahrcf")
 }
 
-[node name="ScoreUI" type="Control"]
+[node name="ScoreUI" type="Control" node_paths=PackedStringArray("_score", "_pass_fail", "_description", "_score_total", "_score_level")]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -193,6 +293,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2c6du")
+_score = NodePath("Control/ScoreOne/HBoxContainer/Score")
+_pass_fail = NodePath("Control/ScoreOne/pass_fail")
+_description = NodePath("Control/ScoreOne/description")
+_score_total = NodePath("Control/ScoreTotal/HBoxContainer/TotalPoints")
+_score_level = NodePath("Control/ScoreTotal/HBoxContainer2/Level")
 
 [node name="Control" type="Control" parent="."]
 modulate = Color(1, 1, 1, 0)
@@ -211,43 +316,82 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(20, 20)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+[node name="ScoreTotal" type="VBoxContainer" parent="Control"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -198.5
-offset_top = -84.0
-offset_right = 198.5
-offset_bottom = 84.0
+offset_left = -111.0
+offset_top = -66.5
+offset_right = 111.0
+offset_bottom = 66.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_kgll0")
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/ScoreTotal"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/ScoreTotal/HBoxContainer"]
+layout_mode = 2
+text = "Total Points:"
+
+[node name="TotalPoints" type="Label" parent="Control/ScoreTotal/HBoxContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/ScoreTotal"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/ScoreTotal/HBoxContainer2"]
+layout_mode = 2
+text = "Levels Cleared:"
+
+[node name="Level" type="Label" parent="Control/ScoreTotal/HBoxContainer2"]
+layout_mode = 2
+text = "0"
+
+[node name="ScoreOne" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -173.5
+offset_top = -66.5
+offset_right = 173.5
+offset_bottom = 66.5
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_kgll0")
 theme_override_constants/separation = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/ScoreOne"]
 layout_mode = 2
 theme = ExtResource("1_kgll0")
 theme_override_constants/separation = 5
 alignment = 1
 
-[node name="Label" type="Label" parent="Control/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="Control/ScoreOne/HBoxContainer"]
 layout_mode = 2
 text = "Score:"
 
-[node name="Score" type="Label" parent="Control/VBoxContainer/HBoxContainer"]
+[node name="Score" type="Label" parent="Control/ScoreOne/HBoxContainer"]
 layout_mode = 2
 text = "100%"
 
-[node name="pass_fail" type="Label" parent="Control/VBoxContainer"]
+[node name="pass_fail" type="Label" parent="Control/ScoreOne"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "PASS"
 horizontal_alignment = 1
 
-[node name="description" type="Label" parent="Control/VBoxContainer"]
+[node name="description" type="Label" parent="Control/ScoreOne"]
 layout_mode = 2
 text = "You're a Musical Maestro!"
 horizontal_alignment = 1
