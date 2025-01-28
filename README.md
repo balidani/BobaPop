@@ -1,4 +1,4 @@
-Play at: <https://dmnk.co/bobapop/BobaPop.html>
+Play at: <https://dmnk.co/bobapop/BobaPop.html> / WASD+Space or touch input (mobile)
 
 <p align="center"><img src="splash-screen.png"/></p>
 
