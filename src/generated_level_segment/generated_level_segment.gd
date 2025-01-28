@@ -47,9 +47,10 @@ func _ready():
 		difficulty = GameLoop.instance.difficulty
 	
 	# Possibly generate a master popper block.
-	if difficulty >= 0.0:
+	# AKA WOKED SHING
+	if difficulty >= 4.0:
 		if rng.randf() < 0.1:
-			if not level.master_popper_generated:
+			if not level.master_popper_generated or difficulty == 10.0:
 				level.master_popper_generated = true
 				# TODO: Rotate the special blocks.
 				var random_pos = Vector3i(rng.randi_range(-1, 1) * 2, 2, rng.randi_range(-1, 1) * 2)
