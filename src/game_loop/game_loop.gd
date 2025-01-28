@@ -41,6 +41,7 @@ var difficulty = Difficulty.difficulty
 var score_total = 0
 var levels_cleared = 0
 
+var awaiting_woked_retry = false
 var woked_shing_triggered = false
 func master_popper_popped():
 	print("Master popper popped. Computer:", computer_playing)
@@ -65,10 +66,13 @@ func master_popper_popped():
 
 	_player_spawner.remove_real_player()
 	# Wait for master popper effect.
-	await get_tree().create_timer(5.0).timeout
+	await get_tree().create_timer(2.0).timeout
 	
+	if not woked_shing_triggered:
+		print("No need to stop after woked retry")
+		return
+
 	woked_shing_triggered = false
-	
 	if not computer_was_player:
 		if computer_hit_woked_shing:
 			_music_recorder_player.finish()
@@ -168,6 +172,7 @@ func score_game():
 	print("Stopping level")
 	_level_generator.stop_level()
 	_player_spawner.remove_real_player()
+	woked_shing_triggered = false
 	
 	print("Comparing recordings")
 	
